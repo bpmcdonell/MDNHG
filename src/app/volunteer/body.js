@@ -1,3 +1,8 @@
+import React from "react";
+import { FormEvent } from "react";
+import volFormHandler from "../utils/volFormHandler";
+import VolunteerForm from "./form";
+
 export default function VolunteerBody() {
     return (
         <div>
@@ -56,6 +61,13 @@ export default function VolunteerBody() {
                     pants, skirt or dress that you feel comfortable in.
                 </p>
             </section>
+            <div>
+                <p>
+                    If you would like to volunteer for one of our services,
+                    please provide your information below:
+                </p>
+                <br />
+            </div>
         </div>
     );
 }

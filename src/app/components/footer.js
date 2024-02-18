@@ -5,7 +5,7 @@ export default function Footer() {
         <div>
             <footer>
                 <div>
-                    <p>© 2021 Maryland Nurses Honor Guard</p>
+                    <p>© 2024 Maryland Nurses Honor Guard</p>
                 </div>
 
                 <div>
