@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { FormEvent } from "react";
 
 export default function VolunteerForm() {
+    const sheetURL =
+        "https://script.google.com/macros/s/AKfycbyhlDNXQ4bgoAocuI5ZDACN0xNLDtPaH4baXUqxoAQPphao7nZwPmqhnRda9jpsjMnk/exec";
     const [volunteer, setVolunteer] = useState({
         FirstName: "",
         LastName: "",
@@ -18,49 +19,85 @@ export default function VolunteerForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(volunteer);
+        const formData = new FormData();
+        formData.append("FirstName", volunteer.FirstName);
+        formData.append("LastName", volunteer.LastName);
+        formData.append("Email", volunteer.Email);
+        formData.append("Phone", volunteer.Phone);
+        formData.append("Facebook", volunteer.Facebook);
+
+        fetch(sheetURL, {
+            method: "POST",
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                alert("Thank you for signing up to volunteer!");
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                alert("There was an error submitting your information.");
+            });
+
+        setVolunteer({
+            FirstName: "",
+            LastName: "",
+            Email: "",
+            Phone: "",
+            Facebook: "",
+        });
     };
 
     return (
-        <form
-            method="POST"
-            action="https://script.google.com/macros/s/AKfycbyhlDNXQ4bgoAocuI5ZDACN0xNLDtPaH4baXUqxoAQPphao7nZwPmqhnRda9jpsjMnk/exec"
-        >
-            <label htmlFor="FirstName">First Name:</label>
-            <input
-                name="FirstName"
-                value={volunteer.FirstName}
-                onChange={handleChange}
-                required
-            />
-            <label htmlFor="LastName">Last Name:</label>
-            <input
-                name="LastName"
-                value={volunteer.LastName}
-                onChange={handleChange}
-                required
-            />
-            <label htmlFor="Email">Email:</label>
-            <input
-                name="Email"
-                value={volunteer.Email}
-                onChange={handleChange}
-                required
-            />
-            <label htmlFor="Phone">Phone:</label>
-            <input
-                name="Phone"
-                value={volunteer.Phone}
-                onChange={handleChange}
-                required
-            />
-            <label htmlFor="Facebook">Facebook Profile:</label>
-            <input
-                name="Facebook"
-                value={volunteer.Facebook}
-                onChange={handleChange}
-            />
-            <button type="submit">Submit</button>
+        <form onSubmit={handleSubmit}>
+            <div>
+                <label htmlFor="FirstName">First Name:</label>
+                <input
+                    name="FirstName"
+                    value={volunteer.FirstName}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
+            <div>
+                <label htmlFor="LastName">Last Name:</label>
+                <input
+                    name="LastName"
+                    value={volunteer.LastName}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
+            <div>
+                <label htmlFor="Email">Email:</label>
+                <input
+                    name="Email"
+                    value={volunteer.Email}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
+            <div>
+                <label htmlFor="Phone">Phone:</label>
+                <input
+                    name="Phone"
+                    value={volunteer.Phone}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
+            <div>
+                <label htmlFor="Facebook">Facebook Profile:</label>
+                <input
+                    name="Facebook"
+                    value={volunteer.Facebook}
+                    onChange={handleChange}
+                />
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
         </form>
     );
 }
