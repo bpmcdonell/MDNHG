@@ -2,13 +2,13 @@ import React from "react";
 import Head from "next/head";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import ServiceBody from "./body.js";
+import GalleryBody from "./body.js";
 
-export default function ServicePage() {
+export default function GalleryPage() {
     return (
         <div>
             <main>
-                <ServiceBody />
+                <GalleryBody />
             </main>
         </div>
     );

@@ -1,6 +1,6 @@
-import ".././globals.css";
 import NavLinks from "./nav";
 import Logo from "./logo";
+import AccActions from "./login";
 
 export default function Header() {
     return (
@@ -10,6 +10,9 @@ export default function Header() {
             <nav>
                 <NavLinks />
             </nav>
+            <div>
+                <AccActions />
+            </div>
         </div>
     );
 }

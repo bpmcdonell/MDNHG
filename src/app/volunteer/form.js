@@ -55,8 +55,10 @@ export default function VolunteerForm() {
                 <label htmlFor="FirstName">First Name:</label>
                 <input
                     name="FirstName"
+                    id="FirstName"
                     value={volunteer.FirstName}
                     onChange={handleChange}
+                    autoComplete="given-name"
                     required
                 />
             </div>
@@ -64,8 +66,10 @@ export default function VolunteerForm() {
                 <label htmlFor="LastName">Last Name:</label>
                 <input
                     name="LastName"
+                    id="LastName"
                     value={volunteer.LastName}
                     onChange={handleChange}
+                    autoComplete="family-name"
                     required
                 />
             </div>
@@ -73,8 +77,10 @@ export default function VolunteerForm() {
                 <label htmlFor="Email">Email:</label>
                 <input
                     name="Email"
+                    id="Email"
                     value={volunteer.Email}
                     onChange={handleChange}
+                    autoComplete="email"
                     required
                 />
             </div>
@@ -82,8 +88,10 @@ export default function VolunteerForm() {
                 <label htmlFor="Phone">Phone:</label>
                 <input
                     name="Phone"
+                    id="Phone"
                     value={volunteer.Phone}
                     onChange={handleChange}
+                    autoComplete="tel"
                     required
                 />
             </div>
@@ -91,6 +99,7 @@ export default function VolunteerForm() {
                 <label htmlFor="Facebook">Facebook Profile:</label>
                 <input
                     name="Facebook"
+                    id="Facebook"
                     value={volunteer.Facebook}
                     onChange={handleChange}
                 />

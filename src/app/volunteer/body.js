@@ -1,7 +1,4 @@
 import React from "react";
-import { FormEvent } from "react";
-import volFormHandler from "../utils/volFormHandler";
-import VolunteerForm from "./form";
 
 export default function VolunteerBody() {
     return (

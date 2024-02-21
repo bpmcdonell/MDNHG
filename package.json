@@ -1,22 +1,24 @@
 {
-  "name": "mdnhg",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@babel/core": "^7.23.9",
-    "next": "^14.1.0",
-    "node": "^21.6.2",
-    "react": "^18",
-    "react-dom": "^18"
-  },
-  "devDependencies": {
-    "eslint": "^8",
-    "eslint-config-next": "14.1.0"
-  }
+    "name": "mdnhg",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@babel/core": "^7.23.9",
+        "@cloudinary/react": "^1.13.0",
+        "@cloudinary/url-gen": "^1.16.1",
+        "next": "^14.1.0",
+        "node": "^21.6.2",
+        "react": "^18",
+        "react-dom": "^18"
+    },
+    "devDependencies": {
+        "eslint": "^8",
+        "eslint-config-next": "14.1.0"
+    }
 }
