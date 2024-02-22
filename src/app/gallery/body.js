@@ -1,14 +1,29 @@
+import { v2 as cloudinary } from "cloudinary";
 import Image from "next/image";
-import React from "react";
-import { getFolders } from "../utils/imageURL";
 
-export default function GalleryBody() {
-    const folders = getFolders();
-    console.log(folders);
+cloudinary.config({
+    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+export default async function GalleryBody() {
+    const { resources } = await cloudinary.search.expression().execute();
 
     return (
         <div>
-            <p>poop idk</p>
+            <h1>Gallery</h1>
+            <div>
+                {resources.map((resource) => (
+                    <Image
+                        key={resource.public_id}
+                        src={resource.url}
+                        alt={resource.public_id}
+                        width={300}
+                        height={300}
+                    />
+                ))}
+            </div>
         </div>
     );
 }
