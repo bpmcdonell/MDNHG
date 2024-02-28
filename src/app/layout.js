@@ -5,6 +5,7 @@ import Head from "next/head";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import Router from "next/navigation";
+import styles from "./page.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,7 @@ export default function RootLayout({ children }) {
                 <Head />
                 <Header />
 
-                <main>{children}</main>
+                <main className={styles.main}>{children}</main>
 
                 <Footer />
             </body>

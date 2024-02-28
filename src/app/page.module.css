@@ -1,10 +1,28 @@
 .main {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     padding: 6rem;
-    min-height: 100vh;
+    min-height: 60vh;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.nav {
+    display: flex;
+    position: sticky;
+    align-items: center;
+    justify-content: space-between;
+    top: 0px;
+    background-size: cover;
+    color: white;
+    padding: 10px 20px;
 }
 
 .description {

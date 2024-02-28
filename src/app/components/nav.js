@@ -14,6 +14,9 @@ export default function NavLinks() {
                 <Link href="/gallery">Gallery</Link>
             </li>
             <li>
+                <Link href="/inMemoriam">In Memoriam</Link>
+            </li>
+            <li>
                 <Link href="/donate">Donate</Link>
             </li>
             <li>
@@ -25,6 +28,9 @@ export default function NavLinks() {
 
             <li>
                 <Link href="/volunteer">Volunteer</Link>
+            </li>
+            <li>
+                <Link href="/contact">Contact</Link>
             </li>
         </ul>
     );

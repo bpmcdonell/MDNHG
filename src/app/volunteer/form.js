@@ -10,7 +10,12 @@ export default function VolunteerForm() {
         LastName: "",
         Email: "",
         Phone: "",
-        Facebook: "",
+        Address: "",
+        City: "",
+        ZipCode: "",
+        County: "",
+        Designation: "",
+        EmploymentStatus: "",
     });
 
     const handleChange = async (e) => {
@@ -24,8 +29,14 @@ export default function VolunteerForm() {
         formData.append("LastName", volunteer.LastName);
         formData.append("Email", volunteer.Email);
         formData.append("Phone", volunteer.Phone);
-        formData.append("Facebook", volunteer.Facebook);
+        formData.append("Address", volunteer.Address);
+        formData.append("City", volunteer.City);
+        formData.append("ZipCode", volunteer.ZipCode);
+        formData.append("County", volunteer.County);
+        formData.append("Designation", volunteer.Designation);
+        formData.append("EmploymentStatus", volunteer.EmploymentStatus);
 
+        console.log("Form Data: ", formData);
         fetch(sheetURL, {
             method: "POST",
             body: formData,
@@ -45,7 +56,12 @@ export default function VolunteerForm() {
             LastName: "",
             Email: "",
             Phone: "",
-            Facebook: "",
+            Address: "",
+            City: "",
+            ZipCode: "",
+            County: "",
+            Designation: "",
+            EmploymentStatus: "",
         });
     };
 
@@ -96,14 +112,110 @@ export default function VolunteerForm() {
                 />
             </div>
             <div>
-                <label htmlFor="Facebook">Facebook Profile:</label>
+                <label htmlFor="Address">Address:</label>
                 <input
-                    name="Facebook"
-                    id="Facebook"
-                    value={volunteer.Facebook}
+                    name="Address"
+                    id="Address"
+                    value={volunteer.Address}
                     onChange={handleChange}
+                    autoComplete="address-line1"
+                    required
                 />
             </div>
+            <div>
+                <label htmlFor="City">City:</label>
+                <input
+                    name="City"
+                    id="City"
+                    value={volunteer.City}
+                    onChange={handleChange}
+                    autoComplete="address-level2"
+                    required
+                />
+            </div>
+            <div>
+                <label htmlFor="ZipCode">Zip Code:</label>
+                <input
+                    name="ZipCode"
+                    id="ZipCode"
+                    value={volunteer.ZipCode}
+                    onChange={handleChange}
+                    autoComplete="postal-code"
+                    required
+                />
+            </div>
+            <div>
+                <label htmlFor="County">County:</label>
+                <select
+                    name="County"
+                    id="County"
+                    value={volunteer.County}
+                    onChange={handleChange}
+                    autoComplete="address-level2"
+                    required
+                >
+                    <option value="">--Please choose an option--</option>
+                    <option value="Allegany">Allegany County</option>
+                    <option value="AnneArundel">Anne Arundel County</option>
+                    <option value="BaltimoreCity">Baltimore City</option>
+                    <option value="BaltimoreCounty">Baltimore County</option>
+                    <option value="Calvert">Calvert County</option>
+                    <option value="Caroline">Caroline County</option>
+                    <option value="Carroll">Carroll County</option>
+                    <option value="Cecil">Cecil County</option>
+                    <option value="Charles">Charles County</option>
+                    <option value="Dorchester">Dorchester County</option>
+                    <option value="Frederick">Frederick County</option>
+                    <option value="Garrett">Garrett County</option>
+                    <option value="Harford">Harford County</option>
+                    <option value="Howard">Howard County</option>
+                    <option value="Kent">Kent County</option>
+                    <option value="Montgomery">Montgomery County</option>
+                    <option value="PrinceGeorges">
+                        Prince George's County
+                    </option>
+                    <option value="QueenAnnes">Queen Anne's County</option>
+                    <option value="Somerset">Somerset County</option>
+                    <option value="StMarys">St. Mary's County</option>
+                    <option value="Talbot">Talbot County</option>
+                    <option value="Washington">Washington County</option>
+                    <option value="Wicomico">Wicomico County</option>
+                    <option value="Worcester">Worcester County</option>
+                </select>
+            </div>
+            <div>
+                <label htmlFor="Designation">Designation:</label>
+                <select
+                    name="Designation"
+                    id="Designation"
+                    value={volunteer.Designation}
+                    onChange={handleChange}
+                    required
+                >
+                    <option value="NA">--Please choose an option--</option>
+                    <option value="RN">RN</option>
+                    <option value="LPN">LPN</option>
+                    <option value="CNA">CNA</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div>
+                <label htmlFor="EmploymentStatus">Employment Status:</label>
+                <select
+                    name="EmploymentStatus"
+                    id="EmploymentStatus"
+                    value={volunteer.EmploymentStatus}
+                    onChange={handleChange}
+                    required
+                >
+                    <option value="NA">--Please choose an option--</option>
+                    <option value="Employed">Employed</option>
+                    <option value="Unemployed">Unemployed</option>
+                    <option value="Retired">Retired</option>
+                    <option value="Student">Student</option>
+                </select>
+            </div>
+
             <div>
                 <button type="submit">Submit</button>
             </div>
