@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import MemConstructor from "../components/inMemConstructor";
 
 export default function inMemoriam() {
@@ -12,7 +12,9 @@ export default function inMemoriam() {
             </p>
             <br />
             <div>
-                <MemConstructor />
+                <Suspense fallback={<div>Loading...</div>}>
+                    <MemConstructor />
+                </Suspense>
             </div>
         </div>
     );

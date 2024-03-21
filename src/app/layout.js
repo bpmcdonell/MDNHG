@@ -1,13 +1,18 @@
-import { Inter } from "next/font/google";
-import "./globals.css";
+import { Inter, PT_Serif } from "next/font/google";
+
 import React from "react";
 import Head from "next/head";
 import Header from "./components/header";
 import Footer from "./components/footer";
-import Router from "next/navigation";
-import styles from "./page.module.css";
+import styles from "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const ptSerif = PT_Serif({
+    subsets: ["latin"],
+    weight: ["400", "700"],
+    style: ["italic"],
+});
 
 export const metadata = {
     title: "MD Nurse Honor Guard",
@@ -17,11 +22,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
+            <link rel="icon" href="favicon/favicon.png" sizes="any" />
+            <Head />
             <body>
-                <Head />
                 <Header />
 
-                <main className={styles.main}>{children}</main>
+                <main>{children}</main>
 
                 <Footer />
             </body>
