@@ -25,14 +25,18 @@ export default function ServiceBody() {
                 as appropriate, and are able to adapt our readings to suit the
                 recipient.
             </p>
-            <p>The Nightingale Tribute consists of:</p>
-            <ul>
-                <li>Short synopsis of nurse&#39;s career (optional)</li>
-                <li>Creative reading</li>
-                <li>Presentation of white rose</li>
-                <li>Final Roll Call - release of nurse duties</li>
-                <li>Presentation of lamp to family</li>
-            </ul>
+            <div className="flex flex-col max-w-sm mx-auto pr-5 pl-2 my-5 py-5 bg-indigo-200 b rounded-lg">
+                <p className=" mb-2 mx-auto">
+                    The Nightingale Tribute consists of:
+                </p>
+                <ul className="mx-auto">
+                    <li>Short synopsis of nurse&#39;s career (optional)</li>
+                    <li>Creative reading</li>
+                    <li>Presentation of white rose</li>
+                    <li>Final Roll Call - release of nurse duties</li>
+                    <li>Presentation of lamp to family</li>
+                </ul>
+            </div>
             <h2 className="flex justify-center pb-2">Living tributes</h2>
             <p>
                 Living Tributes are performed for a nurse in recognition and

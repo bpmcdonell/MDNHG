@@ -25,11 +25,13 @@ export default function RootLayout({ children }) {
             <link rel="icon" href="favicon/favicon.png" sizes="any" />
             <Head />
             <body>
-                <Header />
-
-                <main>{children}</main>
-
-                <Footer />
+                <div className="relative min-h-screen">
+                    <div className="pb-44">
+                        <Header />
+                        <main>{children}</main>
+                    </div>
+                    <Footer />
+                </div>
             </body>
         </html>
     );

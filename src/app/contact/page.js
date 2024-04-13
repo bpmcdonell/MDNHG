@@ -1,33 +1,30 @@
-// export default function Contact() {
-//     return (
-//         <div>
-//             <h1>Contact</h1>
-//             <br />
-
-//             <p>
-//                 If you would like to contact us, please reach out to us with the
-//                 following information
-//             </p>
-//             <p>
-//                 <strong>Email:</strong>{" "}
-//                 <a href="mailto:contact@mdnursehonorguard.com">
-//                     contact@mdnursehonorguard.com
-//                 </a>
-//             </p>
-//             <p>
-//                 <strong>Phone:</strong> (240) 974-7554
-//             </p>
-//         </div>
-//     );
-// }
+"use client";
 
 import {
     BuildingOffice2Icon,
     EnvelopeIcon,
     PhoneIcon,
 } from "@heroicons/react/24/outline";
+import React, { useState } from "react";
 
-export default function Example() {
+export default function Contact() {
+    const [contact, setContact] = useState({
+        FirstName: "",
+        LastName: "",
+        Email: "",
+        PhoneNumber: "",
+        Message: "",
+    });
+
+    function handleChange(event) {
+        setContact({ ...contact, [event.target.name]: event.target.value });
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        console.log(contact);
+    }
+
     return (
         <div className="relative isolate bg-white">
             <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
@@ -125,84 +122,83 @@ export default function Example() {
                     </div>
                 </div>
                 <form
-                    action="#"
-                    method="POST"
+                    onSubmit={handleSubmit}
                     className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-48"
                 >
                     <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
                         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-                            <div>
+                            <div className="relative">
                                 <label
-                                    htmlFor="first-name"
-                                    className="block text-sm font-semibold leading-6 text-gray-900"
+                                    htmlFor="FirstName"
+                                    className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
                                 >
-                                    First name
+                                    First Name
                                 </label>
-                                <div className="mt-2.5">
-                                    <input
-                                        type="text"
-                                        name="first-name"
-                                        id="first-name"
-                                        autoComplete="given-name"
-                                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
+                                <input
+                                    type="text"
+                                    name="FirstName"
+                                    id="FirstName"
+                                    value={contact.FirstName}
+                                    onChange={handleChange}
+                                    autoComplete="given-name"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                />
                             </div>
-                            <div>
+                            <div className="relative">
                                 <label
-                                    htmlFor="last-name"
-                                    className="block text-sm font-semibold leading-6 text-gray-900"
+                                    htmlFor="LastName"
+                                    className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
                                 >
-                                    Last name
+                                    Last Name
                                 </label>
-                                <div className="mt-2.5">
-                                    <input
-                                        type="text"
-                                        name="last-name"
-                                        id="last-name"
-                                        autoComplete="family-name"
-                                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
+                                <input
+                                    type="text"
+                                    name="LastName"
+                                    id="LastName"
+                                    autoComplete="family-name"
+                                    value={contact.LastName}
+                                    onChange={handleChange}
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                />
                             </div>
-                            <div className="sm:col-span-2">
+                            <div className="relative sm:col-span-2">
                                 <label
-                                    htmlFor="email"
-                                    className="block text-sm font-semibold leading-6 text-gray-900"
+                                    htmlFor="Email"
+                                    className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
                                 >
                                     Email
                                 </label>
-                                <div className="mt-2.5">
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        id="email"
-                                        autoComplete="email"
-                                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
+                                <input
+                                    type="text"
+                                    name="Email"
+                                    id="Email"
+                                    autoComplete="email"
+                                    value={contact.Email}
+                                    onChange={handleChange}
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                />
                             </div>
-                            <div className="sm:col-span-2">
+                            <div className="relative sm:col-span-2">
                                 <label
-                                    htmlFor="phone-number"
-                                    className="block text-sm font-semibold leading-6 text-gray-900"
+                                    htmlFor="Phone"
+                                    className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
                                 >
-                                    Phone number
+                                    Phone Number
                                 </label>
-                                <div className="mt-2.5">
-                                    <input
-                                        type="tel"
-                                        name="phone-number"
-                                        id="phone-number"
-                                        autoComplete="tel"
-                                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
+                                <input
+                                    type="text"
+                                    name="Phone"
+                                    id="Phone"
+                                    autoComplete="tel"
+                                    value={contact.Phone}
+                                    onChange={handleChange}
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                />
                             </div>
-                            <div className="sm:col-span-2">
+                            <div className="relative sm:col-span-2">
                                 <label
                                     htmlFor="message"
-                                    className="block text-sm font-semibold leading-6 text-gray-900"
+                                    className="absolute top-0.5 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
                                 >
                                     Message
                                 </label>
@@ -211,7 +207,7 @@ export default function Example() {
                                         name="message"
                                         id="message"
                                         rows={4}
-                                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                         defaultValue={""}
                                     />
                                 </div>

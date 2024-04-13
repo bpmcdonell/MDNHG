@@ -19,9 +19,9 @@ export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <header className="bg-indigo-600">
+        <header className="shadow">
             <nav
-                className="mx-20 flex max-w-screen-full justify-between items-center p-3 lg:px-8"
+                className="mx-20 flex min-w-screen-full justify-between items-center p-3 "
                 aria-label="Global"
             >
                 <div>
@@ -30,11 +30,11 @@ export default function Header() {
                         className="flex flex-row items-center -m-1.5 p-1.5"
                     >
                         <img
-                            className="object-contain h-11 w-11 "
+                            className="object-contain h-14 w-14 "
                             src="/images/logo.png"
-                            alt=""
+                            alt="logo"
                         />
-                        <span className="text-white font-bold p-3">
+                        <span className="text-black font-bold m-3">
                             Maryland Nurse's Honor Guard
                         </span>
                     </a>
@@ -43,19 +43,19 @@ export default function Header() {
                 <div className="flex lg:hidden">
                     <button
                         type="button"
-                        className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
+                        className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-black"
                         onClick={() => setMobileMenuOpen(true)}
                     >
                         <span className="sr-only">Open main menu</span>
                         <Bars3Icon className="h-6 w-6" aria-hidden="true" />
                     </button>
                 </div>
-                <div className="hidden lg:flex lg:gap-x-12 lg:justify-end">
+                <div className="hidden lg:flex lg:gap-x-10 lg:justify-end">
                     {navigation.map((item) => (
                         <a
                             key={item.name}
                             href={item.href}
-                            className="text-sm font-semibold leading-6 text-white drop-shadow-2xl"
+                            className="text-sm font-semibold leading-6 text-black drop-shadow-2xl text-nowrap hover:text-gray-500"
                         >
                             {item.name}
                         </a>
@@ -87,7 +87,7 @@ export default function Header() {
                                     <a
                                         key={item.name}
                                         href={item.href}
-                                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                        className="-mx-3 block rounded-lg my-2 text-base font-semibold leading-7 text-black hover:bg-gray-50"
                                     >
                                         {item.name}
                                     </a>
