@@ -26,7 +26,7 @@ export default function ServiceBody() {
                 recipient.
             </p>
             <div className="flex flex-col max-w-sm mx-auto pr-5 pl-2 my-5 py-5 bg-indigo-200 b rounded-lg">
-                <p className=" mb-2 mx-auto">
+                <p className=" mb-2 mx-auto font-bold">
                     The Nightingale Tribute consists of:
                 </p>
                 <ul className="mx-auto">
@@ -53,16 +53,18 @@ export default function ServiceBody() {
                 events where we may support the recognition of nurses in our
                 community including:
             </p>
-            <ul>
-                <li>Nurse&#39;s Week</li>
-                <li>
-                    Student Nurse Pinning, Lamp lighting or graduation
-                    ceremonies
-                </li>
-                <li>Parades</li>
-                <li>Community Activities</li>
-                <li>Health Fairs</li>
-            </ul>
+            <div className="flex flex-col max-w-sm mx-auto pr-5 pl-2 my-5 py-5 bg-indigo-200 b rounded-lg">
+                <ul>
+                    <li>Nurse&#39;s Week</li>
+                    <li>
+                        Student Nurse Pinning, Lamp lighting or graduation
+                        ceremonies
+                    </li>
+                    <li>Parades</li>
+                    <li>Community Activities</li>
+                    <li>Health Fairs</li>
+                </ul>
+            </div>
             <p className="py-5">
                 To request the presence of the Nurse Honor Guard at a
                 nurse&#39;s services or for additional information please

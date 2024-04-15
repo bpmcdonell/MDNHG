@@ -19,7 +19,7 @@ export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <header className="shadow">
+        <header className="border-b-2 px-">
             <nav
                 className="mx-20 flex min-w-screen-full justify-between items-center p-3 "
                 aria-label="Global"
