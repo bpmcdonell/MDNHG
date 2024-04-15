@@ -3,21 +3,23 @@ import Image from "next/image";
 
 export default function AboutPage() {
     return (
-        <div className="bg-white max-w-full lg:grid lg:grid-cols-2">
-            <div className="flex justify-center">
-                <AboutBody />
-            </div>
-            <div className="relative m-10">
-                <Image
-                    src="https://res.cloudinary.com/dx6nv04ky/image/upload/t_square/v1710893807/mdnhg/backTurned.jpg.jpg"
-                    alt="MDNHG Members at a service with their back turned"
-                    width={725}
-                    height={725}
-                    className="rounded-lg shadow-2xl mx-auto"
-                    priority={true}
-                    objectFit="contain"
-                    quality={100}
-                />
+        <div className="lg:contianer lg:max-w-screen-2xl lg:mx-auto">
+            <div className="bg-white max-w-full lg:grid lg:grid-cols-2">
+                <div className="flex justify-center">
+                    <AboutBody />
+                </div>
+                <div className="relative m-10">
+                    <Image
+                        src="/images/backTurnedCropped.jpg"
+                        alt="MDNHG Members at a service with their back turned"
+                        width={700}
+                        height={700}
+                        className="rounded-lg shadow-2xl mx-auto"
+                        priority={true}
+                        objectFit="contain"
+                        quality={100}
+                    />
+                </div>
             </div>
         </div>
     );

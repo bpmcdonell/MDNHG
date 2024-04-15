@@ -60,6 +60,19 @@ export default function AboutBody() {
                     thank them for their service.
                 </p>
             </div>
+            <div className="flex flex-col">
+                <h2 className="py-7 mx-auto">Get Involved!</h2>
+                <p>
+                    If you are a nurse and would like to join the Maryland
+                    Nurses Honor Guard, please sumbit your information on our{" "}
+                    <a href="/volunteer">volunteer page</a> and join our
+                    community on our{" "}
+                    <a href="https://www.facebook.com/groups/891383095941572">
+                        Facebook Group
+                    </a>
+                    .
+                </p>
+            </div>
         </aside>
     );
 }

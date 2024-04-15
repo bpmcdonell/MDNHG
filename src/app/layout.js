@@ -13,7 +13,7 @@ const ptSerif = PT_Serif({
 });
 
 export const metadata = {
-    title: "MD Nurse Honor Guard",
+    title: "MD Nurses Honor Guard",
     description: "Webpage for the Maryland Nurses Honor Guard",
 };
 
@@ -22,9 +22,9 @@ export default function RootLayout({ children }) {
         <html lang="en">
             <link rel="icon" href="favicon/favicon.png" sizes="any" />
             <Head />
-            <body>
+            <body className=" overscroll-none">
                 <Header />
-                <div className="relative min-h-screen container mx-auto">
+                <div className="relative min-h-screen mx-auto">
                     <div className="pb-44">
                         <main>{children}</main>
                     </div>

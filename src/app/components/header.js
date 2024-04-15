@@ -19,9 +19,9 @@ export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <header className="border-b-2 px-">
+        <header className="sticky top-0 z-50 bg-white border-b-[1px] border-gray-100">
             <nav
-                className="mx-20 flex min-w-screen-full justify-between items-center p-3 "
+                className="mx-20 flex min-w-screen-full justify-between items-center p-1"
                 aria-label="Global"
             >
                 <div>
@@ -35,7 +35,7 @@ export default function Header() {
                             alt="logo"
                         />
                         <span className="text-black font-bold m-3">
-                            Maryland Nurse's Honor Guard
+                            Maryland Nurses Honor Guard
                         </span>
                     </a>
                 </div>

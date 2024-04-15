@@ -55,7 +55,7 @@ export default function ServiceBody() {
             </p>
             <div className="flex flex-col max-w-sm mx-auto pr-5 pl-2 my-5 py-5 bg-indigo-200 b rounded-lg">
                 <ul>
-                    <li>Nurse&#39;s Week</li>
+                    <li>Nurses Week</li>
                     <li>
                         Student Nurse Pinning, Lamp lighting or graduation
                         ceremonies

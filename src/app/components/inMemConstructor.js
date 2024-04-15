@@ -16,26 +16,27 @@ export default async function MemConstructor() {
     console.log(records);
 
     return (
-        <div>
-            <div>
-                <h2>Memoriams</h2>
-                <ul>
-                    {records.map((record) => (
-                        <div>
-                            <Image
-                                src="/images/IMG_6329.jpg"
-                                width={75}
-                                height={75}
-                                alt="Rose Picture"
-                            />
+        <div className="columns-1 ">
+            <ul>
+                {records.map((record) => (
+                    <div className="flex flex-row m-6 p-2 bg-gray-200">
+                        <Image
+                            src="/images/IMG_6329.jpg"
+                            width={75}
+                            height={75}
+                            alt="Rose Picture"
+                            className="mr-4"
+                        />
+                        <div className="flex flex-col justify-evenly">
                             <p>Name: {record.name}</p>
-                            <p>Date of Birth/Death: {record.dates}</p>
+                            <p className=" text-nowrap">
+                                Date of Birth/Death: {record.dates}
+                            </p>
                             <p>Date of Service: {record.dos}</p>
-                            <br />
                         </div>
-                    ))}
-                </ul>
-            </div>
+                    </div>
+                ))}
+            </ul>
         </div>
     );
 }

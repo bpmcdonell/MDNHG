@@ -3,16 +3,23 @@
 import VolunteerBody from "./body";
 import React, { useState } from "react";
 import VolunteerForm from "./form";
+import Image from "next/image";
 
 export default function VolunteerPage() {
     return (
-        <div className="mx-30">
+        <div className="lg:contianer lg:max-w-screen-2xl lg:mx-auto">
             <main>
-                <div className="px-10 columns-1 pt-10 md:columns-2">
-                    <div className="w-auto md:break-inside-avoid-column">
+                {/* <Image
+                    src="/images/WhiteRoseBanner.png"
+                    width={1200}
+                    height={400}
+                    className="object-cover mx-auto mt-3"
+                /> */}
+                <div className="px-10 columns-1 pt-10 lg:columns-2 lg:gap-20">
+                    <div className="w-auto lg:break-inside-avoid-column">
                         <VolunteerBody />
                     </div>
-                    <div className="w-auto md:break-inside-avoid-column">
+                    <div className="w-auto lg:break-inside-avoid-column">
                         <VolunteerForm />
                     </div>
                 </div>
