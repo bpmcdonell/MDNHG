@@ -1,4 +1,4 @@
-import { PT_Serif } from "next/font/google";
+import { PT_Serif, Cormorant_Garamond, Merriweather } from "next/font/google";
 
 import React from "react";
 import Head from "next/head";
@@ -12,6 +12,18 @@ const ptSerif = PT_Serif({
     style: ["italic"],
 });
 
+const cormorantGaramond = Cormorant_Garamond({
+    subsets: ["latin"],
+    weight: ["400", "700"],
+    style: ["italic"],
+});
+
+const merriweather = Merriweather({
+    subsets: ["latin"],
+    weight: ["400", "700"],
+    style: ["italic"],
+});
+
 export const metadata = {
     title: "MD Nurses Honor Guard",
     description: "Webpage for the Maryland Nurses Honor Guard",
@@ -19,8 +31,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en">
-            <link rel="icon" href="favicon/favicon.png" sizes="any" />
+        <html
+            lang="en"
+            className=""
+        >
+            <link
+                rel="icon"
+                href="favicon/favicon.png"
+                sizes="any"
+            />
             <Head />
             <body className=" overscroll-none">
                 <Header />

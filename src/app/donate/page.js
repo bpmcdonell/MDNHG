@@ -1,6 +1,5 @@
 import React from "react";
 import DonateBody from "./body.js";
-import DonorWallCons from "../components/donorWallCons";
 import DonoHandler from "../utils/donoHandler.js";
 import Image from "next/image";
 
@@ -24,9 +23,6 @@ export default async function DonatePage() {
                     <div>
                         <DonoHandler />
                     </div>
-                </div>
-                <div className="flex justify-center">
-                    <DonorWallCons />
                 </div>
             </main>
         </div>

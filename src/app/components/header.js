@@ -3,13 +3,15 @@
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 const navigation = [
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Volunteer", href: "/volunteer" },
     { name: "Donate", href: "donate" },
-    { name: "In Memoriam", href: "/inMemoriam" },
+    { name: "Memorial Wall", href: "/memorial-wall" },
+    { name: "Gratitude Wall", href: "/gratitude-wall" },
     { name: "Gallery", href: "/gallery" },
     { name: "FAQ", href: "/faq" },
     { name: "Contact", href: "/contact" },
@@ -29,12 +31,13 @@ export default function Header() {
                         href="/"
                         className="flex flex-row items-center -m-1.5 p-1.5"
                     >
-                        <img
-                            className="object-contain h-14 w-14 "
+                        <Image
                             src="/images/logo.png"
-                            alt="logo"
+                            alt="Maryland Nurses Honor Guard Logo"
+                            width={100}
+                            height={100}
                         />
-                        <span className="text-black font-bold m-3">
+                        <span className="text-black text-2xl font-bold m-3">
                             Maryland Nurses Honor Guard
                         </span>
                     </a>
@@ -47,7 +50,10 @@ export default function Header() {
                         onClick={() => setMobileMenuOpen(true)}
                     >
                         <span className="sr-only">Open main menu</span>
-                        <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                        <Bars3Icon
+                            className="h-6 w-6"
+                            aria-hidden="true"
+                        />
                     </button>
                 </div>
                 <div className="hidden lg:flex lg:gap-x-10 lg:justify-end">
@@ -77,7 +83,10 @@ export default function Header() {
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             <span className="sr-only">Close menu</span>
-                            <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                            <XMarkIcon
+                                className="h-6 w-6"
+                                aria-hidden="true"
+                            />
                         </button>
                     </div>
                     <div className="mt-6 flow-root">

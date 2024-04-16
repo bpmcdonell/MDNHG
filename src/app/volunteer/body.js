@@ -14,27 +14,11 @@ export default function VolunteerBody() {
                     journey.
                 </p>
                 <p>
-                    When a gentle touch, a firm push, or an encouraging word is
-                    needed, nurses are there.
-                </p>
-                <p>
-                    To witness humanity, its beauty, in good times and bad,
-                    without judgment, nurses are there.
-                </p>
-                <p>
-                    To embrace the woes of the world willingly, and offer hope,
-                    nurses are there.
-                </p>
-                <p>
-                    And so, too, are nurses who volunteer for the Honor Guard.
-                </p>
-                <p>
                     The nurses who are members of the Honor Guard consider it
                     both an honor and a privilege to participate in final
                     services for their fellow nurses. Our presence gives
                     meaningful recognition to the nurse who has passed and helps
-                    to ease the grief of their loved ones during their time of
-                    loss.
+                    to ease the grief.
                 </p>
                 <p>
                     Honor Guard nurse volunteers personally understand the

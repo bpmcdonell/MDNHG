@@ -6,9 +6,9 @@ export default function Home() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <div className="bg-white">
-            <div className="relative">
-                <div className="mx-auto max-w-7xl">
+        <div className="bg-blue-900">
+            <div className="relative bg-white">
+                <div className="mx-auto max-w-7xl bg-white">
                     <div className="relative z-10 pt-14 lg:w-full lg:max-w-2xl">
                         <svg
                             className="absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform fill-white lg:block"
@@ -46,49 +46,49 @@ export default function Home() {
                 <div className="bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
                     <img
                         className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
-                        src="../images/flowers.jpg"
+                        src="../../images/awaiting.jpg"
                         alt="A picture of a cherry blossom tree"
                     />
                 </div>
             </div>
 
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 bg-blue-900">
                 <div className="py-16 lg:py-24">
                     <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
                         <div>
-                            <h3 className="text-2xl font-bold text-gray-900">
+                            <h3 className="text-2xl font-bold text-white">
                                 Our Mission
                             </h3>
-                            <p className="mt-6 text-lg leading-8 text-gray-600">
+                            <p className="mt-6 text-lg leading-8 text-white">
                                 To honor nurse colleagues who have passed on and
                                 provide comfort to their families by providing a
                                 Nightingale Tribute ceremony.
                             </p>
                         </div>
                         <div>
-                            <h3 className="text-2xl font-bold text-gray-900">
+                            <h3 className="text-2xl font-bold text-white">
                                 Our Vision
                             </h3>
-                            <p className="mt-6 text-lg leading-8 text-gray-600">
+                            <p className="mt-6 text-lg leading-8 text-white">
                                 To honor every nurse who passes in the State of
                                 Maryland.
                             </p>
                         </div>
                         <div>
-                            <h3 className="text-2xl font-bold text-gray-900">
+                            <h3 className="text-2xl font-bold text-white">
                                 Our Purpose
                             </h3>
-                            <p className="mt-6 text-lg leading-8 text-gray-600">
+                            <p className="mt-6 text-lg leading-8 text-white">
                                 To recognize professional nurses and their
                                 contributions to society by honoring their
                                 life's work in a memorial service.
                             </p>
                         </div>
                         <div>
-                            <h3 className="text-2xl font-bold text-gray-900">
+                            <h3 className="text-2xl font-bold text-white">
                                 Our Services
                             </h3>
-                            <p className="mt-6 text-lg leading-8 text-gray-600">
+                            <p className="mt-6 text-lg leading-8 text-white">
                                 We offer Nightingale Tributes and Living
                                 Tributes to honor nurses who have passed on or
                                 are near the end of their life.
@@ -97,8 +97,6 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-
-            <div className="bg-gray-50"></div>
         </div>
     );
 }

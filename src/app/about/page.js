@@ -14,9 +14,11 @@ export default function AboutPage() {
                         alt="MDNHG Members at a service with their back turned"
                         width={700}
                         height={700}
-                        className="rounded-lg shadow-2xl mx-auto"
+                        className="
+                        rounded-lg 
+                        shadow-2xl 
+                        mx-auto"
                         priority={true}
-                        objectFit="contain"
                         quality={100}
                     />
                 </div>

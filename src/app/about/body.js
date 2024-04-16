@@ -18,24 +18,10 @@ export default function AboutBody() {
                     volunteer our time to pay tribute to our fallen colleagues
                     at their funeral or memorial service.
                 </p>
-                <div className="flex max-w-lg mx-auto pr-5 pl-2 my-5 py-5 bg-indigo-200 b rounded-lg">
-                    <ul>
-                        <li>
-                            VISION - To honor every nurse who passes in the
-                            State of Maryland.
-                        </li>
-                        <li>
-                            PURPOSE - To recognize fallen professional nurses
-                            and their contributions to society by honoring their
-                            life's work in a memorial service.
-                        </li>
-                        <li>
-                            MISSION - To honor fallen colleagues and provide
-                            comfort to their families by participating in their
-                            memorial services including providing a Nightingale
-                            Tribute ceremony.
-                        </li>
-                    </ul>
+                <div className="flex max-w-lg shadow-lg mx-auto pr-5 pl-2 my-5 py-5 bg-[#0A0C92] b rounded-lg">
+                    <p className="flex text-white mx-auto font-semibold text-4xl">
+                        "Nurses Honoring Nurses"
+                    </p>
                 </div>
 
                 <p className="p-1">

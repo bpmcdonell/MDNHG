@@ -1,6 +1,6 @@
 export default function ServiceTitle() {
     return (
-        <div className="w-7/12">
+        <div className="w-7/12 bg-red-">
             <h1 className="flex justify-center pt-10 mb-5">Our Services</h1>
             <p>
                 The Maryland Nurse Honor Guard can attend memorial services for

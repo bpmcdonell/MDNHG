@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+    html {
+        font-family: "merriweather", serif;
+        font-size: 20px;
+    }
     h1 {
         @apply text-2xl font-bold;
     }

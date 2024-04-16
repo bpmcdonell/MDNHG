@@ -75,14 +75,13 @@ export default function Contact() {
                             </svg>
                         </div>
                         <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-                            Get in touch
+                            We would love to hear from you!
                         </h2>
                         <p className="mt-6 text-lg leading-8 text-gray-600">
-                            We would love to hear from you! If you have any
-                            questions or would like to learn more about our
-                            organization, please feel free to reach out to us by
-                            phone, email or by filling out the form to the
-                            right.
+                            If you have any questions or would like to learn
+                            more about our organization, please feel free to
+                            reach out to us by phone, email or by filling out
+                            the form to the right.
                         </p>
                         <dl className="mt-10 space-y-4 text-base leading-7 text-gray-600">
                             <div className="flex gap-x-4">
@@ -142,7 +141,7 @@ export default function Contact() {
                                     value={contact.FirstName}
                                     onChange={handleChange}
                                     autoComplete="given-name"
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-sky-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
                             <div className="relative">
@@ -159,7 +158,7 @@ export default function Contact() {
                                     autoComplete="family-name"
                                     value={contact.LastName}
                                     onChange={handleChange}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-sky-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
                             <div className="relative sm:col-span-2">
@@ -176,7 +175,7 @@ export default function Contact() {
                                     autoComplete="email"
                                     value={contact.Email}
                                     onChange={handleChange}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-sky-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
                             <div className="relative sm:col-span-2">
@@ -193,7 +192,7 @@ export default function Contact() {
                                     autoComplete="tel"
                                     value={contact.Phone}
                                     onChange={handleChange}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-sky-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
                             <div className="relative sm:col-span-2">
@@ -208,7 +207,7 @@ export default function Contact() {
                                         name="message"
                                         id="message"
                                         rows={4}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-sky-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                         defaultValue={""}
                                     />
                                 </div>
