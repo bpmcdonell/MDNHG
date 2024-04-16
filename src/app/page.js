@@ -46,13 +46,13 @@ export default function Home() {
                 <div className="bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
                     <img
                         className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
-                        src="../images/flowers.jpg"
+                        src="../../images/awaiting.jpg"
                         alt="A picture of a cherry blossom tree"
                     />
                 </div>
             </div>
 
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 bg-indigo-200">
                 <div className="py-16 lg:py-24">
                     <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
                         <div>

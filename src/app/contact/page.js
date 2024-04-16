@@ -75,14 +75,13 @@ export default function Contact() {
                             </svg>
                         </div>
                         <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-                            Get in touch
+                            We would love to hear from you!
                         </h2>
                         <p className="mt-6 text-lg leading-8 text-gray-600">
-                            We would love to hear from you! If you have any
-                            questions or would like to learn more about our
-                            organization, please feel free to reach out to us by
-                            phone, email or by filling out the form to the
-                            right.
+                            If you have any questions or would like to learn
+                            more about our organization, please feel free to
+                            reach out to us by phone, email or by filling out
+                            the form to the right.
                         </p>
                         <dl className="mt-10 space-y-4 text-base leading-7 text-gray-600">
                             <div className="flex gap-x-4">

@@ -16,7 +16,6 @@ export default function AboutPage() {
                         height={700}
                         className="rounded-lg shadow-2xl mx-auto"
                         priority={true}
-                        objectFit="contain"
                         quality={100}
                     />
                 </div>
