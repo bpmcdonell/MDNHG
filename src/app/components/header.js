@@ -32,12 +32,12 @@ export default function Header() {
                         className="flex flex-row items-center -m-1.5 p-1.5"
                     >
                         <Image
-                            src="/images/logo.png"
+                            src="/images/MDNHG-LogoT-BG.png"
                             alt="Maryland Nurses Honor Guard Logo"
                             width={100}
                             height={100}
                         />
-                        <span className="text-black text-2xl font-bold m-3">
+                        <span className="text-black md:text-1xl lg:text-2xl whitespace-nowrap font-bold m-3">
                             Maryland Nurses Honor Guard
                         </span>
                     </a>
@@ -56,12 +56,12 @@ export default function Header() {
                         />
                     </button>
                 </div>
-                <div className="hidden lg:flex lg:gap-x-10 lg:justify-end">
+                <div className="hidden lg:flex lg:space-x-3 lg:justify-end xl:flex xl:space-x-6 xl:justify-end 2xl:flex 2xl:space-x-10 2xl:justify-end">
                     {navigation.map((item) => (
                         <a
                             key={item.name}
                             href={item.href}
-                            className="text-sm font-semibold leading-6 text-black drop-shadow-2xl text-nowrap hover:text-gray-500"
+                            className="text-sm font-semibold leading-6 text-black drop-shadow-2xl hover:text-gray-500"
                         >
                             {item.name}
                         </a>

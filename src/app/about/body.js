@@ -18,7 +18,7 @@ export default function AboutBody() {
                     volunteer our time to pay tribute to our fallen colleagues
                     at their funeral or memorial service.
                 </p>
-                <div className="flex max-w-lg shadow-lg mx-auto pr-5 pl-2 my-5 py-5 bg-[#0A0C92] b rounded-lg">
+                <div className="flex max-w-lg shadow-lg mx-auto px-2 my-5 py-5 text-nowrap bg-nhgBlue b rounded-lg">
                     <p className="flex text-white mx-auto font-semibold text-4xl">
                         "Nurses Honoring Nurses"
                     </p>
@@ -51,9 +51,17 @@ export default function AboutBody() {
                 <p>
                     If you are a nurse and would like to join the Maryland
                     Nurses Honor Guard, please sumbit your information on our{" "}
-                    <a href="/volunteer">volunteer page</a> and join our
-                    community on our{" "}
-                    <a href="https://www.facebook.com/groups/891383095941572">
+                    <a
+                        href="/volunteer"
+                        className="text-nhgBlue underline hover:text-nhgRed"
+                    >
+                        Volunteer Page
+                    </a>{" "}
+                    and join our community on our{" "}
+                    <a
+                        href="https://www.facebook.com/groups/891383095941572"
+                        className="text-nhgBlue underline hover:text-nhgRed"
+                    >
                         Facebook Group
                     </a>
                     .

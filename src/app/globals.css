@@ -20,7 +20,7 @@
         @apply text-sm/6;
     }
     a {
-        @apply text-blue-500;
+        @apply text-link;
     }
     li {
         @apply text-sm/6;

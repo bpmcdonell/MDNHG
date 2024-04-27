@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
                 sizes="any"
             />
             <Head />
-            <body className=" overscroll-none">
+            <body className="">
                 <Header />
                 <div className="relative min-h-screen mx-auto">
                     <div className="pb-44">

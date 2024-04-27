@@ -229,7 +229,7 @@ export default function ServiceForm() {
                 <div className="flex justify-center container mx-auto">
                     <button
                         type="submit"
-                        className="rounded-md bg-blue-900 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        className="rounded-md bg-nhgBlue px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                         Submit
                     </button>
