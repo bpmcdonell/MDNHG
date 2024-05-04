@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 export default function AboutBody() {
     return (
@@ -22,6 +23,17 @@ export default function AboutBody() {
                     <p className="flex text-white mx-auto font-semibold text-4xl">
                         "Nurses Honoring Nurses"
                     </p>
+                </div>
+                <div className="flex justify-center mb-10 lg:hidden">
+                    <Image
+                        src="/images/backTurnedCropped.jpg"
+                        alt="MDNHG Members at a service with their back turned"
+                        width={700}
+                        height={700}
+                        className="rounded-lg shadow-2xl mx-auto"
+                        priority={true}
+                        quality={100}
+                    />
                 </div>
 
                 <p className="p-1">

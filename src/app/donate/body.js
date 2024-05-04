@@ -3,7 +3,7 @@ import React from "react";
 export default function DonateBody() {
     return (
         <div>
-            <p className="my-2">
+            <p className="my-2 text-base">
                 The Maryland Nurse Honor Guard&#39;s mission is to provide
                 tributes to all nurses in the State of Maryland free of charge
                 to their families. In order to do this we rely on nurse
@@ -11,7 +11,7 @@ export default function DonateBody() {
                 tribute services, and the generosity of donors to help us to
                 continue to serve families at no cost.
             </p>
-            <p className="my-2">
+            <p className="my-2 text-base">
                 Donations are used to purchase supplies for our services such as
                 nursing lamps, roses, chimes, tablecloths, blankets, ribbons,
                 printing supplies, fund raising supplies and other necessary
@@ -20,13 +20,13 @@ export default function DonateBody() {
                 scholarship offering or other financial assistance for nursing
                 students.
             </p>
-            <p className="my-2">
+            <p className="my-2 text-base">
                 Please consider requesting charitable donations to The Maryland
                 Nurse Honor Guard in lieu of flowers in your nurse&#39;s honor.
                 We also welcome donations from businesses or individuals to
                 support our mission to serve nurses.
             </p>
-            <p className="my-2">
+            <p className="my-2 text-base">
                 If you are donating in honor of a nurse we will note your donor
                 status on our donor wall in their memory, and will light a
                 candle for your nurse on our honor wall. Please be certain to
@@ -35,7 +35,7 @@ export default function DonateBody() {
                 you would like us to notify the family of your donation in their
                 nurse&#39;s honor as well.
             </p>
-            <p className="my-2">
+            <p className="my-2 text-base">
                 For business or corporate donors please contact us directly so
                 we may place your name and logo on our donor wall in
                 appreciation of your supporting nurses and our mission of nurses

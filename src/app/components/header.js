@@ -23,7 +23,7 @@ export default function Header() {
     return (
         <header className="sticky top-0 z-50 bg-white border-b-[1px] border-gray-100">
             <nav
-                className="mx-20 flex min-w-screen-full justify-between items-center p-1"
+                className="mx-10 flex min-w-screen-full justify-between items-center p-1"
                 aria-label="Global"
             >
                 <div>
@@ -37,7 +37,7 @@ export default function Header() {
                             width={100}
                             height={100}
                         />
-                        <span className="text-black md:text-1xl lg:text-2xl whitespace-nowrap font-bold m-3">
+                        <span className="text-black text-2xl whitespace-nowrap font-bold m-3">
                             Maryland Nurses Honor Guard
                         </span>
                     </a>
@@ -50,18 +50,15 @@ export default function Header() {
                         onClick={() => setMobileMenuOpen(true)}
                     >
                         <span className="sr-only">Open main menu</span>
-                        <Bars3Icon
-                            className="h-6 w-6"
-                            aria-hidden="true"
-                        />
+                        <Bars3Icon className="h-6 w-6" aria-hidden="true" />
                     </button>
                 </div>
-                <div className="hidden lg:flex lg:space-x-3 lg:justify-end xl:flex xl:space-x-6 xl:justify-end 2xl:flex 2xl:space-x-10 2xl:justify-end">
+                <div className="hidden lg:flex lg:space-x-4 xl:flex xl:space-x-6 2xl:flex 2xl:space-x-10 justify-end">
                     {navigation.map((item) => (
                         <a
                             key={item.name}
                             href={item.href}
-                            className="text-sm font-semibold leading-6 text-black drop-shadow-2xl hover:text-gray-500"
+                            className="text-base leading-6 font-medium text-black text-nowrap"
                         >
                             {item.name}
                         </a>
@@ -83,10 +80,7 @@ export default function Header() {
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             <span className="sr-only">Close menu</span>
-                            <XMarkIcon
-                                className="h-6 w-6"
-                                aria-hidden="true"
-                            />
+                            <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                         </button>
                     </div>
                     <div className="mt-6 flow-root">

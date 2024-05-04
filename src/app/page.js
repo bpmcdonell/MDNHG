@@ -9,9 +9,9 @@ export default function Home() {
         <div className="bg-blue-900">
             <div className="relative bg-white">
                 <div className="mx-auto max-w-7xl bg-white">
-                    <div className="relative z-10 pt-14 lg:w-full lg:max-w-2xl">
+                    <div className="relative z-20 pt-14 lg:w-full lg:max-w-2xl ">
                         <svg
-                            className="absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform fill-white lg:block"
+                            className="absolute inset-y-0 right-8 hidden h-full w-64 translate-x-1/2 transform fill-white lg:block"
                             viewBox="0 0 100 100"
                             preserveAspectRatio="none"
                             aria-hidden="true"
@@ -33,7 +33,7 @@ export default function Home() {
                                 <div className="mt-4 flex items-center gap-x-6">
                                     <a
                                         href="/about"
-                                        className="text-sm font-semibold leading-6 text-gray-900"
+                                        className="text-sm font-semibold underline underline-offset-2 leading-6 text-gray-900"
                                     >
                                         Learn more{" "}
                                         <span aria-hidden="true">→</span>
@@ -45,9 +45,9 @@ export default function Home() {
                 </div>
                 <div className="bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
                     <img
-                        className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
-                        src="../../images/awaiting.jpg"
-                        alt="A picture of a cherry blossom tree"
+                        className="aspect-auto z-0 object-cover lg:aspect-auto lg:h-full lg:w-full"
+                        src="../../images/awaitingCopy.jpg"
+                        alt="Picture of nurses awaiting a ceremony"
                     />
                 </div>
             </div>

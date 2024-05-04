@@ -54,11 +54,11 @@ export default function ServiceBody() {
                 community including:
             </p>
             <div className="flex flex-col max-w-sm mx-auto pr-5 pl-2 my-5 py-5 bg-nhgBlue rounded-lg">
-                <ul className="text-white">
+                <ul className="text-white flex justify-center flex-col mx-auto ">
                     <li>Nurses Week</li>
                     <li>
-                        Student Nurse Pinning, Lamp lighting or graduation
-                        ceremonies
+                        Student Nurse Pinning, Lamp lighting or <br />{" "}
+                        graduation ceremonies
                     </li>
                     <li>Parades</li>
                     <li>Community Activities</li>
