@@ -69,7 +69,7 @@ const faqs = {
             answer: "All donations go back into our not-for-profit organization to cover our costs for tributes including for example supplies of flowers, candles, lamps, displays, and printing costs. Our volunteers provide their services for free and never accept payment or tips for their services.",
         },
         {
-            question: "Can I donate in someone’s memory?",
+            question: "Can I donate in someone's memory?",
             answer: "Yes, We will place a marker on our honor wall for your loved one if they were a nurse, and note your generosity on our donor wall.",
         },
         {
@@ -124,12 +124,15 @@ export default function Example() {
         <div className="bg-white">
             <div className="mx-auto max-w-7xl px-6 py-10 sm:py-10 lg:px-8 lg:py-10">
                 <div className="mx-auto max-w-4xl divide-y divide-gray-900/10">
-                    <h2 className="text-3xl font-bold leading-10 tracking-tight text-gray-900">
+                    <h2 className="flex text-3xl font-bold leading-10 justify-center tracking-tight text-gray-900">
                         Frequently asked questions
                     </h2>
                     <dl className="mt-10 space-y-6 divide-y divide-gray-900/10">
                         {Object.keys(faqs).map((section) => (
-                            <div key={section} className="pt-6">
+                            <div
+                                key={section}
+                                className="pt-6"
+                            >
                                 <h3 className="text-2xl font-semibold leading-7">
                                     {section}
                                 </h3>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Home() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -8,7 +9,7 @@ export default function Home() {
     return (
         <div className="bg-blue-900">
             <div className="relative bg-white">
-                <div className="mx-auto max-w-7xl bg-white">
+                <div className="mx-auto max-w-7xl  bg-white">
                     <div className="relative z-20 pt-14 lg:w-full lg:max-w-2xl ">
                         <svg
                             className="absolute inset-y-0 right-8 hidden h-full w-64 translate-x-1/2 transform fill-white lg:block"
@@ -45,54 +46,66 @@ export default function Home() {
                 </div>
                 <div className="bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
                     <img
-                        className="aspect-auto z-0 object-cover lg:aspect-auto lg:h-full lg:w-full"
-                        src="../../images/awaitingCopy.jpg"
-                        alt="Picture of nurses awaiting a ceremony"
+                        className="object-cover object-top  lg:aspect-auto lg:h-full lg:w-full"
+                        src="images/awaitingCopy3.jpg"
+                        alt="Nurses Honoring Nurses"
                     />
                 </div>
             </div>
 
             <div className="mx-auto max-w-7xl px-6 lg:px-8 bg-blue-900">
                 <div className="py-16 lg:py-24">
-                    <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
+                    <div className="grid grid-cols-1 gap-16 lg:grid-cols-3">
                         <div>
-                            <h3 className="text-2xl font-bold text-white">
-                                Our Mission
-                            </h3>
-                            <p className="mt-6 text-lg leading-8 text-white">
-                                To honor nurse colleagues who have passed on and
-                                provide comfort to their families by providing a
-                                Nightingale Tribute ceremony.
-                            </p>
+                            <div className="mt-5">
+                                <h3 className="text-2xl font-bold text-white">
+                                    Our Mission
+                                </h3>
+                                <p className="mt-1 text-lg leading-8 text-white">
+                                    To honor nurse colleagues who have passed on
+                                    and provide comfort to their families by
+                                    providing a Nightingale Tribute ceremony.
+                                </p>
+                            </div>
+                            <div className="mt-10">
+                                <h3 className="text-2xl font-bold text-white">
+                                    Our Vision
+                                </h3>
+                                <p className="mt-1 text-lg leading-8 text-white">
+                                    To honor every nurse who passes in the State
+                                    of Maryland.
+                                </p>
+                            </div>
                         </div>
                         <div>
-                            <h3 className="text-2xl font-bold text-white">
-                                Our Vision
-                            </h3>
-                            <p className="mt-6 text-lg leading-8 text-white">
-                                To honor every nurse who passes in the State of
-                                Maryland.
-                            </p>
+                            <Image
+                                src="/images/MDNHG-LogoNavy.png"
+                                alt="Maryland Nurses Honor Guard Logo"
+                                width={400}
+                                height={400}
+                            />
                         </div>
                         <div>
-                            <h3 className="text-2xl font-bold text-white">
-                                Our Purpose
-                            </h3>
-                            <p className="mt-6 text-lg leading-8 text-white">
-                                To recognize professional nurses and their
-                                contributions to society by honoring their
-                                life's work in a memorial service.
-                            </p>
-                        </div>
-                        <div>
-                            <h3 className="text-2xl font-bold text-white">
-                                Our Services
-                            </h3>
-                            <p className="mt-6 text-lg leading-8 text-white">
-                                We offer Nightingale Tributes and Living
-                                Tributes to honor nurses who have passed on or
-                                are near the end of their life.
-                            </p>
+                            <div className="mt-5">
+                                <h3 className="text-2xl font-bold text-white">
+                                    Our Purpose
+                                </h3>
+                                <p className="mt-1 text-lg leading-8 text-white">
+                                    To recognize professional nurses and their
+                                    contributions to society by honoring their
+                                    life's work in a memorial service.
+                                </p>
+                            </div>
+                            <div className="mt-10">
+                                <h3 className="text-2xl font-bold text-white">
+                                    Our Services
+                                </h3>
+                                <p className="mt-1 text-lg leading-8 text-white">
+                                    We offer Nightingale Tributes and Living
+                                    Tributes to honor nurses who have passed on
+                                    or are near the end of their life.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

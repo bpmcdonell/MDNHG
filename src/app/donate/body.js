@@ -28,16 +28,28 @@ export default function DonateBody() {
             </p>
             <p className="my-2 text-base">
                 If you are donating in honor of a nurse we will note your donor
-                status on our donor wall in their memory, and will light a
+                status on our gratitude wall in their memory, and will light a
                 candle for your nurse on our honor wall. Please be certain to
                 provide the full name of the nurse you would like to honor with
                 your donation information, and the family contact information if
                 you would like us to notify the family of your donation in their
                 nurse&#39;s honor as well.
             </p>
-            <p className="my-2 text-base">
+            <p className="my-2 text-base font-semibold">
+                If you would like to donate, please send us a message using the{" "}
+                <a
+                    className=" text-blue-700 underline underline-offset-2 leading-6 "
+                    href="/contact"
+                >
+                    contact form
+                </a>{" "}
+                on our website and we will respond to you with details on how to
+                donate. We are currently working on setting up a donation portal
+                on our website. Thank you for your support.
+            </p>
+            <p className="my-2 text-base font-semibold">
                 For business or corporate donors please contact us directly so
-                we may place your name and logo on our donor wall in
+                we may place your name and logo on our gratitude wall in
                 appreciation of your supporting nurses and our mission of nurses
                 honoring nurses.
             </p>

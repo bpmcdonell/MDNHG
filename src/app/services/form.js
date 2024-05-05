@@ -24,16 +24,9 @@ export default function ServiceForm() {
 
     const handleSubmit = async (e) => {
         try {
-            // const authData = await pb.admins.authWithPassword(
-            //     { email: process.env.PB_USERNAME },
-            //     { password: process.env.PB_PASSWORD }
-            // );
-
             e.preventDefault();
             console.log(data);
-            const response = await pb
-                .collection("serviceRequest")
-                .create(data);
+            const response = await pb.collection("serviceRequest").create(data);
             console.log(response);
         } catch (error) {
             e.preventDefault();

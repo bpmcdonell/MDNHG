@@ -4,36 +4,27 @@ import Image from "next/image";
 
 export default function MemorialWall() {
     return (
-        <div className="bg-white">
+        <div className="min-h-screen  bg-[url('/images/1337267.png')] bg-center">
             <div className="relative">
-                <div className="mx-auto max-w-7xl">
-                    <div className="relative z-10 pt-14 lg:w-full lg:max-w-2xl">
+                <div className="flex justify-center">
+                    <div className="z-10 pt-14 lg:w-full lg:max-w-4xl">
                         <div className="relative px-6 lg:pr-4">
                             <div className="flex mx-auto flex-col">
-                                <h1 className="text-3xl flex mx-auto text-center">
+                                <h1 className="text-3xl flex mx-auto justify-center text-center">
                                     Memorial Wall
                                 </h1>
-                                <p className="text-center m-4">
+                                <p className="font-bold flex justify-center mb-8">
                                     This page is dedicated to the memory of our
                                     fallen nurses.
                                 </p>
                             </div>
-                            <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
+                            <div className="">
                                 <Suspense fallback={<div>Loading...</div>}>
                                     <MemConstructor />
                                 </Suspense>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="bg-gray-50 fixed lg:inset-y-0 lg:right-0 lg:w-5/12 lg:mt-[64px]">
-                    <Image
-                        className="aspect-[2/3] lg:aspect-auto lg:h-full lg:w-full shadow-lg object-cover"
-                        src="/images/Candle.jpg"
-                        width={800}
-                        height={1200}
-                        alt="A picture of a Candle"
-                    />
                 </div>
             </div>
         </div>

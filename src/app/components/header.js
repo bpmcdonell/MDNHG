@@ -21,7 +21,7 @@ export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <header className="sticky top-0 z-50 bg-white border-b-[1px] border-gray-100">
+        <header className="sticky top-0 z-50 py-1 bg-white border-b-[1px] shadow-sm border-gray-100">
             <nav
                 className="mx-10 flex min-w-screen-full justify-between items-center p-1"
                 aria-label="Global"
@@ -37,7 +37,7 @@ export default function Header() {
                             width={100}
                             height={100}
                         />
-                        <span className="text-black text-2xl whitespace-nowrap font-bold m-3">
+                        <span className="text-black text-sm md:text-xl lg:text-2xl font-bold m-3">
                             Maryland Nurses Honor Guard
                         </span>
                     </a>
@@ -50,7 +50,10 @@ export default function Header() {
                         onClick={() => setMobileMenuOpen(true)}
                     >
                         <span className="sr-only">Open main menu</span>
-                        <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                        <Bars3Icon
+                            className="h-6 w-6"
+                            aria-hidden="true"
+                        />
                     </button>
                 </div>
                 <div className="hidden lg:flex lg:space-x-4 xl:flex xl:space-x-6 2xl:flex 2xl:space-x-10 justify-end">
@@ -80,7 +83,10 @@ export default function Header() {
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             <span className="sr-only">Close menu</span>
-                            <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                            <XMarkIcon
+                                className="h-6 w-6"
+                                aria-hidden="true"
+                            />
                         </button>
                     </div>
                     <div className="mt-6 flow-root">

@@ -37,7 +37,7 @@ const navigation = [
 
 export default function Footer() {
     return (
-        <footer className="absolute bottom-0 min-w-full ">
+        <footer className="absolute bottom-0 min-w-full bg-white ">
             <div className="mx-auto max-w-full px-1 py-8 md:flex md:items-center md:justify-between lg:px-8">
                 <div className="flex justify-center space-x-12 md:order-2">
                     {navigation.map((item) => (
@@ -56,7 +56,7 @@ export default function Footer() {
                     ))}
                 </div>
                 <div className="mt-8 md:order-1 md:mt-0">
-                    <p className="text-center text-sm leading-5 text-gray-500">
+                    <p className="text-center text-sm leading-5 text-black">
                         &copy; 2024 Maryland Nurses Honor Guard. All rights
                         reserved.
                     </p>
