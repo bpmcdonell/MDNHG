@@ -9,8 +9,8 @@ export default function MemorialWall() {
                 <div className="mx-auto max-w-7xl">
                     <div className="relative z-10 pt-14 lg:w-full lg:max-w-2xl">
                         <div className="relative px-6 lg:pr-4">
-                            <div>
-                                <h1 className="text-3xl text-center">
+                            <div className="flex mx-auto flex-col">
+                                <h1 className="text-3xl flex mx-auto text-center">
                                     Memorial Wall
                                 </h1>
                                 <p className="text-center m-4">
@@ -27,9 +27,11 @@ export default function MemorialWall() {
                     </div>
                 </div>
                 <div className="bg-gray-50 fixed lg:inset-y-0 lg:right-0 lg:w-5/12 lg:mt-[64px]">
-                    <img
+                    <Image
                         className="aspect-[2/3] lg:aspect-auto lg:h-full lg:w-full shadow-lg object-cover"
-                        src="../images/Candle.jpg"
+                        src="/images/Candle.jpg"
+                        width={800}
+                        height={1200}
                         alt="A picture of a Candle"
                     />
                 </div>

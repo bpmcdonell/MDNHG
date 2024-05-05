@@ -21,7 +21,8 @@
         "node": "^21.6.2",
         "pocketbase": "^0.21.1",
         "react": "^18",
-        "react-dom": "^18"
+        "react-dom": "^18",
+        "react-hook-form": "^7.51.4"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.18",

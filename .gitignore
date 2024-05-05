@@ -36,6 +36,8 @@ yarn-error.log*
 next-env.d.ts
 
 # backend
-/pocketbase.exe
-/pocketbase
-/pocketbase.db
+*.exe
+.pocketbase.exe
+.pocketbase
+.pocketbase.db
+src\app\pocketbase.exe

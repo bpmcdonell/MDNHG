@@ -26,7 +26,7 @@ export default function ServiceBody() {
                 recipient.
             </p>
             <div className="flex flex-col max-w-sm mx-auto pr-5 pl-2 my-5 py-5 text-white bg-nhgBlue b rounded-lg">
-                <p className=" mb-2 mx-auto font-bold">
+                <p className=" mb-2 mx-auto text-lg font-bold">
                     The Nightingale Tribute consists of:
                 </p>
                 <ul className="mx-auto">
@@ -54,6 +54,9 @@ export default function ServiceBody() {
                 community including:
             </p>
             <div className="flex flex-col max-w-sm mx-auto pr-5 pl-2 my-5 py-5 bg-nhgBlue rounded-lg">
+                <p className=" mb-2 mx-auto text-lg text-white font-bold">
+                    Other events include but are not limited to:
+                </p>
                 <ul className="text-white flex justify-center flex-col mx-auto ">
                     <li>Nurses Week</li>
                     <li>

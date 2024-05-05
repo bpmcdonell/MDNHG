@@ -19,7 +19,7 @@ export default async function MemConstructor() {
         <div className="columns-1 ">
             <ul>
                 {records.map((record) => (
-                    <div className="flex flex-row m-6 p-2 bg-indigo-200">
+                    <li className="flex flex-row m-6 p-2 ">
                         <Image
                             src="/images/IMG_6329.jpg"
                             width={75}
@@ -34,7 +34,7 @@ export default async function MemConstructor() {
                             </p>
                             <p>Date of Service: {record.dos}</p>
                         </div>
-                    </div>
+                    </li>
                 ))}
             </ul>
         </div>

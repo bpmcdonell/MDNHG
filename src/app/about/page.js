@@ -8,13 +8,13 @@ export default function AboutPage() {
                 <div className="flex justify-center">
                     <AboutBody />
                 </div>
-                <div className=" relative m-10">
+                <div className="relative m-10">
                     <Image
                         src="/images/backTurnedCropped.jpg"
                         alt="MDNHG Members at a service with their back turned"
                         width={700}
-                        height={700}
-                        className="hidden lg:flex lg:justify-center lg:rounded-lg lg:shadow-2xl  lg:mx-auto"
+                        height={700}a
+                        className="hidden lg:flex lg:justify-center lg:rounded-lg lg:shadow-2xl lg:object-fill lg:mx-auto"
                         priority={true}
                         quality={100}
                     />

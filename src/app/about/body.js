@@ -19,18 +19,29 @@ export default function AboutBody() {
                     volunteer our time to pay tribute to our fallen colleagues
                     at their funeral or memorial service.
                 </p>
-                <div className="flex max-w-lg shadow-lg mx-auto px-2 my-5 py-5 text-nowrap bg-nhgBlue b rounded-lg">
+                <div className="m-10">
+                    <Image
+                        src="/images/MDNHGLogoWhite.png"
+                        alt="MDNHG Logo with a white background"
+                        width={400}
+                        height={400}
+                        className="hidden lg:flex lg:justify-center lg:mx-auto"
+                        priority={true}
+                        quality={100}
+                    />
+                </div>
+                {/* <div className="flex max-w-lg shadow-lg mx-auto px-2 my-5 py-5 text-nowrap bg-nhgBlue b rounded-lg">
                     <p className="flex text-white mx-auto font-semibold text-4xl">
                         "Nurses Honoring Nurses"
                     </p>
-                </div>
-                <div className="flex justify-center mb-10 lg:hidden">
+                </div> */}
+                <div className="flex justify-center lg:hidden">
                     <Image
                         src="/images/backTurnedCropped.jpg"
                         alt="MDNHG Members at a service with their back turned"
-                        width={700}
-                        height={700}
-                        className="rounded-lg shadow-2xl mx-auto"
+                        width={600}
+                        height={600}
+                        className="rounded-lg mb-10 shadow-2xl mx-auto"
                         priority={true}
                         quality={100}
                     />

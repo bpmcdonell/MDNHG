@@ -10,15 +10,6 @@ cloudinary.config({
 export default async function GalleryBody() {
     const { resources } = await cloudinary.search.expression().execute();
 
-    const dimensionFinder = (width, height) => {
-        if (width > height) {
-            return "landscape";
-        } else if (width < height) {
-            return "portrait";
-        } else {
-            return "square";
-        }
-    };
 
     return (
         <div className="conatiner mx-auto">

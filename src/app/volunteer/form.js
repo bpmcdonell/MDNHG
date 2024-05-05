@@ -1,8 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import Pocketbase from "pocketbase";
 
 export default function VolunteerForm() {
+    const pb = new Pocketbase("http://127.0.0.1:8090");
+
     const sheetURL =
         "https://script.google.com/macros/s/AKfycbyhlDNXQ4bgoAocuI5ZDACN0xNLDtPaH4baXUqxoAQPphao7nZwPmqhnRda9jpsjMnk/exec";
     const [volunteer, setVolunteer] = useState({
@@ -43,12 +46,21 @@ export default function VolunteerForm() {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                alert("Thank you for signing up to volunteer!");
             })
+            .then(() => {})
             .catch((error) => {
                 console.error("Error:", error);
-                alert("There was an error submitting your information.");
             });
+
+        try {
+            e.preventDefault();
+            const pbResponse = await pb
+                .collection("volunteerForm")
+                .create(volunteer);
+            console.log(pbResponse);
+        } catch (error) {
+            console.log(error);
+        }
 
         setVolunteer({
             FirstName: "",
