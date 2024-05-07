@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Pocketbase from "pocketbase";
+import { CheckIcon } from "@heroicons/react/24/outline";
 
 export default function VolunteerForm() {
     const pb = new Pocketbase("http://127.0.0.1:8090");
@@ -11,19 +12,38 @@ export default function VolunteerForm() {
     const [volunteer, setVolunteer] = useState({
         FirstName: "",
         LastName: "",
-        Email: "",
-        Phone: "",
         Address: "",
         City: "",
+        State: "",
         ZipCode: "",
         County: "",
+        CountyOther: "",
+        Phone: "",
+        Email: "",
         Designation: "",
+        DesignationOther: "",
         EmploymentStatus: "",
     });
 
     const handleChange = async (e) => {
         setVolunteer({ ...volunteer, [e.target.name]: e.target.value });
     };
+
+    const [DesOtherVisible, setDesOtherVisible] = useState(false);
+    useEffect(() => {
+        volunteer.Designation === "Other"
+            ? setDesOtherVisible(true)
+            : setDesOtherVisible(false);
+    }, [volunteer.Designation]);
+
+    const [CountyOtherVisible, setCountyOtherVisible] = useState(false);
+    useEffect(() => {
+        volunteer.County === "Other"
+            ? setCountyOtherVisible(true)
+            : setCountyOtherVisible(false);
+    }, [volunteer.County]);
+
+    const [submit, setSubmit] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -49,7 +69,8 @@ export default function VolunteerForm() {
             })
             .then(() => {})
             .catch((error) => {
-                console.error("Error:", error);
+                console.log("Error:", error);
+                setSubmit(false);
             });
 
         try {
@@ -57,9 +78,18 @@ export default function VolunteerForm() {
             const pbResponse = await pb
                 .collection("volunteerForm")
                 .create(volunteer);
-            console.log(pbResponse);
+            if ((pbResponse.id !== undefined, pbResponse.id !== "")) {
+                setSubmit(true);
+            } else {
+                e.preventDefault();
+                setSubmit(false);
+                console.log("Error" + pbResponse);
+            }
         } catch (error) {
-            console.log(error);
+            error.preventDefault();
+            console.log("Error:" + error);
+            console.log(pbResponse);
+            setSubmit(false);
         }
 
         setVolunteer({
@@ -70,10 +100,11 @@ export default function VolunteerForm() {
             Address: "",
             City: "",
             ZipCode: "",
-            County: "",
-            Designation: "",
-            EmploymentStatus: "",
+            County: "NA",
+            Designation: "NA",
+            EmploymentStatus: "NA",
         });
+        setSubmit(true);
     };
 
     return (
@@ -82,84 +113,50 @@ export default function VolunteerForm() {
                 <h2 className="my-8 flex justify-center">
                     Volunteer Sign Up Form
                 </h2>
-                <div className="relative">
-                    <label
-                        htmlFor="FirstName"
-                        className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
-                    >
-                        First Name
-                    </label>
-                    <input
-                        type="text"
-                        name="FirstName"
-                        id="FirstName"
-                        value={volunteer.FirstName}
-                        onChange={handleChange}
-                        autoComplete="given-name"
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
+                <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                    <div className="relative">
+                        <label
+                            htmlFor="FirstName"
+                            className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
+                        >
+                            First Name
+                        </label>
+                        <input
+                            type="text"
+                            name="FirstName"
+                            id="FirstName"
+                            value={volunteer.FirstName}
+                            onChange={handleChange}
+                            autoComplete="given-name"
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                    </div>
+                    <div className="relative">
+                        <label
+                            htmlFor="LastName"
+                            className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
+                        >
+                            Last Name
+                        </label>
+                        <input
+                            type="text"
+                            name="LastName"
+                            id="LastName"
+                            autoComplete="family-name"
+                            value={volunteer.LastName}
+                            onChange={handleChange}
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                    </div>
                 </div>
                 <br />
-                <div className="relative">
-                    <label
-                        htmlFor="LastName"
-                        className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
-                    >
-                        Last Name
-                    </label>
-                    <input
-                        type="text"
-                        name="LastName"
-                        id="LastName"
-                        autoComplete="family-name"
-                        value={volunteer.LastName}
-                        onChange={handleChange}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                </div>
-                <br />
-                <div className="relative">
-                    <label
-                        htmlFor="Email"
-                        className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
-                    >
-                        Email
-                    </label>
-                    <input
-                        type="text"
-                        name="Email"
-                        id="Email"
-                        autoComplete="email"
-                        value={volunteer.Email}
-                        onChange={handleChange}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                </div>
-                <br />
-                <div className="relative">
-                    <label
-                        htmlFor="Phone"
-                        className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
-                    >
-                        Phone Number
-                    </label>
-                    <input
-                        type="text"
-                        name="Phone"
-                        id="Phone"
-                        autoComplete="tel"
-                        value={volunteer.Phone}
-                        onChange={handleChange}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                </div>
-                <br />
+
                 <div className="relative">
                     <label
                         htmlFor="Address"
                         className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
                     >
-                        Address
+                        Street Address
                     </label>
                     <input
                         type="text"
@@ -172,40 +169,41 @@ export default function VolunteerForm() {
                     />
                 </div>
                 <br />
-                <div className="relative">
-                    <label
-                        htmlFor="City"
-                        className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
-                    >
-                        City
-                    </label>
-                    <input
-                        type="text"
-                        name="City"
-                        id="City"
-                        autoComplete="address-level2"
-                        value={volunteer.City}
-                        onChange={handleChange}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                </div>
-                <br />
-                <div className="relative">
-                    <label
-                        htmlFor="ZipCode"
-                        className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
-                    >
-                        Zip Code
-                    </label>
-                    <input
-                        type="text"
-                        name="ZipCode"
-                        id="ZipCode"
-                        autoComplete="postal-code"
-                        value={volunteer.ZipCode}
-                        onChange={handleChange}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
+                <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                    <div className="relative">
+                        <label
+                            htmlFor="City"
+                            className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
+                        >
+                            City
+                        </label>
+                        <input
+                            type="text"
+                            name="City"
+                            id="City"
+                            autoComplete="address-level2"
+                            value={volunteer.City}
+                            onChange={handleChange}
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                    </div>
+                    <div className="relative">
+                        <label
+                            htmlFor="ZipCode"
+                            className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
+                        >
+                            Zip Code
+                        </label>
+                        <input
+                            type="text"
+                            name="ZipCode"
+                            id="ZipCode"
+                            autoComplete="postal-code"
+                            value={volunteer.ZipCode}
+                            onChange={handleChange}
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                    </div>
                 </div>
                 <br />
 
@@ -253,9 +251,76 @@ export default function VolunteerForm() {
                         <option value="Washington">Washington County</option>
                         <option value="Wicomico">Wicomico County</option>
                         <option value="Worcester">Worcester County</option>
+                        <option value="Other">Other</option>
                     </select>
                 </div>
+                <br />
 
+                {CountyOtherVisible && (
+                    <textarea
+                        name="CountyOther"
+                        id="CountyOther"
+                        onChange={handleChange}
+                        value={volunteer.CountyOther}
+                        placeholder="If you live in a county not listed, please specify."
+                        rows={1}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    ></textarea>
+                )}
+                {CountyOtherVisible && <br />}
+
+                <div className="relative">
+                    <label
+                        htmlFor="State"
+                        className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
+                    >
+                        State
+                    </label>
+                    <input
+                        type="text"
+                        name="State"
+                        id="State"
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        value="Maryland"
+                    ></input>
+                </div>
+                <br />
+
+                <div className="relative">
+                    <label
+                        htmlFor="Email"
+                        className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
+                    >
+                        Email
+                    </label>
+                    <input
+                        type="text"
+                        name="Email"
+                        id="Email"
+                        autoComplete="email"
+                        value={volunteer.Email}
+                        onChange={handleChange}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                </div>
+                <br />
+                <div className="relative">
+                    <label
+                        htmlFor="Phone"
+                        className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
+                    >
+                        Phone Number
+                    </label>
+                    <input
+                        type="text"
+                        name="Phone"
+                        id="Phone"
+                        autoComplete="tel"
+                        value={volunteer.Phone}
+                        onChange={handleChange}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                </div>
                 <br />
                 <div className="relative">
                     <label
@@ -273,14 +338,29 @@ export default function VolunteerForm() {
                         required
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     >
-                        <option value="NA">--Please choose an option--</option>
+                        <option value={"NA"}>
+                            --Please choose an option--
+                        </option>
                         <option value="RN">RN</option>
                         <option value="LPN">LPN</option>
-                        <option value="CNA">CNA</option>
+                        <option value="CRNP">CRNP</option>
                         <option value="Other">Other</option>
                     </select>
                 </div>
                 <br />
+                {DesOtherVisible && (
+                    <textarea
+                        name="DesignationOther"
+                        id="DesignationOther"
+                        onChange={handleChange}
+                        value={volunteer.DesignationOther}
+                        placeholder="If your designation is not listed, please specify."
+                        rows={1}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    ></textarea>
+                )}
+                {DesOtherVisible && <br />}
+
                 <div className="relative">
                     <label
                         htmlFor="EmploymentStatus"
@@ -303,15 +383,25 @@ export default function VolunteerForm() {
                         <option value="Student">Student</option>
                     </select>
                 </div>
-
-                <div className="flex justify-center p-5 container mx-auto">
-                    <button
-                        type="submit"
-                        className="rounded-md bg-nhgBlue px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                    >
-                        Submit
-                    </button>
-                </div>
+                {submit ? (
+                    <div className="mt-8">
+                        <div className="flex items-center justify-center gap-x-2">
+                            <CheckIcon className="h-6 w-6 text-green-500" />
+                            <p className="text-green-500">
+                                Message sent successfully!
+                            </p>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="mt-8 flex justify-end">
+                        <button
+                            type="submit"
+                            className="rounded-md bg-nhgBlue px-3.5 py-2.5 text-center text-base mx-auto text-white  shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                            Send message
+                        </button>
+                    </div>
+                )}
             </form>
         </div>
     );

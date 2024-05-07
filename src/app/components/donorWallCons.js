@@ -32,24 +32,22 @@ export default async function DonorWallCons() {
         <div className="columns-1 lg:columns-2 gap-6">
             <ul className="">
                 {donors.map((donor) => (
-                    <li className="flex flex-row gap-6 p-2 py-2 mb-6 w-auto bg-gray-200 rounded-lg shadow-inner justify-evenly ">
+                    <li className="flex flex-row  pt-2 pl-2 pb-2 py-2 mb-6 w-auto bg-gray-200 rounded-lg shadow-md justify-evenly ">
                         <Image
-                            src="/images/placeholder.jpg"
-                            width={75}
-                            height={75}
-                            className="object-contain aspect-square mr-4"
+                            src="/images/1337267copy.png"
+                            width={90}
+                            height={90}
+                            className="aspect-square rounded-md"
                         />
-                        <div className="flex flex-col w-fit justify-evenly">
-                            <p className="text-base text-nowrap">
-                                Name: {donor.name}
+                        <div className="flex-1 justify-center">
+                            <p className="text-base text-nowrap flex justify-center ">
+                                {donor.name}
                             </p>
-                            <p className="text-base text-nowrap">
-                                Donation Amount: ${donor.amount}
+
+                            <p className="text-base text-nowrap flex justify-center m-2">
+                                {formatDate(donor.date)}
                             </p>
-                            <p className="text-base text-nowrap">
-                                Date of Donation: {formatDate(donor.date)}
-                            </p>
-                            <p className="text-base text-nowrap">
+                            <p className="text-base text-nowrap flex justify-center">
                                 In memory of: {donor.note}
                             </p>
                         </div>

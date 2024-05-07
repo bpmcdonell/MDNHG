@@ -52,6 +52,7 @@ export default function VolunteerBody() {
                     symbolizes the establishment of professional nursing as we
                     know it today.
                 </p>
+                {/* there needs to be a space here or maybe be added into the "volunteering" section */}
                 <p>
                     Volunteers can be as active as they choose. We do not have a
                     specified time commitment to be a volunteer but appreciate

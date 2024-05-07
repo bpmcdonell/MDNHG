@@ -87,7 +87,11 @@ module.exports = {
                 900: "#1e3a8a",
             },
         },
-        extend: {},
+        extend: {
+            blur: {
+                xs: "2px",
+            },
+        },
     },
     plugins: [require("@tailwindcss/forms")],
 };

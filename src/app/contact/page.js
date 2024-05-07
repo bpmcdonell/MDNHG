@@ -29,7 +29,7 @@ export default function Contact() {
         try {
             e.preventDefault();
             const response = await pb.collection("contactForm").create(contact);
-            if (((response.id = !null), response.id != "")) {
+            if ((response.id !== null, response.id !== "")) {
                 setSubmit(true);
             } else {
                 console.log(response);
@@ -45,7 +45,7 @@ export default function Contact() {
     return (
         <div className="relative isolate bg-white">
             <div className="mx-auto grid lg:max-w-screen-2xl grid-cols-1 lg:grid-cols-2 ">
-                <div className="relative px-6 mt-40 pb-20 pt-24 sm:pt-32 lg:static lg:px-8 lg:py-48">
+                <div className="relative px-6 mt-20 pb-20 pt-24 sm:pt-32 lg:static lg:px-8 lg:py-48">
                     <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
                         <div className="absolute inset-y-0 left-0 -z-10 w-full h-screen overflow-hidden bg-[url('/images/flowers.jpg')] bg-center ring-1 ring-gray-900/10 lg:w-1/2">
                             {/* <svg
@@ -144,7 +144,7 @@ export default function Contact() {
                 </div>
                 <form
                     onSubmit={handleSubmit}
-                    className="px-6 pb-24 mt-48 pt-20 sm:pb-32 lg:px-8 lg:py-48 bg-white rounded-3xl shadow-inner lg:shadow-none"
+                    className="px-6 pb-24 mt-24 pt-20 sm:pb-32 lg:px-8 lg:py-48 bg-white rounded-3xl shadow-inner lg:shadow-none"
                 >
                     <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
                         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">

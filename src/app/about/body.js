@@ -30,18 +30,13 @@ export default function AboutBody() {
                         quality={100}
                     />
                 </div>
-                {/* <div className="flex max-w-lg shadow-lg mx-auto px-2 my-5 py-5 text-nowrap bg-nhgBlue b rounded-lg">
-                    <p className="flex text-white mx-auto font-semibold text-4xl">
-                        "Nurses Honoring Nurses"
-                    </p>
-                </div> */}
                 <div className="flex justify-center lg:hidden">
                     <Image
                         src="/images/backTurnedCropped.jpg"
                         alt="MDNHG Members at a service with their back turned"
                         width={600}
                         height={600}
-                        className="rounded-lg mb-10 shadow-2xl mx-auto"
+                        className="rounded-lg mb-10 shadow-md mx-auto"
                         priority={true}
                         quality={100}
                     />
@@ -52,7 +47,7 @@ export default function AboutBody() {
                     symbolism of our nursing uniform and presentation of a
                     nursing lamp to the family after a Nightingale Tribute and
                     Last Roll Call releasing the nurse from their duties with
-                    honor
+                    honor.
                 </p>
                 <p className="p-1">
                     It is similar to a military tribute, and it is our mission

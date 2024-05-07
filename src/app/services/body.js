@@ -47,6 +47,13 @@ export default function ServiceBody() {
                 home, hospice or nursing facility and can be small or large
                 gatherings depending on the family and member&#39;s wishes.
             </p>
+
+            {/*this is all the same as what was said at the top of the page and its redundant.. 
+            like "our services agina? and the next <p>, could we just add it all ot the bubble div? 
+            maybe named "other services"? just a thought.*/}
+
+            {/* other specialty events? */}
+
             <h2 className="flex justify-center py-2">Our Services</h2>
             <p>
                 The Maryland Nurse Honor Guard is also available for special

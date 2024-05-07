@@ -1,8 +1,6 @@
 "use client";
 
-// if user selects "Living Tribute" from the service type dropdown, the form should change to the living tribute form
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Pocketbase from "pocketbase";
 
 export default function ServiceForm() {
@@ -10,6 +8,7 @@ export default function ServiceForm() {
 
     const [data, setData] = useState({
         serviceType: "memorialTribute",
+        otherService: "",
         dateOfService: "",
         honoredName: "",
         reqName: "",
@@ -35,6 +34,13 @@ export default function ServiceForm() {
         setSubmit(true);
     };
 
+    const [otherVisible, setOtherVisible] = useState(false);
+    useEffect(() => {
+        data.serviceType === "otherService"
+            ? setOtherVisible(true)
+            : setOtherVisible(false);
+    }, [data.serviceType]);
+
     const [submit, setSubmit] = useState(false);
 
     return (
@@ -54,17 +60,29 @@ export default function ServiceForm() {
                         onChange={handleChange}
                         value={setData.serviceType}
                         defaultValue={"memorialTribute"}
-                        required
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     >
                         <option value="memorialTribute">
                             Memorial Tribute
                         </option>
                         <option value="livingTribute">Living Tribute</option>
+                        <option value="otherService">Other</option>
                     </select>
                 </div>
 
                 <br />
+                {otherVisible && (
+                    <textarea
+                        name="otherService"
+                        id="otherService"
+                        onChange={handleChange}
+                        value={setData.otherService}
+                        placeholder="Please describe the service you would like to request."
+                        rows={2}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    ></textarea>
+                )}
+                {otherVisible && <br />}
                 <div className="relative">
                     <label
                         htmlFor="dateOfService"
@@ -78,7 +96,6 @@ export default function ServiceForm() {
                         id="dateOfService"
                         onChange={handleChange}
                         value={setData.dateOfService}
-                        required
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                 </div>
@@ -97,7 +114,6 @@ export default function ServiceForm() {
                         id="honoredName"
                         onChange={handleChange}
                         value={setData.honoredName}
-                        required
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                 </div>
@@ -151,7 +167,6 @@ export default function ServiceForm() {
                         id="reqEmail"
                         onChange={handleChange}
                         value={setData.reqEmail}
-                        required
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                 </div>
@@ -169,7 +184,6 @@ export default function ServiceForm() {
                         id="reqRelation"
                         onChange={handleChange}
                         value={setData.reqRelation}
-                        required
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                 </div>

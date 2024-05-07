@@ -10,7 +10,7 @@ cloudinary.config({
 
 export default async function GalleryBody() {
     const { resources } = await cloudinary.search.expression().execute();
-
+    // can we add a modal popout for the images?
     return (
         <div className="conatiner mx-auto">
             <h1 className="text-3xl my-8 flex justify-center">Gallery</h1>

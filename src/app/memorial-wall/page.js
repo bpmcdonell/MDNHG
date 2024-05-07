@@ -1,10 +1,9 @@
 import React, { Suspense } from "react";
 import MemConstructor from "../components/MemConstructor";
-import Image from "next/image";
 
 export default function MemorialWall() {
     return (
-        <div className="min-h-screen  bg-[url('/images/1337267.png')] bg-center">
+        <div className="min-h-screen  bg-[url('/images/1337267.png')] bg-center pb-10">
             <div className="relative">
                 <div className="flex justify-center">
                     <div className="z-10 pt-14 lg:w-full lg:max-w-4xl">
@@ -13,7 +12,7 @@ export default function MemorialWall() {
                                 <h1 className="text-3xl flex mx-auto justify-center text-center">
                                     Memorial Wall
                                 </h1>
-                                <p className="font-bold flex justify-center mb-8">
+                                <p className="font-bold text-base flex justify-center mb-8">
                                     This page is dedicated to the memory of our
                                     fallen nurses.
                                 </p>

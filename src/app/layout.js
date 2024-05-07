@@ -31,20 +31,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html
-            lang="en"
-            className=""
-        >
-            <link
-                rel="icon"
-                href="favicon/favicon.png"
-                sizes="any"
-            />
+        <html lang="en" className="">
+            <link rel="icon" href="favicon/favicon.png" sizes="any" />
             <Head />
             <body className="">
                 <Header />
                 <div className="relative min-h-screen mx-auto">
-                    <div className="pb-44">
+                    <div className=" pb-32">
                         <main>{children}</main>
                     </div>
                     <Footer />
