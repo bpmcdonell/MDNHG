@@ -190,12 +190,12 @@ export default function ServiceForm() {
                 <br />
                 {submit ? (
                     <p className="text-center text-green-600">
-                        Your request has been submitted.
+                        Success! You will be contacted soon.
                     </p>
                 ) : (
                     <button
                         type="submit"
-                        className="w-full bg-nhgBlue hover:border-nhgRed text-white font-bold py-2 px-4 rounded"
+                        className="flex mx-auto bg-nhgBlue hover:border-nhgRed text-white font-bold py-2 px-4 rounded"
                     >
                         Submit
                     </button>
