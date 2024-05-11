@@ -36,8 +36,10 @@ yarn-error.log*
 next-env.d.ts
 
 # backend
-*.exe
-.pocketbase.exe
-.pocketbase
-.pocketbase.db
-src\app\pocketbase.exe
+./database.rules.json
+./firebase-debug.log
+./firestore.rules
+firebase-debug.log
+*.log
+
+
