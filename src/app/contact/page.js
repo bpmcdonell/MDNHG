@@ -8,11 +8,11 @@ import {
 } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 
-import Pocketbase from "pocketbase";
+import { db } from "../firebase";
+
+import { addDoc, collection } from "firebase/firestore";
 
 export default function Contact() {
-    const pb = new Pocketbase("http://127.0.0.1:8090");
-
     const [contact, setContact] = useState({
         FirstName: "",
         LastName: "",
@@ -28,15 +28,17 @@ export default function Contact() {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
-            const response = await pb.collection("contactForm").create(contact);
-            if ((response.id !== null, response.id !== "")) {
-                setSubmit(true);
-            } else {
-                console.log(response);
-            }
-        } catch (error) {
-            e.preventDefault();
-            console.log(error);
+            const response = await addDoc(collection(db, "contactForm"), {
+                FirstName: contact.FirstName,
+                LastName: contact.LastName,
+                Email: contact.Email,
+                Phone: contact.Phone,
+                Message: contact.Message,
+            });
+            console.log("Document written with ID: ", response.id);
+            setSubmit(true);
+        } catch (e) {
+            console.error("Error adding document: ", e);
         }
     };
 

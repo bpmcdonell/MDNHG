@@ -1,11 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Pocketbase from "pocketbase";
+import { db } from "../firebase";
+import { collection, addDoc } from "firebase/firestore";
 
 export default function ServiceForm() {
-    const pb = new Pocketbase("http://127.0.0.1:8090");
-
     const [data, setData] = useState({
         serviceType: "memorialTribute",
         otherService: "",
@@ -24,14 +23,21 @@ export default function ServiceForm() {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
-            console.log(data);
-            const response = await pb.collection("serviceRequest").create(data);
-            console.log(response);
-        } catch (error) {
-            e.preventDefault();
-            console.log(error);
+            const docRef = await addDoc(collection(db, "serviceRequest"), {
+                serviceType: data.serviceType,
+                otherService: data.otherService,
+                dateOfService: data.dateOfService,
+                honoredName: data.honoredName,
+                reqName: data.reqName,
+                reqPhone: data.reqPhone,
+                reqEmail: data.reqEmail,
+                reqRelation: data.reqRelation,
+            });
+            console.log("Document written with ID: ", docRef.id);
+            setSubmit(true);
+        } catch (e) {
+            console.error("Error adding document: ", e);
         }
-        setSubmit(true);
     };
 
     const [otherVisible, setOtherVisible] = useState(false);
