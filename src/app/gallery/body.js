@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Suspense } from "react";
 
 cloudinary.config({
-    cloud_name: dx6nv04ky,
+    cloud_name: "dx6nv04ky",
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET,
     secure: true,
