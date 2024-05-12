@@ -1,10 +1,10 @@
-
 import Image from "next/image";
 import { Suspense } from "react";
 import cloudinary from "../cloudinary";
 
+const { resources } = await cloudinary.search.expression().execute();
+
 export default async function GalleryBody() {
-    const { resources } = await cloudinary.search.expression().execute();
     // can we add a modal popout for the images?
     return (
         <div className="conatiner mx-auto">
