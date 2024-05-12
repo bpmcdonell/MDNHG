@@ -1,6 +1,7 @@
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import Image from "next/image";
+import { unstable_noStore } from "next/cache";
 
 const records = [];
 
@@ -10,6 +11,8 @@ querySnapshot.forEach((doc) => {
 });
 
 export default async function MemConstructor() {
+    unstable_noStore();
+
     //for future:: This needs pagination
 
     return (

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
+import { unstable_noStore } from "next/cache";
 
 const donors = [];
 
@@ -12,6 +13,7 @@ querySnapshot.forEach((doc) => {
 });
 
 export default async function DonorWallCons() {
+    unstable_noStore();
     function formatDate(date) {
         return new Date(date).toLocaleDateString("en-US", {
             year: "numeric",
