@@ -1,4 +1,6 @@
 import cloudinaryLib from "cloudinary";
+import dotenv from "dotenv";
+dotenv.config();
 
 const cloudinary = cloudinaryLib.v2;
 

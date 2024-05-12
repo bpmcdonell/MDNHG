@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Suspense } from "react";
 import cloudinary from "../cloudinary";
 import { unstable_noStore } from "next/cache";
+require("dotenv").config();
 
 const { resources } = await cloudinary.search.expression().execute();
 
