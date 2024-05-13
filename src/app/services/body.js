@@ -48,12 +48,6 @@ export default function ServiceBody() {
 				gatherings depending on the family and member&#39;s wishes.
 			</p>
 
-			{/*this is all the same as what was said at the top of the page and its redundant.. 
-            like "our services agina? and the next <p>, could we just add it all ot the bubble div? 
-            maybe named "other services"? just a thought.*/}
-
-			{/* other specialty events? */}
-
 			<h2 className="flex justify-center py-2">Other Special Events</h2>
 			<p>
 				The Maryland Nurse Honor Guard is also available for special
