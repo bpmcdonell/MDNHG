@@ -66,7 +66,7 @@ export default function ServiceBody() {
 					<li>Health Fairs</li>
 				</ul>
 			</div>
-			<p className="my-5 mb-10">
+			<p className="py-5">
 				If there is an event you would like to request the presence of
 				the Nurse Honor Guard at that is not listed above, please select
 				"other" and provide details in the form to the left and we will

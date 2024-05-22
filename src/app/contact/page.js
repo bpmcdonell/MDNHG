@@ -15,9 +15,6 @@ import { unstable_noStore } from "next/cache";
 export default function Contact() {
 	unstable_noStore();
 
-	const timestamp = new Date().toLocaleString();
-	const now = timestamp.toString();
-
 	const [contact, setContact] = useState({
 		FirstName: "",
 		LastName: "",
@@ -33,7 +30,7 @@ export default function Contact() {
 	const handleSubmit = async (e) => {
 		try {
 			e.preventDefault();
-			const response = await contactFormSubmit(contact, now);
+			const response = await contactFormSubmit(contact);
 			if (response !== null) setSubmit(true);
 			else
 				throw new Error("Failed to submit form") && setSubmitFail(true);

@@ -22,7 +22,7 @@ export default async function GalleryBody() {
 								width={450}
 								height={300}
 								priority={false}
-								className="md:rounded-md mb-8 shadow-lg object-contain hover:shadow-2xl hover:scale-105 transition duration-300 ease-in-out"
+								className="rounded-md mb-8 shadow-lg object-contain hover:shadow-2xl hover:scale-105 transition duration-300 ease-in-out"
 							/>
 						))}
 					</Suspense>

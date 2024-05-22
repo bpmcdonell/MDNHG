@@ -6,8 +6,6 @@ import { unstable_noStore } from "next/cache";
 import { serviceFormSubmit } from "../actions";
 
 export default function ServiceForm() {
-	const timestamp = new Date().toLocaleString();
-	const now = timestamp.toString();
 	unstable_noStore();
 	const [data, setData] = useState({
 		serviceType: "memorialTribute",
@@ -27,7 +25,7 @@ export default function ServiceForm() {
 	const handleSubmit = async (e) => {
 		try {
 			e.preventDefault();
-			const response = await serviceFormSubmit(data, now);
+			const response = await serviceFormSubmit(data);
 			if (response !== null) setSubmit(true);
 			else
 				throw new Error("Failed to submit form") && setSubmitFail(true);

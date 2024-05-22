@@ -17,7 +17,7 @@ const firebaseConfig = {
 
 //form posts
 
-export async function serviceFormSubmit(service, now) {
+export async function serviceFormSubmit(service) {
 	const app = initializeApp(firebaseConfig);
 	const db = getFirestore(app);
 
@@ -35,7 +35,6 @@ export async function serviceFormSubmit(service, now) {
 			reqPhone: data.reqPhone,
 			reqEmail: data.reqEmail,
 			reqRelation: data.reqRelation,
-			timestamp: now,
 		});
 		console.log("Document written with ID: ", docRef.id);
 		return docRef.id;
@@ -44,7 +43,7 @@ export async function serviceFormSubmit(service, now) {
 	}
 }
 
-export async function contactFormSubmit(contact, now) {
+export async function contactFormSubmit(contact) {
 	const app = initializeApp(firebaseConfig);
 	const db = getFirestore(app);
 
@@ -59,7 +58,6 @@ export async function contactFormSubmit(contact, now) {
 			Phone: data.Phone,
 			Email: data.Email,
 			Message: data.Message,
-			timestamp: now,
 		});
 		console.log("Document written with ID: ", docRef.id);
 		return docRef.id;
@@ -68,7 +66,7 @@ export async function contactFormSubmit(contact, now) {
 	}
 }
 
-export async function volFormSubmit(volunteer, now) {
+export async function volFormSubmit(volunteer) {
 	const app = initializeApp(firebaseConfig);
 	const db = getFirestore(app);
 
@@ -90,7 +88,6 @@ export async function volFormSubmit(volunteer, now) {
 			Designation: data.Designation,
 			DesignationOther: data.DesignationOther,
 			EmploymentStatus: data.EmploymentStatus,
-			timestamp: now,
 		});
 		console.log("Document written with ID: ", docRef.id);
 		return docRef.id;
@@ -99,7 +96,7 @@ export async function volFormSubmit(volunteer, now) {
 	}
 }
 
-export async function volFormSubmitSheets(volunteer, now) {
+export async function volFormSubmitSheets(volunteer) {
 	const sheetURL =
 		"https://script.google.com/macros/s/AKfycbyhlDNXQ4bgoAocuI5ZDACN0xNLDtPaH4baXUqxoAQPphao7nZwPmqhnRda9jpsjMnk/exec";
 
@@ -117,7 +114,6 @@ export async function volFormSubmitSheets(volunteer, now) {
 	formData.append("Designation", volunteer.Designation);
 	formData.append("DesignationOther", volunteer.DesignationOther);
 	formData.append("EmploymentStatus", volunteer.EmploymentStatus);
-	formData.append("Timestamp", now);
 
 	fetch(sheetURL, {
 		method: "POST",
@@ -162,42 +158,4 @@ export async function memWallGet() {
 export async function galleryImageGet() {
 	const { resources } = await cloudinary.search.expression().execute();
 	return resources;
-}
-
-//temp
-
-export async function transferDB_InjectMem({ name, dob, dod, dos }) {
-	const app = initializeApp(firebaseConfig);
-	const db = getFirestore(app);
-
-	const response = await addDoc(collection(db, "memoriams"), {
-		dob: dob,
-		dod: dod,
-		dos: dos,
-		name: name,
-	});
-	console.log(response);
-}
-
-export async function getOldMemRecords() {
-	const firebaseConfigMDNHG = {
-		apiKey: "AIzaSyC7QxZnbvLkqRFaWg1_DX0k4T2I5mpCEic",
-		authDomain: "md-nhg.firebaseapp.com",
-		databaseURL: "https://md-nhg-default-rtdb.firebaseio.com",
-		projectId: "md-nhg",
-		storageBucket: "md-nhg.appspot.com",
-		messagingSenderId: "858021165050",
-		appId: "1:858021165050:web:9d8bcbb590b42c60829643",
-		measurementId: "G-84V8QWSW6J",
-	};
-
-	const app = initializeApp(firebaseConfigMDNHG);
-	const db = getFirestore(app);
-
-	const memoriams = [];
-	const querySnapshot = await getDocs(collection(db, "memoriams"));
-	querySnapshot.forEach((doc) => {
-		memoriams.push(doc.data());
-	});
-	return memoriams;
 }

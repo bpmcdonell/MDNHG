@@ -6,8 +6,6 @@ import { unstable_noStore } from "next/cache";
 import { volFormSubmit, volFormSubmitSheets } from "../actions";
 
 export default function VolunteerForm() {
-	const timestamp = new Date().toLocaleString();
-	const now = timestamp.toString();
 	unstable_noStore();
 	const [volunteer, setVolunteer] = useState({
 		FirstName: "",
@@ -57,7 +55,7 @@ export default function VolunteerForm() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await volFormSubmit(volunteer, now);
+			const response = await volFormSubmit(volunteer);
 			if (response !== null) setSubmit(true);
 			else
 				throw new Error("Failed to submit form") && setSubmitFail(true);
@@ -65,7 +63,7 @@ export default function VolunteerForm() {
 			setSubmitFail(true);
 		}
 		try {
-			await volFormSubmitSheets(volunteer, now);
+			await volFormSubmitSheets(volunteer);
 			setSubmit(true);
 		} catch (error) {
 			setSubmitFail(true);
@@ -359,35 +357,33 @@ export default function VolunteerForm() {
 						<option value="Student">Student</option>
 					</select>
 				</div>
-				<div className="mb-10">
-					{submit ? (
-						<div className="mt-8">
-							<div className="flex items-center justify-center gap-x-2">
-								<CheckIcon className="h-6 w-6 text-green-500" />
-								<p className="text-green-500">
-									Success! You will be contacted by us soon.
-								</p>
-							</div>
+				{submit ? (
+					<div className="mt-8">
+						<div className="flex items-center justify-center gap-x-2">
+							<CheckIcon className="h-6 w-6 text-green-500" />
+							<p className="text-green-500">
+								Success! You will be contacted by us soon.
+							</p>
 						</div>
-					) : (
-						<div className="mt-8 flex justify-end">
-							<button
-								type="submit"
-								className="rounded-md bg-nhgBlue px-3.5 py-2.5 text-center text-base mx-auto text-white  shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-							>
-								Submit
-							</button>
-						</div>
-					)}
-					{submitFail ? (
-						<p className="text-center text-red-600">
-							There was an error submitting your request. Please
-							try again.
-						</p>
-					) : (
-						""
-					)}
-				</div>
+					</div>
+				) : (
+					<div className="mt-8 flex justify-end">
+						<button
+							type="submit"
+							className="rounded-md bg-nhgBlue px-3.5 py-2.5 text-center text-base mx-auto text-white  shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+						>
+							Submit
+						</button>
+					</div>
+				)}
+				{submitFail ? (
+					<p className="text-center text-red-600">
+						There was an error submitting your request. Please try
+						again.
+					</p>
+				) : (
+					""
+				)}
 			</form>
 		</div>
 	);
