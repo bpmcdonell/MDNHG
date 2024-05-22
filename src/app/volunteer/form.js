@@ -2,14 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import { CheckIcon } from "@heroicons/react/24/outline";
-import { db } from "../firebase";
-import { addDoc, collection } from "firebase/firestore";
 import { unstable_noStore } from "next/cache";
+import { volFormSubmit, volFormSubmitSheets } from "../actions";
 
 export default function VolunteerForm() {
+	const timestamp = new Date().toLocaleString();
+	const now = timestamp.toString();
 	unstable_noStore();
-	const sheetURL =
-		"https://script.google.com/macros/s/AKfycbyhlDNXQ4bgoAocuI5ZDACN0xNLDtPaH4baXUqxoAQPphao7nZwPmqhnRda9jpsjMnk/exec";
 	const [volunteer, setVolunteer] = useState({
 		FirstName: "",
 		LastName: "",
@@ -18,7 +17,7 @@ export default function VolunteerForm() {
 		ZipCode: "",
 		County: "",
 		CountyOther: "",
-		State: "",
+		State: "Maryland",
 		Phone: "",
 		Email: "",
 		Designation: "",
@@ -31,6 +30,7 @@ export default function VolunteerForm() {
 	};
 
 	const [DesOtherVisible, setDesOtherVisible] = useState(false);
+
 	useEffect(() => {
 		volunteer.Designation === "Other"
 			? setDesOtherVisible(true)
@@ -38,6 +38,7 @@ export default function VolunteerForm() {
 	}, [volunteer.Designation]);
 
 	const [CountyOtherVisible, setCountyOtherVisible] = useState(false);
+
 	useEffect(() => {
 		volunteer.County === "Other"
 			? setCountyOtherVisible(true)
@@ -45,77 +46,30 @@ export default function VolunteerForm() {
 	}, [volunteer.County]);
 
 	const [submit, setSubmit] = useState(false);
+	const [submitFail, setSubmitFail] = useState(false);
+
+	useEffect(() => {
+		if (submitFail === true) {
+			setSubmit(false);
+		}
+	}, [submitFail]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const formData = new FormData();
-		formData.append("FirstName", volunteer.FirstName);
-		formData.append("LastName", volunteer.LastName);
-		formData.append("Address", volunteer.Address);
-		formData.append("City", volunteer.City);
-		formData.append("ZipCode", volunteer.ZipCode);
-		formData.append("County", volunteer.County);
-		formData.append("CountyOther", volunteer.CountyOther);
-		formData.append("State", volunteer.State);
-		formData.append("Phone", volunteer.Phone);
-		formData.append("Email", volunteer.Email);
-		formData.append("Designation", volunteer.Designation);
-		formData.append("DesignationOther", volunteer.DesignationOther);
-		formData.append("EmploymentStatus", volunteer.EmploymentStatus);
-
-		fetch(sheetURL, {
-			method: "POST",
-			body: formData,
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				console.log(data);
-			})
-			.then(() => {})
-			.catch((error) => {
-				console.log("Error:", error);
-				setSubmit(false);
-			});
-
 		try {
-			const response = await addDoc(collection(db, "volunteerForm"), {
-				FirstName: volunteer.FirstName,
-				LastName: volunteer.LastName,
-				Address: volunteer.Address,
-				City: volunteer.City,
-				ZipCode: volunteer.ZipCode,
-				County: volunteer.County,
-				CountyOther: volunteer.CountyOther,
-				State: volunteer.State,
-				Phone: volunteer.Phone,
-				Email: volunteer.Email,
-				Designation: volunteer.Designation,
-				DesignationOther: volunteer.DesignationOther,
-				EmploymentStatus: volunteer.EmploymentStatus,
-			});
-			console.log("Document written with ID: ", response.id);
-			setSubmit(true);
-		} catch (e) {
-			console.error("Error adding document: ", e);
-			setSubmit(false);
+			const response = await volFormSubmit(volunteer, now);
+			if (response !== null) setSubmit(true);
+			else
+				throw new Error("Failed to submit form") && setSubmitFail(true);
+		} catch (error) {
+			setSubmitFail(true);
 		}
-
-		setVolunteer({
-			FirstName: "",
-			LastName: "",
-			Email: "",
-			Phone: "",
-			Address: "",
-			City: "",
-			ZipCode: "",
-			County: "NA",
-			CountyOther: "",
-			State: "Maryland",
-			Designation: "NA",
-			DesignationOther: "",
-			EmploymentStatus: "NA",
-		});
-		setSubmit(true);
+		try {
+			await volFormSubmitSheets(volunteer, now);
+			setSubmit(true);
+		} catch (error) {
+			setSubmitFail(true);
+		}
 	};
 
 	return (
@@ -405,25 +359,35 @@ export default function VolunteerForm() {
 						<option value="Student">Student</option>
 					</select>
 				</div>
-				{submit ? (
-					<div className="mt-8">
-						<div className="flex items-center justify-center gap-x-2">
-							<CheckIcon className="h-6 w-6 text-green-500" />
-							<p className="text-green-500">
-								Success! You will be contacted by us soon.
-							</p>
+				<div className="mb-10">
+					{submit ? (
+						<div className="mt-8">
+							<div className="flex items-center justify-center gap-x-2">
+								<CheckIcon className="h-6 w-6 text-green-500" />
+								<p className="text-green-500">
+									Success! You will be contacted by us soon.
+								</p>
+							</div>
 						</div>
-					</div>
-				) : (
-					<div className="mt-8 flex justify-end">
-						<button
-							type="submit"
-							className="rounded-md bg-nhgBlue px-3.5 py-2.5 text-center text-base mx-auto text-white  shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-						>
-							Send message
-						</button>
-					</div>
-				)}
+					) : (
+						<div className="mt-8 flex justify-end">
+							<button
+								type="submit"
+								className="rounded-md bg-nhgBlue px-3.5 py-2.5 text-center text-base mx-auto text-white  shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+							>
+								Submit
+							</button>
+						</div>
+					)}
+					{submitFail ? (
+						<p className="text-center text-red-600">
+							There was an error submitting your request. Please
+							try again.
+						</p>
+					) : (
+						""
+					)}
+				</div>
 			</form>
 		</div>
 	);
