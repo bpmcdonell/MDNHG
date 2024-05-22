@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { db } from "../firebase";
-import { collection, addDoc } from "firebase/firestore";
+
 import { unstable_noStore } from "next/cache";
+import { serviceFormSubmit } from "../actions";
 
 export default function ServiceForm() {
 	unstable_noStore();
@@ -25,20 +25,13 @@ export default function ServiceForm() {
 	const handleSubmit = async (e) => {
 		try {
 			e.preventDefault();
-			const docRef = await addDoc(collection(db, "serviceRequest"), {
-				serviceType: data.serviceType,
-				otherService: data.otherService,
-				dateOfService: data.dateOfService,
-				honoredName: data.honoredName,
-				reqName: data.reqName,
-				reqPhone: data.reqPhone,
-				reqEmail: data.reqEmail,
-				reqRelation: data.reqRelation,
-			});
-			console.log("Document written with ID: ", docRef.id);
-			setSubmit(true);
-		} catch (e) {
-			console.error("Error adding document: ", e);
+			const response = await serviceFormSubmit(data);
+			if (response !== null) setSubmit(true);
+			else
+				throw new Error("Failed to submit form") && setSubmitFail(true);
+		} catch (error) {
+			console.error(error);
+			setSubmitFail(true);
 		}
 	};
 
@@ -50,6 +43,7 @@ export default function ServiceForm() {
 	}, [data.serviceType]);
 
 	const [submit, setSubmit] = useState(false);
+	const [submitFail, setSubmitFail] = useState(false);
 
 	return (
 		<div>
@@ -207,6 +201,14 @@ export default function ServiceForm() {
 					>
 						Submit
 					</button>
+				)}
+				{submitFail ? (
+					<p className="text-center text-red-600">
+						There was an error submitting your request. Please try
+						again.
+					</p>
+				) : (
+					""
 				)}
 			</form>
 		</div>

@@ -1,20 +1,15 @@
 "use server";
 
 import Image from "next/image";
-import { db } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
 import { unstable_noStore } from "next/cache";
 import { Suspense } from "react";
-
-const donors = [];
-
-const querySnapshot = await getDocs(collection(db, "donors"));
-querySnapshot.forEach((doc) => {
-	donors.push(doc.data());
-});
+import { donorWallGet } from "../actions";
 
 export default async function DonorWallCons() {
 	unstable_noStore();
+
+	const donors = await donorWallGet();
+
 	function formatDate(date) {
 		return new Date(date).toLocaleDateString("en-US", {
 			year: "numeric",
