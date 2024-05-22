@@ -22,7 +22,7 @@ export default function Home() {
 
 						<div className="relative px-6 py-32 sm:py-40 lg:py-56 lg:pr-4">
 							<div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
-								<h1 className="text-3xl md:text-4xl font-bold tracking-tight text-nowrap text-gray-900 ">
+								<h1 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight text-nowrap text-gray-900 ">
 									Nurses Honoring Nurses
 								</h1>
 								<p className="mt-6 text-lg leading-8 text-gray-600">
