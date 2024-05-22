@@ -1,15 +1,16 @@
 "use client";
 
 import {
+	BuildingOffice2Icon,
 	EnvelopeIcon,
 	PhoneIcon,
 	CheckIcon,
-	XMarkIcon,
 } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 
-import { contactFormSubmit } from "../actions";
+import { db } from "../firebase";
 
+import { addDoc, collection } from "firebase/firestore";
 import { unstable_noStore } from "next/cache";
 
 export default function Contact() {
@@ -30,25 +31,71 @@ export default function Contact() {
 	const handleSubmit = async (e) => {
 		try {
 			e.preventDefault();
-			const response = await contactFormSubmit(contact);
-			if (response !== null) setSubmit(true);
-			else
-				throw new Error("Failed to submit form") && setSubmitFail(true);
-		} catch (error) {
-			console.error(error);
-			setSubmitFail(true);
+			const response = await addDoc(collection(db, "contactForm"), {
+				FirstName: contact.FirstName,
+				LastName: contact.LastName,
+				Email: contact.Email,
+				Phone: contact.Phone,
+				Message: contact.Message,
+			});
+			console.log("Document written with ID: ", response.id);
+			setSubmit(true);
+		} catch (e) {
+			console.error("Error adding document: ", e);
 		}
 	};
 
 	const [submit, setSubmit] = useState(false);
-	const [submitFail, setSubmitFail] = useState(false);
 
 	return (
 		<div className="relative isolate bg-white">
 			<div className="mx-auto grid lg:max-w-screen-2xl grid-cols-1 lg:grid-cols-2 ">
 				<div className="relative px-6 mt-20 pb-20 pt-24 sm:pt-32 lg:static lg:px-8 lg:py-48">
 					<div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-						<div className="absolute inset-y-0 left-0 -z-10 w-full h-screen overflow-hidden bg-[url('/images/flowers.jpg')] bg-center ring-1 ring-gray-900/10 lg:w-1/2"></div>
+						<div className="absolute inset-y-0 left-0 -z-10 w-full h-screen overflow-hidden bg-[url('/images/flowers.jpg')] bg-center ring-1 ring-gray-900/10 lg:w-1/2">
+							{/* <svg
+                                className="absolute inset-0 h-full w-full stroke-gray-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
+                                aria-hidden="true"
+                            >
+                                <defs>
+                                    <pattern
+                                        id="83fd4e5a-9d52-42fc-97b6-718e5d7ee527"
+                                        width={200}
+                                        height={200}
+                                        x="100%"
+                                        y={-1}
+                                        patternUnits="userSpaceOnUse"
+                                    >
+                                        <path
+                                            d="M130 200V.5M.5 .5H200"
+                                            fill="none"
+                                        />
+                                    </pattern>
+                                </defs>
+                                <rect
+                                    width="100%"
+                                    height="100%"
+                                    strokeWidth={0}
+                                    fill="white"
+                                />
+                                <svg
+                                    x="100%"
+                                    y={-1}
+                                    className="overflow-visible fill-gray-50"
+                                >
+                                    <path
+                                        d="M-470.5 0h201v201h-201Z"
+                                        strokeWidth={0}
+                                    />
+                                </svg>
+                                <rect
+                                    width="100%"
+                                    height="100%"
+                                    strokeWidth={0}
+                                    fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)"
+                                />
+                            </svg> */}
+						</div>
 						<div className="bg-white p-10 rounded-3xl shadow-inner">
 							<h2 className="text-3xl font-bold tracking-tight text-gray-900">
 								We would love to hear from you!
@@ -193,28 +240,25 @@ export default function Contact() {
 								</div>
 							</div>
 						</div>
-						<div className="mt-6">
-							{!submit && !submitFail ? (
+						{submit ? (
+							<div className="mt-8">
+								<div className="flex items-center justify-center gap-x-2">
+									<CheckIcon className="h-6 w-6 text-green-500" />
+									<p className="text-green-500">
+										Message sent successfully!
+									</p>
+								</div>
+							</div>
+						) : (
+							<div className="mt-8 flex justify-end">
 								<button
 									type="submit"
-									className="inline-flex items-center justify-center px-6 py-2.5 text-base font-medium text-white bg-nhgBlue border border-transparent rounded-md shadow-sm  focus:outline-none focus:ring-2 focus:ring-offset-2"
+									className="rounded-md bg-nhgBlue px-3.5 py-2.5 text-center text-base mx-auto text-white  shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 								>
-									<span>Submit</span>
+									Send message
 								</button>
-							) : null}
-							{submit && (
-								<p className="mt-2 text-sm text-green-600">
-									<CheckIcon className="h-5 w-5 inline" />
-									Your message has been sent!
-								</p>
-							)}
-							{submitFail && (
-								<p className="mt-2 text-sm text-red-600">
-									<XMarkIcon className="h-5 w-5 inline" />
-									There was an error sending your message.
-								</p>
-							)}
-						</div>
+							</div>
+						)}
 					</div>
 				</form>
 			</div>
