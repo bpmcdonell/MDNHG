@@ -16,15 +16,12 @@ export default function DonateBody() {
 				such as nursing lamps, roses, chimes, tablecloths, blankets,
 				ribbons, and printing supplies.
 			</p>
-			<p className="my-2 text-base">
-				Please consider requesting charitable donations to The Maryland
-				Nurse Honor Guard in lieu of flowers in your nurse&#39;s honor.
-			</p>
 
 			<div className="flex flex-col max-w-md mx-auto m-5 p-5 text-white bg-nhgBlue rounded-lg">
 				<p className="mx-auto text-lg text-center font-bold">
-					We also welcome donations from businesses or individuals to
-					support our mission to serve nurses.
+					Please consider requesting charitable donations to The
+					Maryland Nurse Honor Guard in lieu of flowers in your
+					nurse&#39;s honor.
 				</p>
 			</div>
 			<p className="my-2 text-base">
