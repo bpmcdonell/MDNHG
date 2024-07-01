@@ -93,9 +93,9 @@ export default function Contact() {
 									<dd>
 										<a
 											className="hover:text-gray-900"
-											href="contact@mdnursehonorguard.com"
+											href="contact@mdnursehonorguard.org"
 										>
-											contact@mdnursehonorguard.com
+											contact@mdnursehonorguard.org
 										</a>
 									</dd>
 								</div>

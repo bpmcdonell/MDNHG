@@ -8,10 +8,10 @@ export default function AboutBody() {
 
 			<div>
 				<p className="p-1 text-base">
-					The Maryland Nurse Honor Guard considers it a privilege to
-					participate in the memorial services of fellow nurses to
-					celebrate and recognize those who have dedicated their lives
-					to the profession of nursing.
+					The Maryland Nurse Honor Guard (MDNHG) considers it a
+					privilege to participate in the memorial services of fellow
+					nurses. We celebrate and recognize those who have dedicated
+					their lives to the profession of nursing.
 				</p>
 				<p className="p-1 text-base">
 					We are a group of active and retired professional nurses who
@@ -39,22 +39,21 @@ export default function AboutBody() {
 				</div>
 				<p className="p-1 text-base">
 					Our service is steeped in nursing tradition and embraces the
-					symbolism of our nursing uniform and presentation of a
-					nursing lamp to the family after a Nightingale Tribute and
-					Last Roll Call releasing the nurse from their duties with
-					honor.
+					symbolism of our nursing uniform, presentation of a nursing
+					lamp to the family after a Nightingale Tribute and Last Roll
+					Call releasing the nurse from their duties with honor.
 				</p>
 				<p className="p-1 text-base">
-					It is similar to a military tribute, and it is our mission
-					to be able to provide this service free of charge to any
-					Maryland resident who was a Registered Nurse, Licensed
-					Practical Nurse, Nurse Practitioner or other nurse
-					specialist in our state. The presence of the Nurse Honor
-					Guard hopes to be a source of comfort to the family and a
-					celebration of the nurse's service.
+					It is similar to a military tribute. It is our mission to be
+					able to provide this service free of charge to any Maryland
+					resident who was a Registered Nurse, Licensed Practical
+					Nurse, Nurse Practitioner or other nurse specialist in our
+					state. The presence of the Nurse Honor Guard hopes to be a
+					source of comfort to the family and a celebration of the
+					nurse's service.
 				</p>
 				<p className="p-1 text-base">
-					Also we offer Living Tributes to any nurse that may be near
+					We also offer Living Tributes to any nurse that may be near
 					the end of their life so we may honor them in person and
 					thank them for their service.
 				</p>
@@ -62,20 +61,21 @@ export default function AboutBody() {
 			<div className="flex flex-col">
 				<h2 className="py-7 mx-auto">Get Involved!</h2>
 				<p className="text-base">
-					If you are a nurse and would like to join the Maryland
-					Nurses Honor Guard, please sumbit your information on our{" "}
-					<a
-						href="/volunteer"
-						className="text-nhgBlue underline hover:text-nhgRed"
-					>
-						Volunteer Page
-					</a>{" "}
-					and join our community on our{" "}
+					Please join our community on our and join our community on
+					our{" "}
 					<a
 						href="https://www.facebook.com/groups/891383095941572"
 						className="text-nhgBlue underline hover:text-nhgRed"
 					>
 						Facebook Group
+					</a>
+					. If you are a nurse and would like to join the Maryland
+					Nurse Honor Guard, please sumbit your information on our{" "}
+					<a
+						href="/volunteer"
+						className="text-nhgBlue underline hover:text-nhgRed"
+					>
+						Volunteer Page
 					</a>
 					.
 				</p>

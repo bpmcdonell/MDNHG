@@ -15,29 +15,24 @@ export default async function MemConstructor() {
 			<Suspense fallback={<div>Loading...</div>}>
 				<ul className="grid grid-cols-1 lg:grid-cols-2">
 					{memoriams.map((record) => (
-						<li className="flex flex-row mb-6 w-auto bg-gray-200 rounded-lg shadow-md ">
+						<li className="flex flex-row  pt-2 pl-2 pb-2 py-2 mb-6 w-auto bg-gray-200 rounded-lg shadow-md justify-evenly ">
 							<div>
 								<Image
 									src="/images/nurseLamp2.jpg"
-									width={96}
-									height={96}
+									width={90}
+									height={90}
 									alt="Candle Picture"
 									priority={true}
-									className="rounded-l-md absolute"
+									className="rounded-md absolute"
 								/>
 							</div>
-							<div className="flex-1 ml-[96px] h-[96px]">
-								<p className="text-base text-nowrap flex justify-center ">
-									{record.name}
+							<div className="flex-1 ml-[90px] h-[90px]">
+								<p className="text-base text-nowrap flex justify-center mt-4">
+									{record.name}, {record.title}
 								</p>
-								<p className="text-base text-nowrap flex justify-center m-2">
+								<p className="text-base text-nowrap flex justify-center mt-3">
 									{record.dob} - {record.dod}
 								</p>
-								{record.dos && (
-									<p className="text-base text-nowrap flex justify-center ">
-										Honored on: {record.dos}{" "}
-									</p>
-								)}
 							</div>
 						</li>
 					))}

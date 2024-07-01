@@ -38,7 +38,7 @@ export default function Header() {
 							height={100}
 						/>
 						<span className="text-black text-sm md:text-xl lg:text-2xl font-bold m-3">
-							Maryland Nurses Honor Guard
+							Maryland Nurse Honor Guard
 						</span>
 					</a>
 				</div>
