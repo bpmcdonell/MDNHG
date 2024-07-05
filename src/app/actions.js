@@ -37,7 +37,26 @@ export async function serviceFormSubmit(service, now) {
 			reqRelation: data.reqRelation,
 			timestamp: now,
 		});
-		console.log("Document written with ID: ", docRef.id);
+		console.log("Form submission written with ID: ", docRef.id);
+
+		const emailData = {
+			type: "Service",
+			name: data.reqName,
+			html: `
+			<p>Service Type: ${data.serviceType}</p>
+			<p>Other Service: ${data.otherService}</p>
+			<p>Date of Service: ${data.dateOfService}</p>
+			<p>Honored Name: ${data.honoredName}</p>
+			<p>Requestor Name: ${data.reqName}</p>
+			<p>Requestor Phone: ${data.reqPhone}</p>
+			<p>Requestor Email: ${data.reqEmail}</p>
+			<p>Requestor Relation: ${data.reqRelation}</p>
+			<p>Timestamp: ${now}</p>
+			`,
+		};
+
+		firebaseEmailer(emailData);
+
 		return docRef.id;
 	} catch (e) {
 		console.error("Error adding document: ", e);
@@ -61,7 +80,23 @@ export async function contactFormSubmit(contact, now) {
 			Message: data.Message,
 			timestamp: now,
 		});
-		console.log("Document written with ID: ", docRef.id);
+		console.log("Form submission written with ID: ", docRef.id);
+
+		const emailData = {
+			type: "Contact",
+			name: data.FirstName + " " + data.LastName,
+			html: `
+			<p>First Name: ${data.FirstName}</p>
+			<p>Last Name: ${data.LastName}</p>
+			<p>Phone: ${data.Phone}</p>
+			<p>Email: ${data.Email}</p>
+			<p>Message: ${data.Message}</p>
+			<p>Timestamp: ${now}</p>
+			`,
+		};
+
+		firebaseEmailer(emailData);
+
 		return docRef.id;
 	} catch (e) {
 		console.error("Error adding document: ", e);
@@ -93,6 +128,30 @@ export async function volFormSubmit(volunteer, now) {
 			timestamp: now,
 		});
 		console.log("Document written with ID: ", docRef.id);
+
+		const emailData = {
+			type: "Volunteer",
+			name: data.FirstName + " " + data.LastName,
+			html: `
+			<p>First Name: ${data.FirstName}</p>
+			<p>Last Name: ${data.LastName}</p>
+			<p>Address: ${data.Address}</p>
+			<p>City: ${data.City}</p>
+			<p>Zip Code: ${data.ZipCode}</p>
+			<p>County: ${data.County}</p>
+			<p>County Other: ${data.CountyOther}</p>
+			<p>State: ${data.State}</p>
+			<p>Phone: ${data.Phone}</p>
+			<p>Email: ${data.Email}</p>
+			<p>Designation: ${data.Designation}</p>
+			<p>Designation Other: ${data.DesignationOther}</p>
+			<p>Employment Status: ${data.EmploymentStatus}</p>
+			<p>Timestamp: ${now}</p>
+			`,
+		};
+
+		firebaseEmailer(emailData);
+
 		return docRef.id;
 	} catch (e) {
 		console.error("Error adding document: ", e);
@@ -162,4 +221,28 @@ export async function memWallGet() {
 export async function galleryImageGet() {
 	const { resources } = await cloudinary.search.expression().execute();
 	return resources;
+}
+
+//e-mailer
+
+export async function firebaseEmailer(data) {
+	const app = initializeApp(firebaseConfig);
+	const db = getFirestore(app);
+
+	try {
+		const docRef = await addDoc(collection(db, "mail"), {
+			to: [
+				"contact@mdnursehonorguard.org",
+				"carol.mcdonell@mdnursehonorguard.org",
+			],
+			message: {
+				subject: `New ${data.type} Form Submission: ${data.name}`,
+				html: data.html,
+			},
+		});
+		console.log("Emailer doc written with ID: ", docRef.id);
+		return docRef.id;
+	} catch (e) {
+		console.error("Error adding document: ", e);
+	}
 }

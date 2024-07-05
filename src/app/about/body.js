@@ -61,8 +61,7 @@ export default function AboutBody() {
 			<div className="flex flex-col">
 				<h2 className="py-7 mx-auto">Get Involved!</h2>
 				<p className="text-base">
-					Please join our community on our and join our community on
-					our{" "}
+					Please join our community on our{" "}
 					<a
 						href="https://www.facebook.com/groups/891383095941572"
 						className="text-nhgBlue underline hover:text-nhgRed"
@@ -70,7 +69,7 @@ export default function AboutBody() {
 						Facebook Group
 					</a>
 					. If you are a nurse and would like to join the Maryland
-					Nurse Honor Guard, please sumbit your information on our{" "}
+					Nurse Honor Guard, please submit your information on our{" "}
 					<a
 						href="/volunteer"
 						className="text-nhgBlue underline hover:text-nhgRed"
