@@ -1,5 +1,3 @@
-import Pocketbase from "pocketbase";
-
 const navigation = [
 	{
 		name: "Facebook",
@@ -30,13 +28,6 @@ const navigation = [
 ];
 
 export default function Footer() {
-	const pb = new Pocketbase("http://127.0.0.1:8090");
-
-	const testimonials = async () =>
-		await pb.collection("testimonials").getFullList({
-			sort: "-created",
-		});
-
 	return (
 		<footer className="absolute bottom-0 min-w-full bg-white ">
 			<div className="mx-auto max-w-full px-1 py-8 md:flex md:items-center md:justify-between lg:px-8">
@@ -61,6 +52,15 @@ export default function Footer() {
 					<p className="text-center text-sm leading-5 text-black">
 						&copy; 2024 Maryland Nurse Honor Guard. All rights
 						reserved.
+					</p>
+					<p className=" text-xs leading-5 text-black">
+						Website by{" "}
+						<a
+							href="https://github.com/bpmcdonell"
+							className="text-blue-600 hover:text-blue-800"
+						>
+							Brian McDonell
+						</a>
 					</p>
 				</div>
 			</div>

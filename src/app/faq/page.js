@@ -15,7 +15,7 @@ const faqs = {
 		},
 		{
 			question: "Is this a religious ceremony?",
-			answer: "We provide a tribute to the nurse which is non-denominational yet appropriate for a variety of reverent settings.",
+			answer: "No, our tribute to the nurse is non-denominational yet appropriate for a variety of reverent settings.",
 		},
 		{
 			question:

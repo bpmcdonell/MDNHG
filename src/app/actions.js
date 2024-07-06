@@ -114,16 +114,17 @@ export async function volFormSubmit(volunteer, now) {
 		const docRef = await addDoc(collection(db, "volunteerForm"), {
 			FirstName: data.FirstName,
 			LastName: data.LastName,
+			DateOfBirth: data.DateOfBirth,
 			Address: data.Address,
 			City: data.City,
 			ZipCode: data.ZipCode,
 			County: data.County,
-			CountyOther: data.CountyOther,
 			State: data.State,
 			Phone: data.Phone,
 			Email: data.Email,
 			Designation: data.Designation,
 			DesignationOther: data.DesignationOther,
+			YearOfLicensure: data.YearOfLicensure,
 			EmploymentStatus: data.EmploymentStatus,
 			timestamp: now,
 		});
@@ -135,16 +136,17 @@ export async function volFormSubmit(volunteer, now) {
 			html: `
 			<p>First Name: ${data.FirstName}</p>
 			<p>Last Name: ${data.LastName}</p>
+			<p>Date of Birth: ${data.DateOfBirth}</p>
 			<p>Address: ${data.Address}</p>
 			<p>City: ${data.City}</p>
 			<p>Zip Code: ${data.ZipCode}</p>
 			<p>County: ${data.County}</p>
-			<p>County Other: ${data.CountyOther}</p>
 			<p>State: ${data.State}</p>
 			<p>Phone: ${data.Phone}</p>
 			<p>Email: ${data.Email}</p>
 			<p>Designation: ${data.Designation}</p>
 			<p>Designation Other: ${data.DesignationOther}</p>
+			<p>Year of Licensure: ${data.YearOfLicensure}</p>
 			<p>Employment Status: ${data.EmploymentStatus}</p>
 			<p>Timestamp: ${now}</p>
 			`,
@@ -165,16 +167,17 @@ export async function volFormSubmitSheets(volunteer, now) {
 	const formData = new FormData();
 	formData.append("FirstName", volunteer.FirstName);
 	formData.append("LastName", volunteer.LastName);
+	formData.append("DateOfBirth", volunteer.DateOfBirth);
 	formData.append("Address", volunteer.Address);
 	formData.append("City", volunteer.City);
 	formData.append("ZipCode", volunteer.ZipCode);
 	formData.append("County", volunteer.County);
-	formData.append("CountyOther", volunteer.CountyOther);
 	formData.append("State", volunteer.State);
 	formData.append("Phone", volunteer.Phone);
 	formData.append("Email", volunteer.Email);
 	formData.append("Designation", volunteer.Designation);
 	formData.append("DesignationOther", volunteer.DesignationOther);
+	formData.append("YearOfLicensure", volunteer.YearOfLicensure);
 	formData.append("EmploymentStatus", volunteer.EmploymentStatus);
 	formData.append("Timestamp", now);
 
