@@ -16,7 +16,7 @@ export default function GratitudeWallPage() {
                                     <p className="font-bold text-base flex justify-center mb-8">
                                         We would like to thank the following
                                         donors for their generous support of the
-                                        Maryland Nurses Honor Guard:
+                                        Maryland Nurse Honor Guard:
                                     </p>
                                 </div>
                                 <Suspense

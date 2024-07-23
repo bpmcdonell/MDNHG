@@ -1,5 +1,3 @@
-"use server";
-
 import Image from "next/image";
 import { unstable_noStore } from "next/cache";
 import { Suspense } from "react";
@@ -19,9 +17,9 @@ export default async function DonorWallCons() {
     }
 
     return (
-        <div className="columns-1 lg:columns-2 gap-6">
+        <div className="">
             <Suspense fallback={<div>Loading...</div>}>
-                <ul className="">
+                <ul className="grid grid-flow-row grid-cols-2 gap-6">
                     {donors.map((donor) => (
                         <li className="flex flex-row  pt-2 pl-2 pb-2 py-2 mb-6 w-auto bg-gray-200 rounded-lg shadow-md justify-evenly ">
                             <Image
