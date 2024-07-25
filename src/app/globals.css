@@ -3,31 +3,31 @@
 @tailwind utilities;
 
 @layer base {
-	html {
-		font-family: "merriweather", serif;
-	}
-	h1 {
-		@apply text-2xl font-bold;
-	}
-	h2 {
-		@apply text-[20px] font-bold;
-	}
-	h3 {
-		@apply text-lg font-bold;
-	}
-	p {
-		@apply text-base m-1;
-	}
-	a {
-		@apply text-link;
-	}
-	li {
-		@apply text-base;
-		@apply list-disc;
-		@apply ml-4;
-	}
-	ul {
-		@apply list-disc;
-		@apply ml-4;
-	}
+    html {
+        font-family: "merriweather", serif;
+    }
+    h1 {
+        @apply text-2xl font-bold;
+    }
+    h2 {
+        @apply text-[20px] font-bold;
+    }
+    h3 {
+        @apply text-lg font-bold;
+    }
+    p {
+        @apply text-base m-1;
+    }
+    a {
+        @apply text-link;
+    }
+    li {
+        @apply text-base;
+        @apply list-disc;
+        @apply ml-4;
+    }
+    ul {
+        @apply list-disc;
+        @apply ml-4;
+    }
 }

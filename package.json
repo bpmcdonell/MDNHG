@@ -1,38 +1,40 @@
 {
-	"name": "mdnhg",
-	"version": "0.1.0",
-	"private": true,
-	"scripts": {
-		"dev": "next dev",
-		"build": "next build",
-		"start": "next start",
-		"lint": "next lint"
-	},
-	"dependencies": {
-		"@ant-design/icons": "^5.3.7",
-		"@babel/core": "^7.23.9",
-		"@cloudinary/react": "^1.13.0",
-		"@cloudinary/url-gen": "^1.16.1",
-		"@headlessui/react": "^1.7.18",
-		"@heroicons/react": "^2.1.1",
-		"@next/env": "^14.2.3",
-		"@tailwindcss/forms": "^0.5.7",
-		"antd": "^5.18.2",
-		"cloudinary": "^2.0.1",
-		"firebase": "^10.12.0",
-		"next": "^14.2.3",
-		"next-cloudinary": "^5.20.0",
-		"node": "^21.6.2",
-		"pocketbase": "^0.21.1",
-		"react": "^18",
-		"react-dom": "^18",
-		"react-hook-form": "^7.51.4"
-	},
-	"devDependencies": {
-		"autoprefixer": "^10.4.18",
-		"eslint": "^8",
-		"eslint-config-next": "14.1.0",
-		"postcss": "^8.4.35",
-		"tailwindcss": "^3.4.1"
-	}
+    "name": "mdnhg",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@ant-design/icons": "^5.3.7",
+        "@babel/core": "^7.23.9",
+        "@cloudinary/react": "^1.13.0",
+        "@cloudinary/url-gen": "^1.16.1",
+        "@headlessui/react": "^1.7.18",
+        "@heroicons/react": "^2.1.1",
+        "@next/env": "^14.2.3",
+        "@tailwindcss/forms": "^0.5.7",
+        "antd": "^5.18.2",
+        "cloudinary": "^2.0.1",
+        "clsx": "^2.1.1",
+        "firebase": "^10.12.0",
+        "next": "^14.2.3",
+        "next-cloudinary": "^5.20.0",
+        "next-recaptcha-v3": "^1.4.1",
+        "node": "^21.6.2",
+        "react": "^18",
+        "react-dom": "^18",
+        "react-hook-form": "^7.51.4"
+    },
+    "devDependencies": {
+        "@types/react": "18.3.3",
+        "autoprefixer": "^10.4.18",
+        "eslint": "^8",
+        "eslint-config-next": "14.1.0",
+        "postcss": "^8.4.35",
+        "tailwindcss": "^3.4.1"
+    }
 }

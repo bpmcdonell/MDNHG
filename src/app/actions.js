@@ -16,11 +16,23 @@ const firebaseConfig = {
 
 //form posts
 
-export async function serviceFormSubmit(service, now) {
+export async function serviceFormSubmit(service, token, now) {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
     const data = service;
+
+    let verified = await verifyCaptcha(token);
+
+    if (verified.success === false) {
+        return "Captcha failed";
+    }
+    if (verified.success === undefined) {
+        return "Captcha error";
+    } else if (verified.success === true) {
+        data.CaptchaState = "Passed";
+        data.CaptchaScore = verified.score;
+    }
 
     try {
         const docRef = await addDoc(collection(db, "serviceRequest"), {
@@ -32,6 +44,8 @@ export async function serviceFormSubmit(service, now) {
             reqPhone: data.reqPhone,
             reqEmail: data.reqEmail,
             reqRelation: data.reqRelation,
+            CaptchaState: data.CaptchaState,
+            CaptchaScore: data.CaptchaScore,
             timestamp: now,
         });
         console.log("Form submission written with ID: ", docRef.id);
@@ -48,6 +62,8 @@ export async function serviceFormSubmit(service, now) {
 			<p>Requestor Phone: ${data.reqPhone}</p>
 			<p>Requestor Email: ${data.reqEmail}</p>
 			<p>Requestor Relation: ${data.reqRelation}</p>
+            <p>Captcha State: ${data.CaptchaState}</p>
+            <p>Captcha Score: ${data.CaptchaScore}</p>
 			<p>Timestamp: ${now}</p>
 			`,
         };
@@ -58,11 +74,23 @@ export async function serviceFormSubmit(service, now) {
     }
 }
 
-export async function contactFormSubmit(contact, now) {
+export async function contactFormSubmit(contact, token, now) {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
     const data = contact;
+
+    let verified = await verifyCaptcha(token);
+
+    if (verified.success === false) {
+        return "Captcha failed";
+    }
+    if (verified.success === undefined) {
+        return "Captcha error";
+    } else if (verified.success === true) {
+        data.CaptchaState = "Passed";
+        data.CaptchaScore = verified.score;
+    }
 
     try {
         const docRef = await addDoc(collection(db, "contactForm"), {
@@ -92,17 +120,31 @@ export async function contactFormSubmit(contact, now) {
 			`,
         };
 
-        firebaseEmailer(emailData);
+        firebaseEmailer(emailData).then((res) => {
+            console.log(res);
+        });
     } catch (e) {
         console.error("Error adding document: ", e);
     }
 }
 
-export async function volFormSubmit(volunteer, now) {
+export async function volFormSubmit(volunteer, token, now) {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
     const data = volunteer;
+
+    let verified = await verifyCaptcha(token);
+
+    if (verified.success === false) {
+        return "Captcha failed";
+    }
+    if (verified.success === undefined) {
+        return "Captcha error";
+    } else if (verified.success === true) {
+        data.CaptchaState = "Passed";
+        data.CaptchaScore = verified.score;
+    }
 
     try {
         const docRef = await addDoc(collection(db, "volunteerForm"), {
@@ -120,9 +162,13 @@ export async function volFormSubmit(volunteer, now) {
             DesignationOther: data.DesignationOther,
             YearOfLicensure: data.YearOfLicensure,
             EmploymentStatus: data.EmploymentStatus,
+            CaptchaState: data.CaptchaState,
+            CaptchaScore: data.CaptchaScore,
             timestamp: now,
         });
         console.log("Document written with ID: ", docRef.id);
+
+        volFormSubmitSheets(data, now);
 
         const emailData = {
             type: "Volunteer",
@@ -142,11 +188,15 @@ export async function volFormSubmit(volunteer, now) {
 			<p>Designation Other: ${data.DesignationOther}</p>
 			<p>Year of Licensure: ${data.YearOfLicensure}</p>
 			<p>Employment Status: ${data.EmploymentStatus}</p>
+            <p>Captcha State: ${data.CaptchaState}</p>
+            <p>Captcha Score: ${data.CaptchaScore}</p>
 			<p>Timestamp: ${now}</p>
 			`,
         };
 
-        firebaseEmailer(emailData);
+        firebaseEmailer(emailData).then((res) => {
+            console.log(res);
+        });
 
         return docRef.id;
     } catch (e) {
@@ -157,6 +207,12 @@ export async function volFormSubmit(volunteer, now) {
 export async function volFormSubmitSheets(volunteer, now) {
     const sheetURL =
         "https://script.google.com/macros/s/AKfycbyhlDNXQ4bgoAocuI5ZDACN0xNLDtPaH4baXUqxoAQPphao7nZwPmqhnRda9jpsjMnk/exec";
+
+    for (const key in volunteer) {
+        if (volunteer[key] === "") {
+            volunteer[key] = "N/A";
+        }
+    }
 
     const formData = new FormData();
     formData.append("FirstName", volunteer.FirstName);
@@ -173,6 +229,8 @@ export async function volFormSubmitSheets(volunteer, now) {
     formData.append("DesignationOther", volunteer.DesignationOther);
     formData.append("YearOfLicensure", volunteer.YearOfLicensure);
     formData.append("EmploymentStatus", volunteer.EmploymentStatus);
+    formData.append("CaptchaState", volunteer.CaptchaState);
+    formData.append("CaptchaScore", volunteer.CaptchaScore);
     formData.append("Timestamp", now);
 
     fetch(sheetURL, {
@@ -203,7 +261,7 @@ export async function donorWallGet() {
     });
 
     donors.sort((a, b) => {
-        return new Date(b.date) - new Date(a.date);
+        return new Date(a.date) - new Date(b.date);
     });
 
     return donors;
@@ -247,6 +305,7 @@ export async function firebaseEmailer(data) {
                 "contact@mdnursehonorguard.org",
                 "carol.mcdonell@mdnursehonorguard.org",
             ],
+
             message: {
                 subject: `New ${data.type} Form Submission: ${data.name}`,
                 html: data.html,
@@ -257,6 +316,20 @@ export async function firebaseEmailer(data) {
         return emailSent;
     } catch (e) {
         console.error("Error adding document: ", e);
+        emailSent = false;
         return emailSent;
     }
+}
+
+export async function verifyCaptcha(token) {
+    const secret = process.env.RECAPTCHA_SECRET_KEY;
+    const url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${token}`;
+
+    const response = await fetch(url, {
+        method: "POST",
+    });
+
+    const data = await response.json();
+
+    return await data;
 }

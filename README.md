@@ -1,4 +1,4 @@
-## Maryland Nurses Honor Guard Webpage
+## Maryland Nurse Honor Guard Webpage
 
 This is a React/Nextjs page for MD NHG.
 Under construction :)

@@ -5,44 +5,47 @@ import Head from "next/head";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import styles from "./globals.css";
+import { ReCaptchaProvider } from "next-recaptcha-v3";
 
 const ptSerif = PT_Serif({
-	subsets: ["latin"],
-	weight: ["400", "700"],
-	style: ["italic"],
+    subsets: ["latin"],
+    weight: ["400", "700"],
+    style: ["italic"],
 });
 
 const cormorantGaramond = Cormorant_Garamond({
-	subsets: ["latin"],
-	weight: ["400", "700"],
-	style: ["italic"],
+    subsets: ["latin"],
+    weight: ["400", "700"],
+    style: ["italic"],
 });
 
 const merriweather = Merriweather({
-	subsets: ["latin"],
-	weight: ["400", "700"],
-	style: ["italic"],
+    subsets: ["latin"],
+    weight: ["400", "700"],
+    style: ["italic"],
 });
 
 export const metadata = {
-	title: "MD Nurses Honor Guard",
-	description: "Webpage for the Maryland Nurses Honor Guard",
+    title: "MD Nurse Honor Guard",
+    description: "Webpage for the Maryland Nurse Honor Guard",
 };
 
 export default function RootLayout({ children }) {
-	return (
-		<html lang="en" className="">
-			<link rel="icon" href="favicon/favicon.png" sizes="any" />
-			<Head />
-			<body className="">
-				<Header />
-				<div className="relative min-h-screen mx-auto">
-					<div className=" pb-32">
-						<main>{children}</main>
-					</div>
-					<Footer />
-				</div>
-			</body>
-		</html>
-	);
+    return (
+        <html lang="en" className="">
+            <link rel="icon" href="favicon/favicon.png" sizes="any" />
+            <Head />
+            <body className="">
+                <Header />
+                <div className="relative min-h-screen mx-auto">
+                    <div className=" pb-32">
+                        <ReCaptchaProvider siteKey="6LdK2wkqAAAAALAsz6nqHp6ZImj_1gHD7nwGLOiv">
+                            <main>{children}</main>
+                        </ReCaptchaProvider>
+                    </div>
+                    <Footer />
+                </div>
+            </body>
+        </html>
+    );
 }
