@@ -2,6 +2,8 @@ import { PT_Serif, Cormorant_Garamond, Merriweather } from "next/font/google";
 
 import React from "react";
 import Head from "next/head";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import styles from "./globals.css";
@@ -45,6 +47,8 @@ export default function RootLayout({ children }) {
                     </div>
                     <Footer />
                 </div>
+                <Analytics />
+                <SpeedInsights />
             </body>
         </html>
     );

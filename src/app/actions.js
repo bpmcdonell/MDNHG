@@ -1,5 +1,5 @@
 "use server";
-import { addDoc, getDocs, collection, doc } from "firebase/firestore";
+import { addDoc, getDocs, collection } from "firebase/firestore";
 import cloudinary from "./cloudinary";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
@@ -198,6 +198,10 @@ export async function volFormSubmit(volunteer, token, now) {
             console.log(res);
         });
 
+        // volWelcomeEmail(data).then((res) => {
+        //     console.log(res);
+        // });
+
         return docRef.id;
     } catch (e) {
         console.error("Error adding document: ", e);
@@ -206,7 +210,7 @@ export async function volFormSubmit(volunteer, token, now) {
 
 export async function volFormSubmitSheets(volunteer, now) {
     const sheetURL =
-        "https://script.google.com/macros/s/AKfycbyhlDNXQ4bgoAocuI5ZDACN0xNLDtPaH4baXUqxoAQPphao7nZwPmqhnRda9jpsjMnk/exec";
+        "https://script.google.com/a/macros/mdnursehonorguard.org/s/AKfycbzB_ubHfXujMKd55n8PI83D_4rEFhLTGcic1ClRcKihH2d3DzCGjeo_Vkfsl86lcTLVQg/exec";
 
     for (const key in volunteer) {
         if (volunteer[key] === "") {
@@ -301,10 +305,7 @@ export async function firebaseEmailer(data) {
 
     try {
         const docRef = await addDoc(collection(db, "mail"), {
-            to: [
-                "contact@mdnursehonorguard.org",
-                "carol.mcdonell@mdnursehonorguard.org",
-            ],
+            to: ["contact@mdnursehonorguard.org"],
 
             message: {
                 subject: `New ${data.type} Form Submission: ${data.name}`,
@@ -321,6 +322,60 @@ export async function firebaseEmailer(data) {
     }
 }
 
+//automated volunteer welcome email
+
+export async function volWelcomeEmail(volunteer) {
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    let emailSent = false;
+
+    try {
+        const docRef = await addDoc(collection(db, "mail"), {
+            to: [volunteer.Email],
+
+            message: {
+                subject: `Welcome to the Maryland Nurse Honor Guard, ${volunteer.FirstName}!`,
+                html: `
+                <img src="https://www.mdnursehonorguard.org/images/MDNHGLogoWhite.png" alt="Maryland Nurse Honor Guard Logo" style="width: 300px; height: auto; margin: 0 auto; display: block;">
+                <p>Dear ${volunteer.FirstName},</p>
+                <p>Thank you for your interest in being a volunteer with The Maryland Nurse Honor Guard.</p>
+                <p><span style="font-weight: bold;">Services:</span> The Nurse Honor Guard attends memorial services for any LPN, RN, NP or other advanced practice nurse in the State of Maryland.  Similar to a military honor guard, we represent our profession with dignity  to pay our respects to nurses by being present and providing them with a tribute to honor their nursing legacy.</p>
+                <p>The ceremony is about 5 minutes long. It consists of a reading, presenting a white rose to the nurse who has passed, releasing the nurse from their duties, and providing a Nightingale lamp to the family.</p>
+                <p>This ceremony is very healing for the family, and is such a great way to honor our profession with dignity. Most families and other nurses in attendance find this to be a beautiful remembrance of how much their service is valued.</p>
+                <p>We also perform living tributes for nurses who may be at the end of life at home or in hospice, and we may also participate in other special activities for nurses including retirements, nursing school graduations, nurse's week activities and community events.  We may participate in parades and fundraising events.</p>
+                <p>Nurses who volunteer in the Honor Guard find it personally rewarding and gratifying to join with other nurses as colleagues and friends to perform these services. The nurses who are members of the honor Guard consider it both an honor and a privilege to participate in final services for their fellow nurses.</p>
+                <br>
+                <p><span style="font-weight: bold;">Volunteering:</span> Volunteer positions are open to any LPN, RN, NP or advanced practice nurse, active or retired in good standing in the State of Maryland.</p>
+                <p>Participation does require the ability to walk and stand for sometimes extended periods of time while at a service, but we offer other volunteer opportunities to participate if mobility is difficult.</p>
+                <p>We welcome and encourage diversity in our group to proudly represent all nurses, and our services are non-denominational.</p>
+                <br>
+                <p><span style="font-weight: bold;">Uniform:</span> The Nurse Honor Guard dresses in a traditional white uniform, complete with cap and cape. Volunteers provide their own white uniform dress or pants and shoes. Often these can be found on Amazon or from uniform stores.  Our Cap, bobby pins, cape, and cape clasp are available to purchase as a package. To purchase a cap and cape please send an email to <a href="mailto:contact@mdnursehonorguard.org">contact@mdnursehonorguard.org</a>.</p>
+                <br>
+                <p><span style="font-weight: bold;">Communication:</span> We have a private volunteer only Facebook page where we post news, updates, calls for volunteers for tributes and coordinate all matters of internal business. This site is by invitation only which you should receive within a week of signing up. If you do not receive an invitation through facebook or your email please reach out to us and let us know.</p>
+                <p>For those volunteers who do not use facebook we <span style="underline;">highly recommend</span> making a private account for yourself so you may access and participate in our volunteer site so you do not miss information, photos and interaction with other volunteers. If you would like to learn more about facebook please let us know and we can show you how it works and assist set up.</p>
+                <p>If you prefer to use email only for communication we can coordinate that with you so you will get updates of meeting links and tributes that you can sign up to attend.</p>
+                <p>We also have a Social Facebook Page for the general public to highlight our group activities in the community. You can find our social page at: <a href="https://www.facebook.com/groups/891383095941572">https://www.facebook.com/groups/891383095941572</a></p>
+                <br>
+                <p><span style="font-weight: bold;">Meetings:</span> We have virtual meetings every third Tuesday of the month at 7pm. We post the agenda and the meeting information in our Private Volunteer site on Facebook</p>
+                <br>
+                <p><span style="font-weight: bold;">Mission:</span> Our mission is to be able to offer tributes to all nurses across Maryland so we need volunteers across our whole state in every area.</p>
+                <p>We welcome any other questions you may have to <a href="mailto:contact@mdnursehonorguard.org">contact@mdnursehonorguard.org</a>, or you may call us at <a href="tel:+12409747554">(240)974-7554</a>.</p>
+                <p>It is our hope that you will find that this is a meaningful and uplifting group to be a part of, and that it enriches your life.  We look forward to meeting you and working together with you!</p>
+                `,
+            },
+        });
+        console.log("Emailer doc written with ID: ", docRef.id);
+        emailSent = true;
+        return emailSent;
+    } catch (e) {
+        console.error("Error adding document: ", e);
+        emailSent = false;
+        return emailSent;
+    }
+}
+
+//recaptcha
+
 export async function verifyCaptcha(token) {
     const secret = process.env.RECAPTCHA_SECRET_KEY;
     const url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${token}`;
@@ -333,3 +388,69 @@ export async function verifyCaptcha(token) {
 
     return await data;
 }
+
+//admin
+
+//donor wall
+
+export async function donorWallAdd(donor) {
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    try {
+        const docRef = await addDoc(collection(db, "donors"), {
+            name: donor.name,
+            date: donor.date,
+            notePrefix: donor.notePrefix,
+            message: donor.message,
+        });
+        console.log("Donor added with ID: ", docRef.id);
+    } catch (e) {
+        console.error("Error adding document: ", e);
+    }
+}
+
+export async function donorWallDelete(id) {
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    try {
+        await deleteDoc(doc(db, "donors", id));
+        console.log("Donor deleted with ID: ", id);
+    } catch (e) {
+        console.error("Error deleting document: ", e);
+    }
+}
+
+//memorial wall
+
+export async function memWallAdd(mem) {
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    try {
+        const docRef = await addDoc(collection(db, "memoriams"), {
+            name: mem.name,
+            date: mem.date,
+            title: mem.title,
+            message: mem.message,
+        });
+        console.log("Memorial added with ID: ", docRef.id);
+    } catch (e) {
+        console.error("Error adding document: ", e);
+    }
+}
+
+export async function memWallDelete(id) {
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    try {
+        await deleteDoc(doc(db, "memoriams", id));
+        console.log("Memorial deleted with ID: ", id);
+    } catch (e) {
+        console.error("Error deleting document: ", e);
+    }
+}
+
+//gallery

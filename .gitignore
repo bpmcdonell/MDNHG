@@ -43,3 +43,4 @@ firebase-debug.log
 *.log
 
 
+*.local
