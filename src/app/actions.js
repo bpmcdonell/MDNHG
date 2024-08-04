@@ -210,7 +210,7 @@ export async function volFormSubmit(volunteer, token, now) {
 
 export async function volFormSubmitSheets(volunteer, now) {
     const sheetURL =
-        "https://script.google.com/a/macros/mdnursehonorguard.org/s/AKfycbzB_ubHfXujMKd55n8PI83D_4rEFhLTGcic1ClRcKihH2d3DzCGjeo_Vkfsl86lcTLVQg/exec";
+        "https://script.google.com/macros/s/AKfycbz4rRIE1hzEu3mziCRL71KVAj7cksnxMvt_nT2RIibeEdwp-m58LM2T7FJ-s8NqyYvthg/exec";
 
     for (const key in volunteer) {
         if (volunteer[key] === "") {
@@ -241,11 +241,8 @@ export async function volFormSubmitSheets(volunteer, now) {
         method: "POST",
         body: formData,
     })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-            return data;
-        })
+        .then((response) => console.log(response))
+        .then((data) => console.log(data))
 
         .catch((error) => {
             console.log("Error:", error);
@@ -305,7 +302,9 @@ export async function firebaseEmailer(data) {
 
     try {
         const docRef = await addDoc(collection(db, "mail"), {
-            to: ["contact@mdnursehonorguard.org"],
+            // to: ["contact@mdnursehonorguard.org"],
+
+            to: ["bpmcdonell@gmail.com"],
 
             message: {
                 subject: `New ${data.type} Form Submission: ${data.name}`,
