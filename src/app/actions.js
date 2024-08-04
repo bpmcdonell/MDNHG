@@ -168,8 +168,6 @@ export async function volFormSubmit(volunteer, token, now) {
         });
         console.log("Document written with ID: ", docRef.id);
 
-        volFormSubmitSheets(data, now);
-
         const emailData = {
             type: "Volunteer",
             name: data.FirstName + " " + data.LastName,
@@ -206,48 +204,6 @@ export async function volFormSubmit(volunteer, token, now) {
     } catch (e) {
         console.error("Error adding document: ", e);
     }
-}
-
-export async function volFormSubmitSheets(volunteer, now) {
-    const sheetURL =
-        "https://script.google.com/macros/s/AKfycbz4rRIE1hzEu3mziCRL71KVAj7cksnxMvt_nT2RIibeEdwp-m58LM2T7FJ-s8NqyYvthg/exec";
-
-    for (const key in volunteer) {
-        if (volunteer[key] === "") {
-            volunteer[key] = "N/A";
-        }
-    }
-
-    const formData = new FormData();
-    formData.append("FirstName", volunteer.FirstName);
-    formData.append("LastName", volunteer.LastName);
-    formData.append("DateOfBirth", volunteer.DateOfBirth);
-    formData.append("Address", volunteer.Address);
-    formData.append("City", volunteer.City);
-    formData.append("ZipCode", volunteer.ZipCode);
-    formData.append("County", volunteer.County);
-    formData.append("State", volunteer.State);
-    formData.append("Phone", volunteer.Phone);
-    formData.append("Email", volunteer.Email);
-    formData.append("Designation", volunteer.Designation);
-    formData.append("DesignationOther", volunteer.DesignationOther);
-    formData.append("YearOfLicensure", volunteer.YearOfLicensure);
-    formData.append("EmploymentStatus", volunteer.EmploymentStatus);
-    formData.append("CaptchaState", volunteer.CaptchaState);
-    formData.append("CaptchaScore", volunteer.CaptchaScore);
-    formData.append("Timestamp", now);
-
-    fetch(sheetURL, {
-        method: "POST",
-        body: formData,
-    })
-        .then((response) => console.log(response))
-        .then((data) => console.log(data))
-
-        .catch((error) => {
-            console.log("Error:", error);
-            return error;
-        });
 }
 
 //gets
@@ -302,10 +258,7 @@ export async function firebaseEmailer(data) {
 
     try {
         const docRef = await addDoc(collection(db, "mail"), {
-            // to: ["contact@mdnursehonorguard.org"],
-
-            to: ["bpmcdonell@gmail.com"],
-
+            to: ["contact@mdnursehonorguard.org"],
             message: {
                 subject: `New ${data.type} Form Submission: ${data.name}`,
                 html: data.html,

@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import { unstable_noStore } from "next/cache";
-import { volFormSubmit, volFormSubmitSheets } from "../actions";
+import { volFormSubmit } from "../actions";
 import { useReCaptcha } from "next-recaptcha-v3";
 
 export default function VolunteerForm() {
@@ -78,7 +78,50 @@ export default function VolunteerForm() {
             .catch(() => {
                 setSubmitFail(true);
             });
+
+        volFormSubmitSheets({ ...volunteer }, now);
     });
+
+    async function volFormSubmitSheets(volunteer, now) {
+        const sheetURL =
+            "https://script.google.com/macros/s/AKfycbz4rRIE1hzEu3mziCRL71KVAj7cksnxMvt_nT2RIibeEdwp-m58LM2T7FJ-s8NqyYvthg/exec";
+
+        for (const key in volunteer) {
+            if (volunteer[key] === "") {
+                volunteer[key] = "N/A";
+            }
+        }
+
+        const formData = new FormData();
+        formData.append("FirstName", volunteer.FirstName);
+        formData.append("LastName", volunteer.LastName);
+        formData.append("DateOfBirth", volunteer.DateOfBirth);
+        formData.append("Address", volunteer.Address);
+        formData.append("City", volunteer.City);
+        formData.append("ZipCode", volunteer.ZipCode);
+        formData.append("County", volunteer.County);
+        formData.append("State", volunteer.State);
+        formData.append("Phone", volunteer.Phone);
+        formData.append("Email", volunteer.Email);
+        formData.append("Designation", volunteer.Designation);
+        formData.append("DesignationOther", volunteer.DesignationOther);
+        formData.append("YearOfLicensure", volunteer.YearOfLicensure);
+        formData.append("EmploymentStatus", volunteer.EmploymentStatus);
+        formData.append("Timestamp", now);
+
+        fetch(sheetURL, {
+            method: "POST",
+            body: formData,
+        })
+            .then((response) => {
+                console.log("Success:", response);
+                return response;
+            })
+            .catch((error) => {
+                console.log("Error:", error);
+                return error;
+            });
+    }
 
     return (
         <div>
