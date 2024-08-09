@@ -196,9 +196,9 @@ export async function volFormSubmit(volunteer, token, now) {
             console.log(res);
         });
 
-        volWelcomeEmail(data).then((res) => {
-            console.log(res);
-        });
+        // volWelcomeEmail(data).then((res) => {
+        //     console.log(res);
+        // });
 
         return docRef.id;
     } catch (e) {
