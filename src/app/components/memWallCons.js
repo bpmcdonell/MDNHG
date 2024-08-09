@@ -5,8 +5,10 @@ import {
     ArrowLongLeftIcon,
     ArrowLongRightIcon,
 } from "@heroicons/react/20/solid";
+import { unstable_noStore } from "next/cache";
 
 export default function MemWallCons({ memoriams }) {
+    unstable_noStore();
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(memoriams.length);
 
