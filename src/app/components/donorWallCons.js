@@ -8,7 +8,7 @@ import {
 import { unstable_noStore } from "next/cache";
 
 export default function DonorWallCons({ donors }) {
-    unstable_noStore;
+    unstable_noStore();
     console.log(donors);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(donors.length);
