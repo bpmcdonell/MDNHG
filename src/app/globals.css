@@ -24,10 +24,10 @@
     li {
         @apply text-base;
         @apply list-disc;
-        @apply ml-4;
+
     }
     ul {
         @apply list-disc;
-        @apply ml-4;
+
     }
 }

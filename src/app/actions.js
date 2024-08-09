@@ -221,7 +221,17 @@ export async function donorWallGet() {
         return new Date(a.date) - new Date(b.date);
     });
 
-    return donors;
+    const paginatior = (donors) => {
+        const itemsPerPage = 10;
+        const pages = Math.ceil(donors.length / itemsPerPage);
+        const paginatedDonors = Array.from({ length: pages }, (_, index) => {
+            const start = index * itemsPerPage;
+            return donors.slice(start, start + itemsPerPage);
+        });
+        return paginatedDonors;
+    };
+
+    return paginatior(donors);
 }
 
 export async function memWallGet() {
@@ -241,7 +251,17 @@ export async function memWallGet() {
         return aLast.localeCompare(bLast);
     });
 
-    return memoriams;
+    const paginatior = (memoriams) => {
+        const itemsPerPage = 10;
+        const pages = Math.ceil(memoriams.length / itemsPerPage);
+        const paginatedMemoriams = Array.from({ length: pages }, (_, index) => {
+            const start = index * itemsPerPage;
+            return memoriams.slice(start, start + itemsPerPage);
+        });
+        return paginatedMemoriams;
+    };
+
+    return paginatior(memoriams);
 }
 
 export async function galleryImageGet() {
