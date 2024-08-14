@@ -222,7 +222,7 @@ export async function donorWallGet() {
     });
 
     const paginatior = (donors) => {
-        const itemsPerPage = 10;
+        const itemsPerPage = 8;
         const pages = Math.ceil(donors.length / itemsPerPage);
         const paginatedDonors = Array.from({ length: pages }, (_, index) => {
             const start = index * itemsPerPage;
@@ -252,7 +252,7 @@ export async function memWallGet() {
     });
 
     const paginatior = (memoriams) => {
-        const itemsPerPage = 10;
+        const itemsPerPage = 8;
         const pages = Math.ceil(memoriams.length / itemsPerPage);
         const paginatedMemoriams = Array.from({ length: pages }, (_, index) => {
             const start = index * itemsPerPage;

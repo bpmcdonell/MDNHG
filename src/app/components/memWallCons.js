@@ -8,6 +8,8 @@ import {
 import { unstable_noStore } from "next/cache";
 
 export default function MemWallCons({ memoriams }) {
+    //TODO: implement responsive amount of memoriams per page based on screen size
+
     unstable_noStore();
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(memoriams.length);
@@ -46,11 +48,11 @@ export default function MemWallCons({ memoriams }) {
 
     return (
         <div className="">
-            <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <ul className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {memoriams[currentPage - 1].map((record) => (
                     <li
                         key={record.name}
-                        className="flex flex-row  pt-2 pl-2 pb-2 py-2 mb-6 w-auto bg-gray-200 rounded-lg shadow-md justify-evenly "
+                        className="flex flex-row pt-2 pl-2 pb-2 py-2 mb-6 w-auto bg-gray-200 rounded-lg shadow-md justify-evenly "
                     >
                         <div>
                             <Image
@@ -63,10 +65,10 @@ export default function MemWallCons({ memoriams }) {
                             />
                         </div>
                         <div className="flex-1 ml-[90px] h-[90px]">
-                            <p className="text-base text-nowrap flex justify-center mt-4">
+                            <p className=" text-sm sm:text-base text-nowrap flex justify-center mt-4">
                                 {record.name}, {record.title}
                             </p>
-                            <p className="text-base text-nowrap flex justify-center mt-3">
+                            <p className="text-sm sm:text-base text-nowrap flex justify-center mt-3">
                                 {formatDate(record.dob)} -{" "}
                                 {formatDate(record.dod)}
                             </p>

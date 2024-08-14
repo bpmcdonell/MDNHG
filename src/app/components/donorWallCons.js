@@ -8,6 +8,8 @@ import {
 import { unstable_noStore } from "next/cache";
 
 export default function DonorWallCons({ donors }) {
+    //TODO: implement responsive amount of donors per page based on screen size
+
     unstable_noStore();
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -47,11 +49,11 @@ export default function DonorWallCons({ donors }) {
 
     return (
         <div className="">
-            <ul className="grid grid-flow-row grid-cols-2 gap-6">
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {donors[currentPage - 1].map((donor) => (
                     <li
                         key={donor.name}
-                        className="flex flex-row  pt-2 pl-2 pb-2 py-2 mb-6 w-auto bg-gray-200 rounded-lg shadow-md justify-evenly "
+                        className="flex flex-row pt-2 pl-2 pb-2 py-2 mb-6 w-auto bg-gray-200 rounded-lg shadow-md justify-evenly "
                     >
                         <Image
                             src="/images/1337267copy.png"
@@ -62,19 +64,19 @@ export default function DonorWallCons({ donors }) {
                             alt="Flower Picture"
                         />
                         <div className="flex-1 justify-center">
-                            <p className="text-base text-nowrap flex justify-center ">
+                            <p className="text-sm sm:text-base text-nowrap flex justify-center ">
                                 {donor.name}
                             </p>
 
-                            <p className="text-base text-nowrap flex justify-center m-2">
+                            <p className="text-sm sm:text-base text-nowrap flex justify-center m-2">
                                 {formatDate(donor.date)}
                             </p>
                             {donor.notePrefix == undefined ? (
-                                <p className="text-base text-nowrap flex justify-center">
+                                <p className="text-sm sm:text-base text-nowrap flex justify-center">
                                     In memory of: {donor.note}
                                 </p>
                             ) : (
-                                <p className="text-base text-nowrap flex justify-center">
+                                <p className="text-sm sm:text-base text-nowrap flex justify-center">
                                     {donor.notePrefix} {donor.note}
                                 </p>
                             )}

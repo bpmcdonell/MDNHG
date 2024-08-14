@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
             <body className="">
                 <Header />
                 <div className="relative min-h-screen mx-auto">
-                    <div className=" pb-32">
+                    <div className="pb-28">
                         <ReCaptchaProvider siteKey="6LdK2wkqAAAAALAsz6nqHp6ZImj_1gHD7nwGLOiv">
                             <main>{children}</main>
                         </ReCaptchaProvider>

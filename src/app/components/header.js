@@ -31,11 +31,12 @@ export default function Header() {
                         href="/"
                         className="flex flex-row items-center -m-1.5 p-1.5"
                     >
-                        <img
+                        <Image
                             src="/images/MDNHG-LogoT-BG.png"
+                            className=""
+                            height={80}
+                            width={80}
                             alt="Maryland Nurse Honor Guard Logo"
-                            width={100}
-                            height={100}
                         />
                         <span className="text-black text-sm md:text-xl lg:text-2xl font-bold m-3">
                             Maryland Nurse Honor Guard

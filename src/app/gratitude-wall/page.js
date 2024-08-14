@@ -17,7 +17,7 @@ export default async function GratitudeWallPage() {
                                     <h2 className="text-3xl flex mx-auto justify-center text-center">
                                         Gratitude Wall
                                     </h2>
-                                    <p className="font-bold text-base flex justify-center mb-8">
+                                    <p className="font-bold text-base flex justify-center text-center mb-8">
                                         We would like to thank the following
                                         donors for their generous support of the
                                         Maryland Nurse Honor Guard:

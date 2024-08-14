@@ -30,8 +30,8 @@ const navigation = [
 export default function Footer() {
     return (
         <footer className="absolute bottom-0 min-w-full bg-white ">
-            <div className="mx-auto max-w-full px-1 py-8 md:flex md:items-center md:justify-between lg:px-8">
-                <div className="flex justify-center mr-20 space-x-12 md:order-2">
+            <div className="mx-auto max-w-full grid grid-cols-2 px-1 py-8 items-center lg:px-8">
+                <div className="flex mr-16 md:mr-20 space-x-4 justify-self-end md:space-x-12 order-2">
                     {navigation.map((item) => (
                         <a
                             key={item.name}
@@ -48,12 +48,14 @@ export default function Footer() {
                     ))}
                 </div>
 
-                <div className="mt-8 md:order-1 md:mt-0">
-                    <p className="text-center text-sm leading-5 text-black">
-                        &copy; 2024 Maryland Nurse Honor Guard. All rights
-                        reserved.
+                <div className="-order-1 md:mt-0">
+                    <p className="text-[8px] md:text-xs leading-tight text-black">
+                        &copy; 2024 Maryland Nurse Honor Guard.
                     </p>
-                    <p className=" text-xs leading-5 text-black">
+                    <p className="text-[8px] md:text-xs leading-tight text-black">
+                        All rights reserved.
+                    </p>
+                    <p className="text-[8px] md:text-xs leading-tight text-black">
                         Website by{" "}
                         <a
                             href="https://github.com/bpmcdonell"

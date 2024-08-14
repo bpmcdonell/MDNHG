@@ -26,7 +26,7 @@ export default function ServicePage() {
                             priority={true}
                         />
                     </div>
-                    <div className="w-auto md:break-inside-avoid-column">
+                    <div className="w-auto mb-5 md:break-inside-avoid-column">
                         <ServiceForm />
                     </div>
                     <div className="w-auto md:break-inside-avoid-column">
