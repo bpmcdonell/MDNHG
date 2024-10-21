@@ -8,6 +8,7 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import styles from "./globals.css";
 import { ReCaptchaProvider } from "next-recaptcha-v3";
+import { FirebaseNextJSProvider } from "firebase-nextjs/client/auth";
 
 const ptSerif = PT_Serif({
     subsets: ["latin"],
@@ -34,16 +35,18 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en" className="">
+        <html lang="en">
             <link rel="icon" href="favicon/favicon.png" sizes="any" />
             <Head />
             <body className="">
                 <Header />
                 <div className="relative min-h-screen mx-auto">
                     <div className="pb-28">
-                        <ReCaptchaProvider siteKey="6LdK2wkqAAAAALAsz6nqHp6ZImj_1gHD7nwGLOiv">
-                            <main>{children}</main>
-                        </ReCaptchaProvider>
+                        <FirebaseNextJSProvider>
+                            <ReCaptchaProvider siteKey="6LdK2wkqAAAAALAsz6nqHp6ZImj_1gHD7nwGLOiv">
+                                <main>{children}</main>
+                            </ReCaptchaProvider>
+                        </FirebaseNextJSProvider>
                     </div>
                     <Footer />
                 </div>

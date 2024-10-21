@@ -19,8 +19,8 @@ export default async function GalleryBody() {
                                 key={resource.public_id}
                                 src={resource.url}
                                 alt={resource.public_id}
-                                width={450}
-                                height={300}
+                                width={resource.width}
+                                height={resource.height}
                                 priority={false}
                                 className="md:rounded-md mb-8 shadow-lg object-contain hover:shadow-2xl hover:scale-105 transition duration-300 ease-in-out"
                             />

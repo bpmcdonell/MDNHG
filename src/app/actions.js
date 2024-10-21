@@ -1,5 +1,12 @@
 "use server";
-import { addDoc, getDocs, collection } from "firebase/firestore";
+import {
+    addDoc,
+    getDocs,
+    collection,
+    updateDoc,
+    deleteDoc,
+    doc,
+} from "firebase/firestore";
 import cloudinary from "./cloudinary";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
@@ -211,13 +218,14 @@ export async function volFormSubmit(volunteer, token, now) {
 export async function donorWallGet() {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    const donors = [];
-    const querySnapshot = await getDocs(collection(db, "donors"));
-    querySnapshot.forEach((doc) => {
-        donors.push(doc.data());
-    });
 
-    donors.sort((a, b) => {
+    const querySnapshot = await getDocs(collection(db, "donors"));
+    const donors = querySnapshot.docs.map((doc) => ({
+        id: doc.id, // Document ID
+        ...doc.data(),
+    }));
+
+    const sortedDonors = donors.sort((a, b) => {
         return new Date(a.date) - new Date(b.date);
     });
 
@@ -231,17 +239,18 @@ export async function donorWallGet() {
         return paginatedDonors;
     };
 
-    return paginatior(donors);
+    return paginatior(sortedDonors);
 }
 
 export async function memWallGet() {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    const memoriams = [];
+
     const querySnapshot = await getDocs(collection(db, "memoriams"));
-    querySnapshot.forEach((doc) => {
-        memoriams.push(doc.data());
-    });
+    const memoriams = querySnapshot.docs.map((doc) => ({
+        id: doc.id, // Document ID
+        ...doc.data(),
+    }));
 
     memoriams.sort((a, b) => {
         let aName = a.name.split(" ");
@@ -361,7 +370,28 @@ export async function verifyCaptcha(token) {
     return await data;
 }
 
+//date formatting
+export async function formatDateISOshort(date) {
+    var formatted = new Date(date).toISOString().slice(0, 10);
+    return formatted;
+}
+
 //admin
+
+//gallery
+export async function galleryImageDelete(publicID) {
+    const timestamp = Math.round(new Date().getTime() / 1000);
+    const signature = cloudinary.utils.api_sign_request(
+        {
+            timestamp: timestamp,
+        },
+        process.env.CLOUDINARY_API_SECRET
+    );
+
+    let res = await cloudinary.uploader.destroy(publicID);
+
+    return res;
+}
 
 //donor wall
 
@@ -369,16 +399,21 @@ export async function donorWallAdd(donor) {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
+    donor.date = formatDateISOshort(donor.date);
+
     try {
         const docRef = await addDoc(collection(db, "donors"), {
             name: donor.name,
             date: donor.date,
             notePrefix: donor.notePrefix,
-            message: donor.message,
+            note: donor.note,
+            AdminUID: donor.AdminUID,
         });
         console.log("Donor added with ID: ", docRef.id);
+        return { success: true };
     } catch (e) {
         console.error("Error adding document: ", e);
+        return { success: false };
     }
 }
 
@@ -394,22 +429,53 @@ export async function donorWallDelete(id) {
     }
 }
 
+export async function donorWallEdit(donor) {
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    donor.date = await formatDateISOshort(donor.date);
+
+    (donor.notePrefix = donor.notePrefix || ""),
+        (donor.note = donor.note || "");
+
+    try {
+        await updateDoc(doc(db, "donors", donor.id), {
+            name: donor.name,
+            date: donor.date,
+            notePrefix: donor.notePrefix,
+            note: donor.note,
+            AdminUID: donor.AdminUID,
+        });
+        console.log("Donor edited with ID: ", donor.id);
+        return { success: true };
+    } catch (e) {
+        console.error("Error editing document: ", e);
+        return { success: false };
+    }
+}
+
 //memorial wall
 
 export async function memWallAdd(mem) {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
+    formatDateISOshort(mem.dob);
+    formatDateISOshort(mem.dod);
+
     try {
         const docRef = await addDoc(collection(db, "memoriams"), {
             name: mem.name,
-            date: mem.date,
             title: mem.title,
-            message: mem.message,
+            dob: mem.dob,
+            dod: mem.dod,
+            AdminUID: mem.AdminUID,
         });
         console.log("Memorial added with ID: ", docRef.id);
+        return { success: true };
     } catch (e) {
         console.error("Error adding document: ", e);
+        return { success: false };
     }
 }
 
@@ -425,4 +491,24 @@ export async function memWallDelete(id) {
     }
 }
 
-//gallery
+export async function memWallEdit(mem) {
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    formatDateISOshort(mem.dob);
+    formatDateISOshort(mem.dod);
+
+    try {
+        await updateDoc(doc(db, "memoriams", mem.id), {
+            name: mem.name,
+            title: mem.title,
+            dob: mem.dob,
+            dod: mem.dod,
+        });
+        console.log("Memorial edited with ID: ", mem.id);
+        return { success: true };
+    } catch (e) {
+        console.error("Error editing document: ", e);
+        return { success: false };
+    }
+}

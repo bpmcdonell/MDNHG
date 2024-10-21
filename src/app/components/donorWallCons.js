@@ -71,7 +71,7 @@ export default function DonorWallCons({ donors }) {
                             <p className="text-sm sm:text-base text-nowrap flex justify-center m-2">
                                 {formatDate(donor.date)}
                             </p>
-                            {donor.notePrefix == undefined ? (
+                            {donor.notePrefix == undefined || "" ? (
                                 <p className="text-sm sm:text-base text-nowrap flex justify-center">
                                     In memory of: {donor.note}
                                 </p>

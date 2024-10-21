@@ -50,10 +50,10 @@ export default function Footer() {
 
                 <div className="-order-1 md:mt-0">
                     <p className="text-[8px] md:text-xs leading-tight text-black">
-                        &copy; 2024 Maryland Nurse Honor Guard.
+                        &copy; 2024 Maryland Nurse Honor Guard
                     </p>
                     <p className="text-[8px] md:text-xs leading-tight text-black">
-                        All rights reserved.
+                        All rights reserved
                     </p>
                     <p className="text-[8px] md:text-xs leading-tight text-black">
                         Website by{" "}

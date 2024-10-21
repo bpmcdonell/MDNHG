@@ -9,7 +9,7 @@ const navigation = [
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Volunteer", href: "/volunteer" },
-    { name: "Donate", href: "donate" },
+    { name: "Donate", href: "/donate" },
     { name: "Memorial Wall", href: "/memorial-wall" },
     { name: "Gratitude Wall", href: "/gratitude-wall" },
     { name: "Gallery", href: "/gallery" },
