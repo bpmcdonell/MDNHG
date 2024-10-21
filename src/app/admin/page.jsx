@@ -4,8 +4,10 @@ import { getUserCS } from "firebase-nextjs/client/auth";
 import { redirect } from "next/dist/server/api-utils";
 import Link from "next/link";
 import { LogoutButton } from "firebase-nextjs/client/components";
+import { unstable_noStore } from "next/cache";
 
 export default function Page() {
+    unstable_noStore();
     const { currentUser } = getUserCS();
     if (!currentUser) {
         redirect("/login");

@@ -1,9 +1,12 @@
 "use client";
 import { getUserCS } from "firebase-nextjs/client/auth";
 import { GoogleSignInButton } from "firebase-nextjs/client/components";
+import { unstable_noStore } from "next/cache";
 import { useState } from "react";
 
 export default function LoginPage() {
+    unstable_noStore();
+
     const { currentUser } = getUserCS();
 
     const [errorMessage, setErrorMessage] = useState("");

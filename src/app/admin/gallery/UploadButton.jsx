@@ -1,8 +1,10 @@
 "use client";
 
 import { CldUploadWidget } from "next-cloudinary";
+import { unstable_noStore } from "next/cache";
 
 export default function UploadButton({ handleSave }) {
+    unstable_noStore();
     return (
         <div>
             <CldUploadWidget

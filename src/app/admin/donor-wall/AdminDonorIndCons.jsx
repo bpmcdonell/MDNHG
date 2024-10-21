@@ -2,8 +2,10 @@
 import { useState, useEffect } from "react";
 import { getUserCS } from "firebase-nextjs/client/auth";
 import { donorWallEdit, donorWallDelete } from "../../actions";
+import { unstable_noStore } from "next/cache";
 
 export default function AdminDonorIndCons({ record, refreshKey, onSave }) {
+    unstable_noStore();
     const [editState, setEditState] = useState(false);
     const [saveStatus, setSaveStatus] = useState(null);
 

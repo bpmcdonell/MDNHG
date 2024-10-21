@@ -2,8 +2,10 @@
 import React, { useState } from "react";
 import { donorWallAdd } from "../../actions.js";
 import { getUserCS } from "firebase-nextjs/client/auth";
+import { unstable_noStore } from "next/cache.js";
 
 export default function AdminDonorAdd({ onSave }) {
+    unstable_noStore();
     const { currentUser } = getUserCS();
 
     const [newEntry, setNewEntry] = useState({
