@@ -252,7 +252,7 @@ export async function memWallGet() {
         ...doc.data(),
     }));
 
-    memoriams.sort((a, b) => {
+    const sorted = memoriams.sort((a, b) => {
         let aName = a.name.split(" ");
         let bName = b.name.split(" ");
         let aLast = aName[aName.length - 1];
@@ -260,17 +260,7 @@ export async function memWallGet() {
         return aLast.localeCompare(bLast);
     });
 
-    const paginatior = (memoriams) => {
-        const itemsPerPage = 8;
-        const pages = Math.ceil(memoriams.length / itemsPerPage);
-        const paginatedMemoriams = Array.from({ length: pages }, (_, index) => {
-            const start = index * itemsPerPage;
-            return memoriams.slice(start, start + itemsPerPage);
-        });
-        return paginatedMemoriams;
-    };
-
-    return paginatior(memoriams);
+    return sorted;
 }
 
 export async function galleryImageGet() {

@@ -11,8 +11,22 @@ export default function MemWallCons({ memoriams }) {
     //TODO: implement responsive amount of memoriams per page based on screen size
 
     unstable_noStore();
+
+    const paginatior = (memoriams) => {
+        const itemsPerPage = 8;
+        const pages = Math.ceil(memoriams.length / itemsPerPage);
+        const paginatedMemoriams = Array.from({ length: pages }, (_, index) => {
+            const start = index * itemsPerPage;
+            return memoriams.slice(start, start + itemsPerPage);
+        });
+        return paginatedMemoriams;
+    };
+
+    const [paginatedMemoriams, setPaginatedMemoriams] = useState(
+        paginatior(memoriams)
+    );
     const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(memoriams.length);
+    const [totalPages, setTotalPages] = useState(paginatedMemoriams.length);
 
     function pageIncrement() {
         if (currentPage === totalPages) {
@@ -34,11 +48,17 @@ export default function MemWallCons({ memoriams }) {
     }
 
     function formatDate(date) {
-        return new Date(date).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-        });
+        console.log(date);
+        const formattedDate = new Date(`${date}T00:00:00`).toLocaleDateString(
+            "en-US",
+            {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+            }
+        );
+        console.log(formattedDate);
+        return formattedDate;
     }
 
     const selectedStyle =
@@ -49,7 +69,7 @@ export default function MemWallCons({ memoriams }) {
     return (
         <div className="">
             <ul className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                {memoriams[currentPage - 1].map((record) => (
+                {paginatedMemoriams[currentPage - 1].map((record) => (
                     <li
                         key={record.name}
                         className="flex flex-row pt-2 pl-2 pb-2 py-2 mb-6 w-auto bg-gray-200 rounded-lg shadow-md justify-evenly "
@@ -92,8 +112,11 @@ export default function MemWallCons({ memoriams }) {
                         </a>
                     </div>
                     <div className="hidden md:-mt-px md:flex">
-                        {memoriams.map((_, index) => (
-                            <div className="hidden md:-mt-px md:flex">
+                        {paginatedMemoriams.map((_, index) => (
+                            <div
+                                key={index}
+                                className="hidden md:-mt-px md:flex"
+                            >
                                 <a
                                     onClick={() => selectPage(index + 1)}
                                     className={
