@@ -11,10 +11,20 @@ import AdminMemAdd from "./AdminMemAdd.jsx"; // Import AdminMemAdd
 import { unstable_noStore } from "next/cache.js";
 
 export default function AdminMemWallCons({ initialMemoriams }) {
+    const paginatior = (memoriams) => {
+        const itemsPerPage = 8;
+        const pages = Math.ceil(memoriams.length / itemsPerPage);
+        const paginatedMemoriams = Array.from({ length: pages }, (_, index) => {
+            const start = index * itemsPerPage;
+            return memoriams.slice(start, start + itemsPerPage);
+        });
+        return paginatedMemoriams;
+    };
+
     unstable_noStore();
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(initialMemoriams.length);
-    const [memoriams, setMemoriams] = useState(initialMemoriams); // Use state for memoriams
+    const [memoriams, setMemoriams] = useState(paginatior(initialMemoriams)); // Use state for memoriams
 
     useEffect(() => {
         setTotalPages(memoriams.length);

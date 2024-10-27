@@ -6,6 +6,8 @@ import { unstable_noStore } from "next/cache";
 
 export default function AdminMemIndCons({ record, refreshKey, onSave }) {
     unstable_noStore();
+
+
     const [editState, setEditState] = useState(false);
     const [saveStatus, setSaveStatus] = useState(null); // New state for save status
 
