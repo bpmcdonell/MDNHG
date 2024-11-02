@@ -2,8 +2,10 @@
 import MemWallCons from "../components/memWallCons.js";
 import { memWallGet } from "../actions.js";
 import { Suspense } from "react";
+import { unstable_noStore } from "next/cache.js";
 
 export default async function MemorialWall() {
+    unstable_noStore();
     const memoriams = await memWallGet();
 
     return (
