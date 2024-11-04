@@ -52,7 +52,7 @@ export default function DonorWallCons({ donors }) {
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {donors[currentPage - 1].map((donor) => (
                     <li
-                        key={donor.name}
+                        key={donor.id}
                         className="flex flex-row pt-2 pl-2 pb-2 py-2 mb-6 w-auto bg-gray-200 rounded-lg shadow-md justify-evenly "
                     >
                         <Image
@@ -100,7 +100,10 @@ export default function DonorWallCons({ donors }) {
                     </div>
                     <div className="hidden md:-mt-px md:flex">
                         {donors.map((_, index) => (
-                            <div className="hidden md:-mt-px md:flex">
+                            <div
+                                key={index}
+                                className="hidden md:-mt-px md:flex"
+                            >
                                 <a
                                     onClick={() => selectPage(index + 1)}
                                     className={
