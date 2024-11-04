@@ -35,7 +35,7 @@ export default function DonorWallCons({ donors }) {
     }
 
     function formatDate(date) {
-        return new Date(date).toLocaleDateString("en-US", {
+        return new Date(`${date}T00:00:00`).toLocaleDateString("en-US", {
             year: "numeric",
             month: "long",
             day: "numeric",

@@ -389,8 +389,6 @@ export async function donorWallAdd(donor) {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    donor.date = formatDateISOshort(donor.date);
-
     try {
         const docRef = await addDoc(collection(db, "donors"), {
             name: donor.name,

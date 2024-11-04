@@ -55,9 +55,9 @@ export default function AdminDonorCons({ initialDonors }) {
             <p className="font-bold text-xl flex justify-center text-center mb-8 mx-auto bg-gray-200 shadow-md rounded-lg p-2">
                 NOTE: When adding or editing a donor, the "Note Prefix" field
                 can be left blank. When this is done, the wall will display the
-                default message: "In memory of: (Message)". If the donation is
-                in honor of someone, the "Message" field should be filled out
-                with the title of the person being honored.
+                default message: "In memory of: (Note)". If the donation is in
+                honor of someone, the "Note" field should be filled out with the
+                title of the person being honored.
             </p>
             <ul className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {donors[currentPage - 1].map((record) => (

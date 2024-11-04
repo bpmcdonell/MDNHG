@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { donorWallAdd } from "../../actions.js";
+import { donorWallAdd, formatDateISOshort } from "../../actions.js";
 import { getUserCS } from "firebase-nextjs/client/auth";
 import { unstable_noStore } from "next/cache.js";
 
@@ -23,26 +23,32 @@ export default function AdminDonorAdd({ onSave }) {
     };
 
     async function handleNewEntrySubmit(e) {
-        e.preventDefault();
-        const response = await donorWallAdd({
-            name: newEntry.name,
-            date: newEntry.date,
-            notePrefix: newEntry.notePrefix,
-            note: newEntry.note,
-            AdminUID: currentUser.uid,
-        });
-
-        if (response.success) {
-            setSaveStatus("success");
-            setNewEntry({
-                name: "",
-                date: "",
-                notePrefix: "",
-                note: "",
+        try {
+            e.preventDefault();
+            console.log(newEntry);
+            const response = await donorWallAdd({
+                name: newEntry.name,
+                date: newEntry.date,
+                notePrefix: newEntry.notePrefix,
+                note: newEntry.note,
                 AdminUID: currentUser.uid,
             });
-            onSave();
-        } else {
+
+            if (response.success) {
+                setSaveStatus("success");
+                setNewEntry({
+                    name: "",
+                    date: "",
+                    notePrefix: "",
+                    note: "",
+                    AdminUID: currentUser.uid,
+                });
+                onSave();
+            } else {
+                setSaveStatus("error");
+            }
+        } catch (error) {
+            console.error(error);
             setSaveStatus("error");
         }
 
