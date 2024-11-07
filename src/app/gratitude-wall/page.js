@@ -2,8 +2,10 @@
 import { donorWallGet } from "../actions.js";
 import React, { Suspense } from "react";
 import DonorWallCons from "../components/donorWallCons.js";
+import { unstable_noStore } from "next/cache.js";
 
 export default async function GratitudeWallPage() {
+    unstable_noStore();
     const donors = await donorWallGet();
 
     return (
