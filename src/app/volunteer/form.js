@@ -43,6 +43,7 @@ export default function VolunteerForm() {
 
     const [submit, setSubmit] = useState(false);
     const [submitFail, setSubmitFail] = useState(false);
+    const [submitPending, setSubmitPending] = useState(false);
 
     useEffect(() => {
         if (submitFail === true) {
@@ -52,8 +53,8 @@ export default function VolunteerForm() {
 
     const handleSubmit = useCallback(async (e) => {
         e.preventDefault();
+        setSubmitPending(true);
         const token = await executeRecaptcha("volunteer");
-
         volFormSubmit({ ...volunteer }, token, now)
             .then(() => {
                 setSubmit(true);
@@ -74,8 +75,10 @@ export default function VolunteerForm() {
                     YearOfLicensure: "",
                     EmploymentStatus: "",
                 });
+                setSubmitPending(false);
             })
             .catch(() => {
+                setSubmitPending(false);
                 setSubmitFail(true);
             });
 
@@ -400,6 +403,10 @@ export default function VolunteerForm() {
                                     Success! You will be contacted by us soon.
                                 </p>
                             </div>
+                        </div>
+                    ) : submitPending ? (
+                        <div>
+                            <p className="text-center">Submitting...</p>
                         </div>
                     ) : (
                         <div className="mt-8 flex justify-end">
