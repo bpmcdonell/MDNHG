@@ -35,15 +35,16 @@ export default function ServiceForm() {
     };
 
     const [submit, setSubmit] = useState(false);
+    const [submitPending, setSubmitPending] = useState(false);
     const [submitFail, setSubmitFail] = useState(false);
 
     const handleSubmit = useCallback(async (e) => {
         e.preventDefault();
+        setSubmitPending(true);
         const token = await executeRecaptcha("service");
 
         serviceFormSubmit({ ...data }, token, now)
             .then(() => {
-                setSubmit(true);
                 setSubmitFail(false);
                 setData({
                     serviceType: "memorialTribute",
@@ -55,8 +56,11 @@ export default function ServiceForm() {
                     reqEmail: "",
                     reqRelation: "",
                 });
+                setSubmitPending(false);
+                setSubmit(true);
             })
             .catch(() => {
+                setSubmitPending(false);
                 setSubmitFail(true);
                 setSubmit(false);
             });
@@ -207,7 +211,15 @@ export default function ServiceForm() {
                     />
                 </div>
                 <br />
-                {submit ? (
+                {submitPending ? (
+                    <button
+                        type="submit"
+                        className="flex mx-auto bg-nhgBlue text-white font-bold py-2 px-4 rounded cursor-not-allowed opacity-50"
+                        disabled
+                    >
+                        Submitting...
+                    </button>
+                ) : submit ? (
                     <p className="text-center text-green-600">
                         Success! You will be contacted soon.
                     </p>

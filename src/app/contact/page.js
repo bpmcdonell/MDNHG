@@ -23,6 +23,7 @@ export default function Contact() {
     const now = timestamp.toString();
 
     const [submit, setSubmit] = useState(false);
+    const [submitPending, setSubmitPending] = useState(false);
     const [submitFail, setSubmitFail] = useState(false);
 
     const [contact, setContact] = useState({
@@ -39,12 +40,15 @@ export default function Contact() {
 
     const handleSubmit = useCallback(async (e) => {
         e.preventDefault();
+        setSubmitPending(true);
         const token = await executeRecaptcha("contact");
 
         contactFormSubmit({ ...contact }, token, now)
             .then(() => {
-                setSubmit(true);
+                setSubmitPending(false);
                 setSubmitFail(false);
+                setSubmit(true);
+
                 setContact({
                     FirstName: "",
                     LastName: "",
@@ -54,8 +58,9 @@ export default function Contact() {
                 });
             })
             .catch(() => {
-                setSubmitFail(true);
+                setSubmitPending(false);
                 setSubmit(false);
+                setSubmitFail(true);
             });
     });
 
@@ -210,25 +215,33 @@ export default function Contact() {
                             </div>
                         </div>
                         <div className="mt-6">
-                            {!submit && !submitFail ? (
+                            {submitPending ? (
                                 <button
                                     type="submit"
-                                    className="inline-flex items-center justify-center px-6 py-2.5 text-base font-medium text-white bg-nhgBlue border border-transparent rounded-md shadow-sm  focus:outline-none focus:ring-2 focus:ring-offset-2"
+                                    className="flex mx-auto bg-nhgBlue text-white font-bold py-2 px-4 rounded cursor-not-allowed opacity-50"
+                                    disabled
                                 >
-                                    <span>Submit</span>
+                                    Submitting...
                                 </button>
-                            ) : null}
-                            {submit && (
-                                <p className="mt-2 text-sm text-green-600">
-                                    <CheckIcon className="h-5 w-5 inline" />
-                                    Your message has been sent!
+                            ) : submit ? (
+                                <p className="text-center text-green-600">
+                                    Success! You will be contacted soon.
                                 </p>
+                            ) : (
+                                <button
+                                    type="submit"
+                                    className="flex mx-auto bg-nhgBlue hover:border-nhgRed text-white font-bold py-2 px-4 rounded"
+                                >
+                                    Submit
+                                </button>
                             )}
-                            {submitFail && (
-                                <p className="mt-2 text-sm text-red-600">
-                                    <XMarkIcon className="h-5 w-5 inline" />
-                                    There was an error sending your message.
+                            {submitFail ? (
+                                <p className="text-center text-red-600">
+                                    There was an error submitting your request.
+                                    Please try again.
                                 </p>
+                            ) : (
+                                ""
                             )}
                         </div>
                     </div>
