@@ -12,7 +12,7 @@ export default function ServicePage() {
                 <div className="flex justify-center w-full">
                     <SerivceTitle />
                 </div>
-                <div className="px-10 columns-1 pt-10 md:columns-2 md:gap-20">
+                <div className="px-10 mb-10 columns-1 pt-10 md:columns-2 md:gap-20">
                     <div>
                         <Image
                             src="/images/IMG_4861.jpg"

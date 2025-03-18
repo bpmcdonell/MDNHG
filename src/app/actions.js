@@ -47,6 +47,7 @@ export async function serviceFormSubmit(service, token, now) {
             otherService: data.otherService,
             dateOfService: data.dateOfService,
             honoredName: data.honoredName,
+            serviceLocation: data.serviceLocation,
             reqName: data.reqName,
             reqPhone: data.reqPhone,
             reqEmail: data.reqEmail,
@@ -65,6 +66,7 @@ export async function serviceFormSubmit(service, token, now) {
 			<p>Other Service: ${data.otherService}</p>
 			<p>Date of Service: ${data.dateOfService}</p>
 			<p>Honored Name: ${data.honoredName}</p>
+            <p>Service Location: ${data.serviceLocation}</p>
 			<p>Requestor Name: ${data.reqName}</p>
 			<p>Requestor Phone: ${data.reqPhone}</p>
 			<p>Requestor Email: ${data.reqEmail}</p>
