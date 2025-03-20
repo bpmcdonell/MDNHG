@@ -129,12 +129,9 @@ export default function VolunteerForm() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <div className="my-4 flex justify-center flex-col">
-                    <h2 className="text-center">Volunteer Sign Up Form</h2>
-                    <p className="text-center text-xs">
-                        Required fields are marked with an asterisk (*)
-                    </p>
-                </div>
+                <h2 className="text-center my-6 flex justify-center ">
+                    Volunteer Sign Up Form
+                </h2>
 
                 <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                     <div className="relative">
@@ -142,7 +139,7 @@ export default function VolunteerForm() {
                             htmlFor="FirstName"
                             className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
                         >
-                            First Name*
+                            First Name
                         </label>
                         <input
                             type="text"
@@ -160,7 +157,7 @@ export default function VolunteerForm() {
                             htmlFor="LastName"
                             className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
                         >
-                            Last Name*
+                            Last Name
                         </label>
                         <input
                             type="text"
@@ -180,7 +177,7 @@ export default function VolunteerForm() {
                         htmlFor="DateOfBirth"
                         className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
                     >
-                        Date of Birth*
+                        Date of Birth
                     </label>
                     <input
                         type="date"
@@ -206,6 +203,7 @@ export default function VolunteerForm() {
                         name="Address"
                         id="Address"
                         autoComplete="street-address"
+                        required
                         value={volunteer.Address}
                         onChange={handleChange}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -224,6 +222,7 @@ export default function VolunteerForm() {
                             type="text"
                             name="City"
                             id="City"
+                            required
                             autoComplete="address-level2"
                             value={volunteer.City}
                             onChange={handleChange}
@@ -241,6 +240,7 @@ export default function VolunteerForm() {
                             type="text"
                             name="ZipCode"
                             id="ZipCode"
+                            required
                             autoComplete="postal-code"
                             value={volunteer.ZipCode}
                             onChange={handleChange}
@@ -278,6 +278,7 @@ export default function VolunteerForm() {
                             type="text"
                             name="State"
                             id="State"
+                            required
                             onChange={handleChange}
                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             value={volunteer.State}
@@ -291,7 +292,7 @@ export default function VolunteerForm() {
                         htmlFor="Email"
                         className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
                     >
-                        Email*
+                        Email
                     </label>
                     <input
                         type="text"
@@ -316,6 +317,7 @@ export default function VolunteerForm() {
                         type="text"
                         name="Phone"
                         id="Phone"
+                        required
                         autoComplete="tel"
                         value={volunteer.Phone}
                         onChange={handleChange}
@@ -353,7 +355,7 @@ export default function VolunteerForm() {
                             htmlFor="YearOfLicensure"
                             className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
                         >
-                            Year of Licensure*
+                            Year of Licensure
                         </label>
                         <input
                             type="text"
