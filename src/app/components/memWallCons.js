@@ -8,8 +8,6 @@ import {
 import { unstable_noStore } from "next/cache";
 
 export default function MemWallCons({ memoriams }) {
-    //TODO: implement responsive amount of memoriams per page based on screen size
-
     unstable_noStore();
 
     const paginatior = (memoriams) => {
@@ -65,6 +63,35 @@ export default function MemWallCons({ memoriams }) {
     const notSelectedStyle =
         "inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-base font-medium text-black hover:border-nhgRed hover:text-gray-700";
 
+    // Helper to get page numbers with ellipses
+    function getPageNumbers(current, total) {
+        const maxPages = 10;
+        let pages = [];
+        if (total <= maxPages) {
+            for (let i = 1; i <= total; i++) pages.push(i);
+        } else {
+            let start = Math.max(2, current - 5);
+            let end = Math.min(total - 1, current + 5);
+            if (current <= 6) {
+                start = 2;
+                end = 11;
+            } else if (current >= total - 5) {
+                start = total - 10;
+                end = total - 1;
+            }
+            pages.push(1);
+            if (start > 2) pages.push("...");
+            for (let i = start; i <= end; i++) {
+                if (i > 1 && i < total) pages.push(i);
+            }
+            if (end < total - 1) pages.push("...");
+            pages.push(total);
+        }
+        return pages;
+    }
+
+    const pageNumbers = getPageNumbers(currentPage, totalPages);
+
     return (
         <div className="">
             <ul className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -111,23 +138,32 @@ export default function MemWallCons({ memoriams }) {
                         </a>
                     </div>
                     <div className="hidden md:-mt-px md:flex">
-                        {paginatedMemoriams.map((_, index) => (
-                            <div
-                                key={index}
-                                className="hidden md:-mt-px md:flex"
-                            >
-                                <a
-                                    onClick={() => selectPage(index + 1)}
-                                    className={
-                                        index + 1 === currentPage
-                                            ? selectedStyle
-                                            : notSelectedStyle
-                                    }
+                        {pageNumbers.map((num, idx) =>
+                            num === "..." ? (
+                                <span
+                                    key={"ellipsis-" + idx}
+                                    className="inline-flex items-center px-2 pt-4 text-base font-medium text-gray-500"
                                 >
-                                    {index + 1}
-                                </a>
-                            </div>
-                        ))}
+                                    ...
+                                </span>
+                            ) : (
+                                <div
+                                    key={num}
+                                    className="hidden md:-mt-px md:flex"
+                                >
+                                    <a
+                                        onClick={() => selectPage(num)}
+                                        className={
+                                            num === currentPage
+                                                ? selectedStyle
+                                                : notSelectedStyle
+                                        }
+                                    >
+                                        {num}
+                                    </a>
+                                </div>
+                            )
+                        )}
                     </div>
 
                     <div className="-mt-px flex w-0 flex-1 justify-end">
