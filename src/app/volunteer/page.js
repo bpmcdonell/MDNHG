@@ -10,7 +10,7 @@ export default function VolunteerPage() {
         <div className="lg:contianer lg:max-w-screen-2xl lg:mx-auto">
             <main>
                 <Image
-                    src="/images/members-banner.jpg"
+                    src="/images/members-banner.jpeg"
                     width={1200}
                     height={300}
                     className="object-cover mx-auto mt-3"
