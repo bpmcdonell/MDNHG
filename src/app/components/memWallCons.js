@@ -11,7 +11,7 @@ export default function MemWallCons({ memoriams }) {
     unstable_noStore();
 
     const paginatior = (memoriams) => {
-        const itemsPerPage = 8;
+        const itemsPerPage = 14;
         const pages = Math.ceil(memoriams.length / itemsPerPage);
         const paginatedMemoriams = Array.from({ length: pages }, (_, index) => {
             const start = index * itemsPerPage;
@@ -98,7 +98,7 @@ export default function MemWallCons({ memoriams }) {
                 {paginatedMemoriams[currentPage - 1].map((record) => (
                     <li
                         key={record.name}
-                        className="flex flex-row pt-2 pl-2 pb-2 py-2 mb-6 w-auto bg-gray-200 rounded-lg shadow-md justify-evenly "
+                        className="flex flex-row pt-2 pl-2 pb-2 py-2 w-auto bg-gray-200 rounded-lg shadow-md justify-evenly "
                     >
                         <div>
                             <Image
