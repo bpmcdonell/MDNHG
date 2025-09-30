@@ -53,7 +53,7 @@ export default function DonorWallCons({ donors }) {
                 {donors[currentPage - 1].map((donor) => (
                     <li
                         key={donor.id}
-                        className="flex flex-row pt-2 pl-2 pb-2 py-2 mb-6 w-auto bg-gray-200 rounded-lg shadow-md justify-evenly "
+                        className="flex flex-row pt-2 pl-2 pb-2 py-2 w-auto bg-gray-200 rounded-lg shadow-md justify-evenly "
                     >
                         <Image
                             src="/images/1337267copy.png"

@@ -232,7 +232,7 @@ export async function donorWallGet() {
     });
 
     const paginatior = (donors) => {
-        const itemsPerPage = 8;
+        const itemsPerPage = 14;
         const pages = Math.ceil(donors.length / itemsPerPage);
         const paginatedDonors = Array.from({ length: pages }, (_, index) => {
             const start = index * itemsPerPage;
