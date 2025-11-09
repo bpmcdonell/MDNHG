@@ -7,7 +7,6 @@ import { unstable_noStore } from "next/cache";
 export default function AdminMemIndCons({ record, refreshKey, onSave }) {
     unstable_noStore();
 
-
     const [editState, setEditState] = useState(false);
     const [saveStatus, setSaveStatus] = useState(null); // New state for save status
 
@@ -77,7 +76,7 @@ export default function AdminMemIndCons({ record, refreshKey, onSave }) {
     return (
         <li
             key={refreshKey}
-            className="flex flex-row pt-2 pl-2 pb-2 py-2 mb-6 w-auto bg-gray-200 rounded-lg shadow-md justify-evenly"
+            className="flex flex-row pt-2 pl-2 pb-2 py-2 w-auto bg-gray-200 rounded-lg shadow-md justify-evenly"
         >
             {editState ? (
                 <div className="flex flex-row">

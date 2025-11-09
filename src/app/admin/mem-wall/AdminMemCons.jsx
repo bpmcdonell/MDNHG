@@ -12,7 +12,7 @@ import { unstable_noStore } from "next/cache.js";
 
 export default function AdminMemWallCons({ initialMemoriams }) {
     const paginatior = (memoriams) => {
-        const itemsPerPage = 8;
+        const itemsPerPage = 14;
         const pages = Math.ceil(memoriams.length / itemsPerPage);
         const paginatedMemoriams = Array.from({ length: pages }, (_, index) => {
             const start = index * itemsPerPage;
@@ -22,13 +22,12 @@ export default function AdminMemWallCons({ initialMemoriams }) {
     };
 
     unstable_noStore();
+    const initialPaginatedMemoriams = paginatior(initialMemoriams);
     const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(initialMemoriams.length);
-    const [memoriams, setMemoriams] = useState(paginatior(initialMemoriams)); // Use state for memoriams
-
-    useEffect(() => {
-        setTotalPages(memoriams.length);
-    }, [memoriams]);
+    const [totalPages, setTotalPages] = useState(
+        initialPaginatedMemoriams.length
+    );
+    const [memoriams, setMemoriams] = useState(initialPaginatedMemoriams);
 
     function pageIncrement() {
         if (currentPage === totalPages) {
@@ -54,9 +53,40 @@ export default function AdminMemWallCons({ initialMemoriams }) {
     const notSelectedStylePagination =
         "inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-base font-medium text-black hover:border-nhgRed hover:text-gray-700";
 
+    // Helper to get page numbers with ellipses
+    function getPageNumbers(current, total) {
+        const maxPages = 10;
+        let pages = [];
+        if (total <= maxPages) {
+            for (let i = 1; i <= total; i++) pages.push(i);
+        } else {
+            let start = Math.max(2, current - 5);
+            let end = Math.min(total - 1, current + 5);
+            if (current <= 6) {
+                start = 2;
+                end = 11;
+            } else if (current >= total - 5) {
+                start = total - 10;
+                end = total - 1;
+            }
+            pages.push(1);
+            if (start > 2) pages.push("...");
+            for (let i = start; i <= end; i++) {
+                if (i > 1 && i < total) pages.push(i);
+            }
+            if (end < total - 1) pages.push("...");
+            pages.push(total);
+        }
+        return pages;
+    }
+
+    const pageNumbers = getPageNumbers(currentPage, totalPages);
+
     async function handleSave() {
         const updatedMemoriams = await memWallGet(); // Re-fetch the data
-        setMemoriams(updatedMemoriams); // Update the state with the new data
+        const paginatedData = paginatior(updatedMemoriams); // Paginate the new data
+        setMemoriams(paginatedData); // Update the state with the paginated data
+        setTotalPages(paginatedData.length); // Update total pages
     }
 
     return (
@@ -87,23 +117,32 @@ export default function AdminMemWallCons({ initialMemoriams }) {
                         </a>
                     </div>
                     <div className="hidden md:-mt-px md:flex">
-                        {memoriams.map((_, index) => (
-                            <div
-                                className="hidden md:-mt-px md:flex"
-                                key={index}
-                            >
-                                <a
-                                    onClick={() => selectPage(index + 1)}
-                                    className={
-                                        index + 1 === currentPage
-                                            ? selectedStylePagination
-                                            : notSelectedStylePagination
-                                    }
+                        {pageNumbers.map((num, idx) =>
+                            num === "..." ? (
+                                <span
+                                    key={"ellipsis-" + idx}
+                                    className="inline-flex items-center px-2 pt-4 text-base font-medium text-gray-500"
                                 >
-                                    {index + 1}
-                                </a>
-                            </div>
-                        ))}
+                                    ...
+                                </span>
+                            ) : (
+                                <div
+                                    key={num}
+                                    className="hidden md:-mt-px md:flex"
+                                >
+                                    <a
+                                        onClick={() => selectPage(num)}
+                                        className={
+                                            num === currentPage
+                                                ? selectedStylePagination
+                                                : notSelectedStylePagination
+                                        }
+                                    >
+                                        {num}
+                                    </a>
+                                </div>
+                            )
+                        )}
                     </div>
 
                     <div className="-mt-px flex w-0 flex-1 justify-end">
