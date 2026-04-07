@@ -69,7 +69,7 @@ export default function AdminMemIndCons({ record, refreshKey, onSave }) {
     }
 
     async function handleDelete() {
-        await memWallDelete(editProps.id);
+        await memWallDelete({ id: editProps.id, AdminUID: currentUser.uid });
         onSave(); // Call the onSave callback to trigger a re-render
     }
 

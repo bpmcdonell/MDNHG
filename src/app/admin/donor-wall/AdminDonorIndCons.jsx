@@ -68,7 +68,7 @@ export default function AdminDonorIndCons({ record, refreshKey, onSave }) {
     }
 
     async function handleDelete() {
-        await donorWallDelete(editProps.id);
+        await donorWallDelete({ id: editProps.id, AdminUID: currentUser.uid });
         onSave();
     }
 
