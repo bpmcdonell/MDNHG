@@ -22,6 +22,8 @@ export default function ServiceForm() {
         reqPhone: "",
         reqEmail: "",
         reqRelation: "",
+        honDesignation: "",
+        honDesignationOther: "",
     });
 
     const [otherVisible, setOtherVisible] = useState(false);
@@ -30,6 +32,13 @@ export default function ServiceForm() {
             ? setOtherVisible(true)
             : setOtherVisible(false);
     }, [data.serviceType]);
+
+    const [DesOtherVisible, setDesOtherVisible] = useState(false);
+    useEffect(() => {
+        data.honDesignation === "Other"
+            ? setDesOtherVisible(true)
+            : setDesOtherVisible(false);
+    }, [data.honDesignation]);
 
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value });
@@ -56,6 +65,8 @@ export default function ServiceForm() {
                     reqPhone: "",
                     reqEmail: "",
                     reqRelation: "",
+                    honDesignation: "",
+                    honDesignationOther: "",
                 });
                 setSubmitPending(false);
                 setSubmit(true);
@@ -141,6 +152,55 @@ export default function ServiceForm() {
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                 </div>
+                <br />
+                <div
+                    className={`grid gap-x-8 gap-y-6 ${DesOtherVisible ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1"}`}
+                >
+                    <div className="relative">
+                        <label
+                            htmlFor="honDesignation"
+                            className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
+                        >
+                            Honored Designation
+                        </label>{" "}
+                        <select
+                            name="honDesignation"
+                            id="honDesignation"
+                            value={data.honDesignation}
+                            onChange={handleChange}
+                            required
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        >
+                            <option value="NA">
+                                --Please choose an option--
+                            </option>
+                            <option value="RN">RN</option>
+                            <option value="LPN">LPN</option>
+                            <option value="CRNP">CRNP</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    {DesOtherVisible && (
+                        <div className="relative">
+                            <label
+                                htmlFor="honDesignationOther"
+                                className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"
+                            >
+                                Please Specify
+                            </label>
+                            <textarea
+                                name="honDesignationOther"
+                                id="honDesignationOther"
+                                onChange={handleChange}
+                                value={data.honDesignationOther}
+                                placeholder="If the designation is not listed, please specify."
+                                rows={1}
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            ></textarea>
+                        </div>
+                    )}
+                </div>
+
                 <br />
                 <div className="relative">
                     <label

@@ -7,7 +7,7 @@
         "forceConsistentCasingInFileNames": true,
         "noEmit": true,
         "incremental": true,
-        "module": "esnext",
+        "module": "node16",
         "esModuleInterop": true,
         "resolveJsonModule": true,
         "isolatedModules": true,
@@ -17,7 +17,7 @@
                 "name": "next"
             }
         ],
-        "moduleResolution": "node"
+        "moduleResolution": "node16"
     },
     "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
     "exclude": ["node_modules"]
